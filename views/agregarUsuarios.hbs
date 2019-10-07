@@ -1,0 +1,45 @@
+<form action="/api/pelicula" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="name">Título</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="Titulo">
+  </div>
+  <div class="form-group">
+    <label for="censura">Clasificación</label>
+    <select class="form-control" name="censura" id="censura">
+      <option>Todo público</option>
+      <option>12 años</option>
+      <option>16 años</option>
+      <option>18 años</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="fechaEstreno">Fecha de Estreno</label>
+    <input type="date" class="form-control" name="fechaEstreno" id="fechaEstreno" name="fecha">
+  </div>
+  <div class="form-group">
+    <label for="fechaFinal">Fecha de finalización Cartelera</label>
+    <input type="date" class="form-control" name="fechaFinal" id="fechaFinal" name="fecha">
+  </div>
+  <div class="form-group">
+    <label for="descripcion">Descripción</label>
+    <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="duracion">Duración</label>
+    <input type="text" class="form-control" name="duracion" id="duracion" placeholder="0 minutos">
+  </div>
+  <div class="form-group">
+    <label for="tiempoCartelera">Tiempo en cartelera</label>
+    <select class="form-control" name="tiempoCartelera" id="tiempoCartelera">
+      <option>1 Semana</option>
+      <option>2 Semanas</option>
+      <option>3 Semanas</option>
+      <option>4 Semanas</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="picture">Imagen de la Película</label>
+    <input type="file" class="form-control-file" name="picture" id="picture">
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar Película</button>
+</form>
