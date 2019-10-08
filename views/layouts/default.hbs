@@ -61,7 +61,7 @@
     {{!-- barra navegacion oscura --}}
 	{{!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> --}}
     {{!-- barra navegación clara --}}
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/">Clickhere PC</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -73,8 +73,24 @@
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
-			
-                		<li class="nav-item ">
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorías
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">PC y Laptops</a>
+            <a class="dropdown-item" href="#">Componentes de pc</a>
+            <a class="dropdown-item" href="#">Televisores</a>
+            <a class="dropdown-item" href="#">Impresoras y escáneres</a>
+            <a class="dropdown-item" href="#">Proyectores</a>
+            <a class="dropdown-item" href="#">Redes y telefonía IP</a>
+            <a class="dropdown-item" href="#">Accesorios y perifericos</a>
+            <a class="dropdown-item" href="#">Monitores</a>
+            <a class="dropdown-item" href="#">Software/ Licenciamiento</a>
+            <a class="dropdown-item" href="#">Monitores</a>
+          </div>
+        </li>
+        <li class="nav-item ">
 					<a class="nav-link" href="/api/moodle">Moodle
 						<span class="sr-only">(current)</span>
 					</a>
@@ -91,7 +107,7 @@
         <li class="nav-item">
 					<a class="nav-link" href="/api/contacto">Contacto</a>
 				</li>
-        
+
                 {{!-- <li class="nav-item">
 					<a class="nav-link disabled" href="/juego">Juego</a>
 				</li> --}}
@@ -105,9 +121,9 @@
 	{{{ body }}}
 {{!-- footer inicio--}}
     <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark">
+<footer class="page-footer font-small special-color">
 
-    <div style="background-color: rgba(59, 111, 255, 0.685);">
+    <div style="background-color: #e8902af2;">
       <div class="container">
 
         <!-- Grid row-->
@@ -162,7 +178,7 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
           <!-- Content -->
-          <h6 class="text-uppercase font-weight-bold">Clickhere PC</h6>
+          <h6 class="text-uppercase font-weight-bold" style="color: white">Clickhere PC</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>Empresa de desarrollo de software, soluciones informáticas y alojamiento web.</p>
 
@@ -173,16 +189,16 @@
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
           <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Productos</h6>
+          <h6 class="text-uppercase font-weight-bold" style="color: white">Productos</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
-            <a href="/api/moodle">Moodle</a>
+            <a href="/api/moodle">Instalación de cámaras de seguridad</a>
           </p>
           <p>
-            <a href="/api/wordpress">Wordpress</a>
+            <a href="/api/wordpress">Servicio técnico especializado</a>
           </p>
           <p>
-            <a href="#!">Correos empresariales</a>
+            <a href="#!">Componentes y accesorios informáticos</a>
           </p>
           <p>
             <a href="#!">Desarrollo a la medida</a>
@@ -195,7 +211,7 @@
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
           <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+          <h6 class="text-uppercase font-weight-bold"style="color: white">Useful links</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
             <a href="#!">Your Account</a>
@@ -217,12 +233,12 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
           <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Contacto</h6>
+          <h6 class="text-uppercase font-weight-bold" style="color: white">Contacto</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
             <i class="fa fa-home mr-3"></i> Manta, Ecuador.</p>
           <p>
-            <i class="fa fa-envelope mr-3"></i> konothecsa@gmail.com</p>
+            <i class="fa fa-envelope mr-3"></i> clickhere@gmail.com</p>
           <p>
             <i class="fa fa-phone mr-3"></i> +593 992093528</p>
           <p>
@@ -239,7 +255,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/"> konothec.com</a>
+      <a href="https://mdbootstrap.com/education/bootstrap/"> clickhere.com</a>
     </div>
     <!-- Copyright -->
 
