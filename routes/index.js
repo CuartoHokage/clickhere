@@ -29,4 +29,7 @@ api.get('/portafolio', (req, res)=>{
 api.get('/construccion', (req, res)=>{
 	res.render('en_creacion');
 });
+api.get('/cotizacion', (req, res)=>{
+	res.render('cotizacion');
+});
 module.exports= api
