@@ -26,4 +26,7 @@ api.get('/acerca_de', (req, res)=>{
 api.get('/portafolio', (req, res)=>{
 	res.render('portafolio');
 });
+api.get('/construccion', (req, res)=>{
+	res.render('en_creacion');
+});
 module.exports= api
