@@ -68,6 +68,8 @@ request.query('SELECT * from dbo.MAE_PRODUCTO', function(err, result){
 
 //FUNCIONA REACTIVAR CUANDO SE USE ENVIO DE MAILS/
 //Creamos el objeto de transporte  https://cursos.mejorcodigo.net/article/enviar-correo-electronico-con-nodejs-17
+
+/*
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -92,7 +94,7 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Email enviado: ' + info.response);
   }
 });
-//FUNCIONA REACTIVAR CUANDO SE USE/
+//FUNCIONA REACTIVAR CUANDO SE USE/ */
 
 app.listen(config.port, ()=>{
 	console.log(`Api Rest corriendo en el puerto ${config.port}`)
