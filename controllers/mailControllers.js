@@ -25,7 +25,7 @@ function postMail(req, res){
 			}
 		  });
 		  
-		  var mensaje = "Nombre: "+name +"\nPedido: "+pedido +"\nNúmero de telefono: " +telefono+ "\nEmail: " +email+".";
+		  var mensaje = "Nombre: "+name +"\nPedido: "+pedido +"\nNúmero de telefono: " +telefono+ "\nEmail: " +email;
 		  
 		  var mailOptions = {
 			from: email,
