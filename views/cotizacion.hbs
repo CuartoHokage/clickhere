@@ -6,17 +6,17 @@
       <h1 style="text-align: center;"></h1>
       <div class="col-md-4">
         <br>
-         <form action="">
+         <form action="/api/postmail_cotizacion" method="post" enctype="application/x-www-form-urlencoded">
         <h3 style="text-align: center;">Formulario de cotización:</h3>
           <br>
-          <input type="text" class="form-control" id="nombre" onkeypress="return validarLetra(event)" placeholder="Nombres">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Nombres">
           <br>
-          <input type="email" id="email" class="form-control"placeholder="Correo">
+          <input type="email" id="email" name="email" class="form-control"placeholder="Correo">
           <br>
-          <input type="text" id="comentario" class="form-control"placeholder="Mensaje">
+          <textarea class="form-control" id="comentario" name="comentario" rows="3" placeholder="Por favor escriba el producto que desea cotizar"></textarea>
           <br>
-          <input type="text" id="telefono" class="form-control" onkeypress="return validarNumero(event)"placeholder="Telefono"><br>
-          <input type="button" value="Enviar" class="btn btn-primary" id="enviar">
+          <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Telefono"><br>
+          <button type="submit" class="btn btn-primary">Enviar a cotizar</button>
         </form>    
       </div>
       </div>  
