@@ -45,7 +45,7 @@ var connection = mssl.connect(config2, function(err, res){
 });
 //
 var request =new mssl.Request();
-request
+request//revisar https://www.youtube.com/watch?v=X2Stnj3eVls
 //
 app.listen(config.port, ()=>{
 	console.log(`Api Rest corriendo en el puerto ${config.port}`)
