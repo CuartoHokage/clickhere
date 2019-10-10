@@ -11,6 +11,7 @@ app.use(bodyParser.json())
 const api= require('./routes')
 
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', hbs({
 	defaultLayout: 'default',
