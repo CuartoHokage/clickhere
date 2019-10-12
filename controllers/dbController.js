@@ -13,7 +13,7 @@ var poolConfig = {
 var connectionConfig = {
   userName: "sa",
   password: "clickhere2018",
-  server: "ipaddress",
+  server: '192.168.2.102',
   options: {
     rowCollectionOnDone: true, // Only get row set instead of row by row
     useColumnNames: true // For easier JSON formatting
