@@ -3,7 +3,8 @@
 const express= require('express');
 const api= express.Router()
 
-const mailControllers= require('../controllers/mailControllers')
+const mailControllers= require('../controllers/mailControllers');
+const dbControllers= require('../controllers/dbControllers');
 //Cruds para peliculas
 
 //rutas de páginas
@@ -32,6 +33,11 @@ api.get('/construccion', (req, res)=>{
 api.get('/cotizacion', (req, res)=>{
 	res.render('cotizacion');
 });
+api.get('/productos', (req, res)=>{
+	res.render('productos');
+});
+
 api.post('/postmail_cotizacion', mailControllers.postMail);
 
+api.get('/getproductos', dbControllers.getProductos)
 module.exports= api

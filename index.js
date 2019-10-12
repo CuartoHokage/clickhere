@@ -25,12 +25,14 @@ var connection = sql.connect(config2, function(err, res){
 
 	} else{
     console.log("conectado a la base de datos");
-    //Consulta de la base de datos 
+    //Consulta de la base de datos https://riptutorial.com/es/node-js/example/30413/conectando-con-sql-via--mssql-npm-module
+    /*
     new sql.Request().query("SELECT * FROM MAE_PRODUCTO WHERE PRDNOMBRE LIKE '%PREMIUM INK%'", (err, result) => {
       //handle err
       console.dir(result)
       // This example uses callbacks strategy for getting results.
     });
+    */
 	}
 });
 sql.on('error', err => {
