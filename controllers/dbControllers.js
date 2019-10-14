@@ -9,7 +9,7 @@ function getProductos(req, res){
 		//handle err
 		console.log(result)
 		res.status(200).send({result})
-		// This example uses callbacks strategy for getting results.
+		// This example uses callbacks strategy for getting results.vv
 	  });
 }
 
