@@ -5,8 +5,9 @@ const path= require('path');
 const sql= require ('mssql');
 
 function getProductos(req, res){
-	new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
-		//handle err
+	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+		new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP FROM MAE_PRODUCTO p where PRDCLASI2=7", (err, result) => {
+	//handle err
 		console.log(result.recordset[0]['IMAGEN'])
 		//console.log(result.recordset[{IMAGEN}])
 		var resultado=result.recordset;
