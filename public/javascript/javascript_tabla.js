@@ -32,9 +32,10 @@ $(document).ready(function () {
                 htmlpuro += '<tr>'
                 htmlpuro += '<td id="id_producto">' + msg[i][j].PRDNOMBRE + '</td>'
                 htmlpuro += '<td id="name">' + msg[i][j].PRDPVP + '</td>'
-                htmlpuro += '<td>' + '<div class="flip-box"> <div class="flip-box-inner"> <div class="flip-box-front"><img alt="'+msg[i][j].IMAGEN+'" src="/uploads/productos/'+msg[i][j].IMAGEN+'" width="200" height="200" class="img-circle" title="'+msg[i][j].name+'">  </div> <div class="flip-box-back"> <h2>'+msg[i][j].name+'</h2> <p>'+ msg[i][j].descripcion +'</p> </div> </div> </div>' + '</td>'
+                htmlpuro += '<td>' + '<div class="flip-box"> <div class="flip-box-inner"> <div class="flip-box-front"><img alt="'+msg[i][j].IMAGEN+'" src="'+msg[i][j].IMAGEN+'" width="200" height="200" class="img-circle" title="'+msg[i][j].name+'">  </div> <div class="flip-box-back"> <h2>'+msg[i][j].name+'</h2> <p>'+ msg[i][j].descripcion +'</p> </div> </div> </div>' + '</td>'
                 // htmlpuro += '<td>' + msg[i][j].picture + '</td>'
-                htmlpuro += '<td>' + msg[i][j].censura + '</td>'
+                htmlpuro += '<td>' + msg[i][j].IMAGEN+ '</td>'
+                console.log(msg[i][j].IMAGEN)
                 // htmlpuro += '<td>' + msg[i][j].descripcion + '</td>'
                 htmlpuro += '<td>' + msg[i][j].fechaEstreno + '</td>'
                 htmlpuro += '<td>' + msg[i][j].fechaFinal + '</td>'

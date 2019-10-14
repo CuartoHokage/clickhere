@@ -13,6 +13,7 @@ function getProductos(req, res){
 		res.status(200).send({resultado})
 		// This example uses callbacks strategy for getting results.vv
 		//Convertir imagen varbinary
+		/*
 		if (fs.existsSync('./uploads/productos')) {
 			console.log('The file exists.');
 		  }else{
@@ -28,7 +29,7 @@ function getProductos(req, res){
 		console.log('It\'s saved!');
 			cb(data);
 		});
-		
+*/
 	  });
 }
 
