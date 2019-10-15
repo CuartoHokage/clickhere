@@ -1,0 +1,26 @@
+<body>
+    <article id="work" class="wrapper style2">
+        <div class="container ">
+            <div class="row">   
+                <br>
+                <h1 style="text-align: center;"></h1>
+                <div class="col-md-4">
+                <br>
+                    <form action="/api/upload" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Motivo</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Motivo">
+                    </div>
+                    <div class="form-group">
+                        <label for="picture">Imagen del banner</label>
+                        <input type="file" class="form-control-file" name="picture" id="picture">
+                        <p id="texto"> </p><br/> 
+                        <img id="img" src="" />  
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="guardar" disabled>Guardar banner</button>
+                    </form>
+                </div>
+            </div>  
+        </div>
+    </article>
+</body>

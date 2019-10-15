@@ -6,8 +6,10 @@ const app= express()
 const hbs= require('express-handlebars')
 const formidable=require('express-form-data')
 var path = require('path');
+const fileUpload = require('express-fileupload')
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+app.use(fileUpload())
 const api= require('./routes')
 
 

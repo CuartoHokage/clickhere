@@ -1,10 +1,13 @@
 'use strict'
 
 const express= require('express');
-const api= express.Router()
-
+const api= express.Router();
+var multiparty= require('connect-multiparty');
+var md_upload= multiparty({uploadDir: './public/uploads/productos'});
 const mailControllers= require('../controllers/mailControllers');
 const dbControllers= require('../controllers/dbControllers');
+const edicionControllers= require('../controllers/edicionControllers');
+
 //Cruds para peliculas
 
 //rutas de páginas
@@ -37,7 +40,23 @@ api.get('/productos', (req, res)=>{
 	res.render('productos');
 });
 
+api.get('/edicion', (req, res)=>{
+	res.render('admin_imagenes');
+});
+
+/////
+
+//////
+
+api.post('/upload',(req,res) => {
+    let EDFile = req.files.picture
+    EDFile.mv(`./public/imagenes/banner3.jpg`,err => {
+        if(err) return res.status(500).send({ message : err })
+		res.status(200).render('index');
+	})
+})
 api.post('/postmail_cotizacion', mailControllers.postMail);
 
-api.get('/getproductos', dbControllers.getProductos)
+api.get('/getproductos', dbControllers.getProductos);
+
 module.exports= api
