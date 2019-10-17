@@ -11,7 +11,7 @@ const config2 = {
     user: 'sa',
     password: 'Clickhere2018',
     server: '192.168.2.102', // You can use 'localhost\\instance' to connect to named instance
-    database: 'click',
+    database: 'click_new',
     options: {
         encrypt: true // Use this if you're on Windows Azure
 	}
