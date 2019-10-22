@@ -11,12 +11,15 @@ function getProductos(req, res){
 		console.log(result.recordset[0]['IMAGEN'])
 		var originalBase64ImageStr = new Buffer(result.recordset[0]['IMAGEN']).toString('utf8');
 		var decodedImage = new Buffer(originalBase64ImageStr , 'base64')
+		//tratamiento de la imagen
+		/*
 		fs.writeFileSync(target, recordSets.recordset[0].Image);
 		fs.writeFile(__dirname+'/publick/img3.png', decodedImage, function(err, data){
             if (err) throw err;
         console.log('It\'s saved!');
             console.log(data);
-    	});
+		});
+		*/
 		var resultado=result.recordset;
 		res.status(200).send({resultado})
 	  });
