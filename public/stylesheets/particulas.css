@@ -25,7 +25,8 @@
 }
 /* Imagen que va en el div particulas */
 .particulas{
-    background: url(../imagenes/banner3.jpg);
+    /*IMAGEN*/
+    /*background: url(../imagenes/banner3.jpg);*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
@@ -33,10 +34,10 @@
 #particles-js{
     width: 100%;
     height: 800px;
-    /* background: url(../imagenes/carrucel2.jpg);
+    /*background: url(../imagenes/72859420_3125993084109177_2344947891874824192_n.jpg);
     background-position: center;
     background-attachment: contain;
-    background-size: cover; */
+    background-size: cover; 
     /* padding: 0; */
 }
 
