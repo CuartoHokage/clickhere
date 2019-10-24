@@ -11,6 +11,10 @@ const edicionControllers= require('../controllers/edicionControllers');
 //Cruds para peliculas
 
 //rutas de páginas
+api.get('/index2', (req, res)=>{
+	res.render('index-rec');
+});
+
 api.get('/productos', (req, res)=>{
 	res.render('productos');
 });
@@ -58,5 +62,7 @@ api.post('/upload',(req,res) => {
 api.post('/postmail_cotizacion', mailControllers.postMail);
 
 api.get('/getproductos', dbControllers.getProductos);
+
+//api.get('/imagen',('./controllers/publick/img3.jpg.'));
 
 module.exports= api

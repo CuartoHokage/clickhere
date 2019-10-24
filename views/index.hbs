@@ -1,109 +1,81 @@
 {{!-- Arreglar particulas --}}
 <div class="particulas">
-  <div id="carouselExampleIndicators" class="container-fluid carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100 img-fluid" src="/imagenes/banner3.jpg" style="width: 900px; height: 600px;" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100 img-fluid" style="width: 900px; height: 600px;" src="/imagenes/74614155_3131642280210924_4003179424206815232_n.jpg"
-          alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100 img-fluid" style="width: 900px; height: 600px;" src="/imagenes/73539726_3128975847144234_2865700800930250752_n.jpg"
-          alt="Third slide">
-      </div>
+<div class="row no-gutters vacio">
+  <div class="col-sm"></div>
+  <div id="particles-js">
+    <div class="texto-particle">
+      <br>
+      <br>
+      <h1 class="p-4">Clickhere PC</h1>
+      <p style="color: white">Empresa dedicada a la innovación tecnológica</p>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <div class="row no-gutters">
-    <div class="col-sm"></div>
-    <div id="particles-js">
-      <div class="texto-particle">
-        <br>
-        <br>
-        <h1 class="p-4">Clickhere PC</h1>
-        <p style="color: white">Empresa dedicada a la innovación tecnológica</p>
-      </div>
-    </div>
-  </div>
-  <div>
-    <article id="work" class="wrapper style2">
-      <div class="container">
-        <header>
-          <h1>Acerca de Clickhere PC</h1>
-          <p> </p>
-        </header>
-    </article>
   </div>
 </div>
+
+</div>
+   
 <div>
-  <article id="work" class="wrapper style2">
-    <div class="container">
-      <header>
-        <h1>NUESTROS SERVICIOS</h1>
-        <p>Agrega valor a tu empresa con las soluciones que ofrecemos</p>
-      </header>
-      <div class="row aln-center">
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <section class="box style1">
-            <span class="icon featured fa-video-camera" aria-hidden="true"></span>
-            <h3>Instalación de camaras de seguridad</h3>
-
-            <button class="btn btn-primary" onclick="location.href='/api/seguridad'">Seguridad</button>
-          </section>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-          <section class="box style1">
-            <span class="icon featured fa-cogs"></span>
-            <h3>Mantenimiento especializado</h3>
-
-            <button class="btn btn-primary" onclick="location.href='/api/mantenimiento'">Acesoria técnica</button>
-          </section>
-        </div>
-        <div class="col-lg-4 col-6-medium col-sm-12">
-          <section class="box style1">
-            <span class="icon featured fa-desktop"></span>
-            <h3>Componentes y accesorios computación e informática</h3>
-            <button class="btn btn-primary" onclick="location.href='/api/productos'">Categorías</button>
-
-          </section>
-        </div>
-      </div>
-    </div>
-    <footer class="lol">
-      <p>Empresas con las que hemos trabajado</p>
-      <a href="/api/portafolio" class="button large scrolly">Ver portafolio</a>
-    </footer>
-  </article>
-  {{!-- Separador invisible efecto imagen de fondo --}}
-  {{!-- <div class="row no-gutters vacio2">
+<div>
+<article id="work" class="wrapper style2">
+   <header>
+     <h1>Acerca de Clickhere PC</h1>
+     <p>  </p>
+   </header>
+   </article>
+   </div>
+<article id="work" class="wrapper style2">
+ <div class="container">
+   <header>
+     <h1>NUESTROS SERVICIOS</h1>
+     <p>Agrega valor a tu empresa con las soluciones que ofrecemos</p>
+   </header>
+   <div class="row aln-center">
+     <div class="col-lg-4 col-md-6 col-sm-12">
+       <section class="box style1">
+         <span class="icon featured fa-video-camera" aria-hidden="true"></span>
+         <h3>Instalación de camaras de seguridad</h3>
+         
+         <button class="btn btn-primary" onclick="location.href='/api/seguridad'">Seguridad</button>
+       </section>
+     </div>
+     <div class="col-lg-4 col-md-6 col-sm-12">
+       <section class="box style1">
+         <span class="icon featured fa-cogs"></span>
+         <h3>Mantenimiento especializado</h3>
+         
+         <button class="btn btn-primary" onclick="location.href='/api/mantenimiento'">Acesoria técnica</button>
+       </section>
+     </div>
+     <div class="col-lg-4 col-6-medium col-sm-12">
+       <section class="box style1">
+         <span class="icon featured fa-desktop"></span>
+         <h3>Componentes y accesorios computación e informática</h3>
+         <button class="btn btn-primary" onclick="location.href='/api/productos'">Categorías</button>
+         
+       </section>
+     </div>
+   </div>
+  </div>
+   <footer class="lol">
+     <p>Empresas con las que hemos trabajado</p>
+     <a href="/api/portafolio" class="button large scrolly">Ver portafolio</a>
+   </footer>
+   </article>
+   {{!-- Separador invisible efecto imagen de fondo --}}
+    {{!-- <div class="row no-gutters vacio2">
       <div class="col-sm"></div>
       <div id="particles-js"></div>
       </div> --}}
-  {{!-- Separador invisible efecto imagen de fondo --}}
+    {{!-- Separador invisible efecto imagen de fondo --}}
 
-  <article id="work" class="wrapper style2">
-    <div class="container">
-      <h3 class="frase">“El éxito no es definitivo, el fracaso no es fatal: lo que cuenta es el coraje para continuar”.
-      </h3>
-      <p class="autor"> Winston S. Churchill</p>
-    </div>
+<article id="work" class="wrapper style2">
+  <div class="container">
+     <h3 class="frase">“El éxito no es definitivo, el fracaso no es fatal: lo que cuenta es el coraje para continuar”.</h3>
+     <p class="autor"> Winston S. Churchill</p>
+  </div>
 
 </div>
-
+  
 
 <script type="text/javascript" src="/javascript/particles.js"></script>
 <script type="text/javascript" src="/javascript/app.js"></script>
