@@ -26,13 +26,11 @@ $(document).ready(function () {
             //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
             // de cada j
             for (let j in msg[i]) {
-              
-
                 // console.log(msg[i][j])
                 htmlpuro += '<tr>'
                 htmlpuro += '<td id="id_producto">' + msg[i][j].PRDNOMBRE + '</td>'
                 htmlpuro += '<td id="name">' + msg[i][j].PRDPVP + '</td>'
-                htmlpuro += '<td>' + '<div class="flip-box"> <div class="flip-box-inner"> <div class="flip-box-front"><img alt="'+msg[i][j].IMAGEN+'" src="../../controllers/publick/img3.jpg" width="200" height="200" class="img-circle" title="'+msg[i][j].name+'">  </div> <div class="flip-box-back"> <h2>'+msg[i][j].name+'</h2> <p>'+ msg[i][j].descripcion +'</p> </div> </div> </div>' + '</td>'
+                htmlpuro += '<td>' + '<div class="flip-box"> <div class="flip-box-inner"> <div class="flip-box-front"><img alt="'+msg[i][j].IMAGEN+'" src="../imagenes/'+msg[i][j].PRDIDENTI+'.jpg" width="200" height="200" class="img-circle" title="'+msg[i][j].name+'">  </div> <div class="flip-box-back"> <h2>'+msg[i][j].name+'</h2> <p>'+ msg[i][j].descripcion +'</p> </div> </div> </div>' + '</td>'
                 // htmlpuro += '<td>' + msg[i][j].picture + '</td>'
                 htmlpuro += '<td>' + msg[i][j].IMAGEN+ '</td>'
                 console.log(msg[i][j].IMAGEN)

@@ -15,7 +15,8 @@ function getProductos(req, res){
 		
 		//fs.writeFileSync(target, recordSets.recordset[0].Image);
 		//funciona en directorio erroneo
-		fs.writeFile(__dirname+'/publick/img3.jpg', decodedImage, function(err, data){
+		
+		fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
             if (err) throw err;
         console.log('It\'s saved!');
             console.log(data);
