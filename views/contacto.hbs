@@ -3,6 +3,24 @@
     <div class="container ">
       <div class="row">
         <br>
+        <h1 style="text-align: center;"></h1>
+        <div class="col-md-6">
+          <br>
+          <form action="">
+            <h3 style="text-align: center;">Formulario de contacto:</h3>
+            <br>
+            <input type="text" class="form-control" id="nombre" onkeypress="return validarLetra(event)"
+              placeholder="Nombres">
+            <br>
+            <input type="email" id="email" class="form-control" placeholder="Correo">
+            <br>
+            <input type="text" id="comentario" class="form-control" placeholder="Mensaje">
+            <br>
+            <input type="text" id="telefono" class="form-control" onkeypress="return validarNumero(event)"
+              placeholder="Telefono"><br>
+            <input type="button" value="Enviar" class="btn btn-primary" id="enviar">
+          </form>
+        </div>
         <div class="col-md-6">
           <br>
           <strong>
@@ -33,24 +51,6 @@
 
             </div>
           </div>
-        </div>
-        <h1 style="text-align: center;"></h1>
-        <div class="col-md-4">
-          <br>
-          <form action="">
-            <h3 style="text-align: center;">Formulario de contacto:</h3>
-            <br>
-            <input type="text" class="form-control" id="nombre" onkeypress="return validarLetra(event)"
-              placeholder="Nombres">
-            <br>
-            <input type="email" id="email" class="form-control" placeholder="Correo">
-            <br>
-            <input type="text" id="comentario" class="form-control" placeholder="Mensaje">
-            <br>
-            <input type="text" id="telefono" class="form-control" onkeypress="return validarNumero(event)"
-              placeholder="Telefono"><br>
-            <input type="button" value="Enviar" class="btn btn-primary" id="enviar">
-          </form>
         </div>
       </div>
     </div>

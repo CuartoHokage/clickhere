@@ -57,7 +57,7 @@ $(document).ready(function () {
   
     /// lista de productos cuadricula
     $('#btnconsultar2').click(function () {
-      var htmlpuro="";
+      var htmlpuro='<div class="row">';
       
       $.ajax({
           type: "GET",
@@ -70,14 +70,21 @@ $(document).ready(function () {
               //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
               // de cada j
               for (let j in msg[i]) {
-                  htmlpuro += '<div class="row" id="id_producto"><br><div class="col-4 flip-box"><div class="flip-box-inner"> <div class="flip-box-front"><img alt="'+msg[i][j].IMAGEN+'" src="../imagenes/'+msg[i][j].PRDIDENTI+'.jpg" width="200" height="200" class="img-circle" title="'+msg[i][j].name+'">  </div> <div class="flip-box-back"> <h2>'+msg[i][j].name+'</h2> <p>'+ msg[i][j].descripcion +'</p> </div> </div> </div><br>'+ msg[i][j].PRDNOMBRE + '<br>'+ msg[i][j].PRDPVP + '</div>'                
+                  htmlpuro += '<div class="col-lg-3 col-md-4 col-6 product-block">'
+                  htmlpuro += '<div class="main-category-image">'
+                  htmlpuro += '<img class="img-thumbnail img-portfolio img-hover mb-3" src="/imagenes/'+2928+'.jpg" width="200" height="200" alt="">'
+                  htmlpuro += '<div class="caption">'
+                  htmlpuro += '<h3>'+ msg[i][j].PRDNOMBRE + '</h3>'
+                  htmlpuro += '<div class="price-mob">'+msg[i][j].PRDPVP+'</div>'
+                  htmlpuro += '<p>'+msg[i][j].PRDNOMBRE+'</p>'
+                  htmlpuro += '</div></div></div>'
                   console.log(msg[i][j].IMAGEN)
                   var contador;
                   contador++;
               }
           }
           // gggf
-          htmlpuro += '</tbody></table>';
+          htmlpuro += '</div>';
           $("#contenido").html(htmlpuro)
               //$("#contenido").html(htmlpuro)
               
