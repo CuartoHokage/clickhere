@@ -71,13 +71,14 @@ $(document).ready(function () {
               // de cada j
               for (let j in msg[i]) {
                   htmlpuro += '<div class="col-lg-3 col-md-4 col-6 product-block">'
+                  htmlpuro += '<section class="box style1">'
                   htmlpuro += '<div class="main-category-image">'
-                  htmlpuro += '<img class="img-thumbnail img-portfolio img-hover mb-3" src="/imagenes/'+2928+'.jpg" width="200" height="200" alt="">'
+                  htmlpuro += '<img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/'+msg[i][j].PRDIDENTI+'.jpg" width="200" height="200 alt="">'
                   htmlpuro += '<div class="caption">'
-                  htmlpuro += '<h3>'+ msg[i][j].PRDNOMBRE + '</h3>'
-                  htmlpuro += '<div class="price-mob">'+msg[i][j].PRDPVP+'</div>'
+                  htmlpuro += '<h5>'+ msg[i][j].PRDNOMBRE + '</h5>'
+                  htmlpuro += '<div class="price-mob">'+parseFloat(Math.round(msg[i][j].PRDPVP * 100) / 100).toFixed(2)+'</div>'
                   htmlpuro += '<p>'+msg[i][j].PRDNOMBRE+'</p>'
-                  htmlpuro += '</div></div></div>'
+                  htmlpuro += '</div></div></section></div>'
                   console.log(msg[i][j].IMAGEN)
                   var contador;
                   contador++;
