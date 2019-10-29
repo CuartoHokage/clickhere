@@ -54,7 +54,7 @@ api.get('/edicion', (req, res)=>{
 
 api.post('/upload',(req,res) => {
     let EDFile = req.files.picture
-    EDFile.mv(`./public/imagenes/banner3.jpg`,err => {
+    EDFile.mv(`./public/imagenes/banner3.png`,err => {
         if(err) return res.status(500).send({ message : err })
 		res.status(200).render('index');
 	})

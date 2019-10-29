@@ -6,7 +6,7 @@ const sql= require ('mssql');
 
 function getProductos(req, res){
 	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
-		new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+		new sql.Request().query("SELECT top 50 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
 	//handle err
 		console.log(result.recordset[0]['IMAGEN'])
 		var producto=0;
@@ -27,6 +27,10 @@ function getProductos(req, res){
             console.log(data);
 		});
 	}
+	var hoy = new Date();
+	var hora;
+	hora= hoy.getHours()+':'+hoy.getMinutes()+':'+hoy.getSeconds();
+	console.log(hora);
 		var resultado=result.recordset;
 		res.status(200).send({resultado})
 	  });
