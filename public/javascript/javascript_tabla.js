@@ -66,24 +66,24 @@ $(document).ready(function () {
           contentType: "text/plain"
       }).done(function (msg) {
           //este for entra al objeto peliculas del json "msg" "i" quedara en posicion u objeto 0
-        //   for (let i in msg) {
-        //       //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
-        //       // de cada j
-        //       for (let j in msg[i]) {
-        //           htmlpuro += '<div class="col-lg-3 col-md-4 col-6 product-block">'
-        //           htmlpuro += '<section class="box style1">'
-        //           htmlpuro += '<div class="main-category-image">'
-        //           htmlpuro += '<img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/'+msg[i][j].PRDIDENTI+'.jpg" width="200" height="200 alt="">'
-        //           htmlpuro += '<div class="caption">'
-        //           htmlpuro += '<h5>'+ msg[i][j].PRDNOMBRE + '</h5>'
-        //           htmlpuro += '<div class="price-mob">'+parseFloat(Math.round(msg[i][j].PRDPVP * 100) / 100).toFixed(2)+'</div>'
-        //           htmlpuro += '<p>'+msg[i][j].PRDNOMBRE+'</p>'
-        //           htmlpuro += '</div></div></section></div>'
-        //           console.log(msg[i][j].IMAGEN)
-        //           var contador;
-        //           contador++;
-        //       }
-        //   }
+          for (let i in msg) {
+              //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
+              // de cada j
+              for (let j in msg[i]) {
+                  htmlpuro += '<div class="col-lg-3 col-md-4 col-6 product-block">'
+                  htmlpuro += '<section class="box style1">'
+                  htmlpuro += '<div class="main-category-image">'
+                  htmlpuro += '<img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/'+msg[i][j].PRDIDENTI+'.jpg" width="200" height="200 alt="">'
+                  htmlpuro += '<div class="caption">'
+                  htmlpuro += '<h5>'+ msg[i][j].PRDNOMBRE + '</h5>'
+                  htmlpuro += '<div class="price-mob">'+parseFloat(Math.round(msg[i][j].PRDPVP * 100) / 100).toFixed(2)+'</div>'
+                  htmlpuro += '<p>'+msg[i][j].PRDNOMBRE+'</p>'
+                  htmlpuro += '</div></div></section></div>'
+                  console.log(msg[i][j].IMAGEN)
+                  var contador;
+                  contador++;
+              }
+          }
           // gggf
           htmlpuro += '</div>';
           $("#contenido").html(htmlpuro)
