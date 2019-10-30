@@ -1,4 +1,7 @@
-
+hr.new4 {
+  border: 1px solid #fba744;
+  border-radius: 2px;
+}
 .carousel-item {
     /* height: 100vh; */
     min-height: 350px;
