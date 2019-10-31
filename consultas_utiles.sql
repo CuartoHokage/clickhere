@@ -21,3 +21,9 @@ inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBS
 -- Consulta de producto con stock
 SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, r.PUBSTOCK FROM MAE_PRODUCTO p 
 inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0;
+
+
+--consultar por inicio descripcion de producto
+SELECT *  
+FROM MAE_PRODUCTO
+WHERE PRDNOMBRE LIKE 'PORT%'
