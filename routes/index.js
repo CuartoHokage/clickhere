@@ -18,6 +18,9 @@ api.get('/index2', (req, res)=>{
 api.get('/productos', (req, res)=>{
 	res.render('productos');
 });
+api.get('/getProductosCoincidencia', (req, res)=>{
+	res.render('busqueda');
+});
 api.get('/contacto', (req, res)=>{
 	res.render('contacto');
 });

@@ -27,3 +27,9 @@ inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBS
 SELECT *  
 FROM MAE_PRODUCTO
 WHERE PRDNOMBRE LIKE 'PORT%'
+
+--- consultar por la descripcion de los en la barra de busqueda
+select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p
+INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO
+inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO 
+where PRDNOMBRE like '%epson%' and PUBSTOCK >0
