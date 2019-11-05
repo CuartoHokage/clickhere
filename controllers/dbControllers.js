@@ -40,13 +40,13 @@ function getProductos(req, res) {
 }
 
 function getProductosCoincidencia(req, res) {
-
+	var buscar= req.buscar;
 	new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO\
-	where PRDNOMBRE like '%"+'parametro'+"%' and PUBSTOCK >0", (err, result) => {
+	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0", (err, result) => {
 		//handle err
-		console.log(result.recordset[0]['IMAGEN'])
+		console.log(result.recordset[0])
 		var producto = 0;
 		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
 		// 	for (producto; producto < result.recordset.length; producto++) {
