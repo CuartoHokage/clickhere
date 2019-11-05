@@ -96,7 +96,7 @@ $(document).ready(function () {
         var htmlpuro='<div class="row">';
         
         var esteBoton= $(this);
-                var id = ("#busqueda").val();
+                var id = $("#busqueda").val();
                 console.log(id)
                 
                 

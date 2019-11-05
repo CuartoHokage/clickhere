@@ -46,7 +46,7 @@ function getProductosCoincidencia(req, res) {
 	inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO\
 	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0", (err, result) => {
 		//handle err
-		console.log(result.recordset[0])
+		console.log(result.recordset)
 		var producto = 0;
 		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
 		// 	for (producto; producto < result.recordset.length; producto++) {
