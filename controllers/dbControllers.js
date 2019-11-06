@@ -3,6 +3,7 @@ var os = require('os');
 const fs = require('fs');
 const path = require('path');
 const sql = require('mssql');
+var localStorage = require('localStorage')
 
 function getProductos(req, res) {
 	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
@@ -40,37 +41,41 @@ function getProductos(req, res) {
 }
 
 function getProductosCoincidencia(req, res) {
-	var buscar= req.buscar;
+	var buscar = req.body.buscar;
+	new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO\
+	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0", (err, result) => {
+		//handle err
+		console.log(result.recordset)
+		var producto = 0;
+
+	});
+	return result.recordset;
+}
+
+function postProductosCoincidencia(req, res) {
+	var buscar = req.body.buscar;
+
 	new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO\
 	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0", (err, result) => {
 		//handle err
 		console.log(result.recordset)
-		var producto = 0;
-		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-		// 	for (producto; producto < result.recordset.length; producto++) {
 
+		var producto = result.recordset;
+		//localStorage.setItem("producto", JSON.stringify(producto));
 
+		res.render('busqueda')
+		//res.send(result.recordset)
 
-		// 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-		// 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-		// 	//tratamiento de la imagen
-
-		// 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-		// 	//funciona en directorio erroneo
-		// 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-		// 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-		//         if (err) throw err;
-		//     console.log('It\'s saved!');
-		//         console.log(data);
-		// 	});
-		// }
-		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
 	});
+	
 }
 
 module.exports = {
 	getProductos,
-	getProductosCoincidencia
+	getProductosCoincidencia,
+	postProductosCoincidencia
 }
