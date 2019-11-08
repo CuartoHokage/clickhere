@@ -2,9 +2,31 @@
     <br>
     <br>
     <div class="container">
-        <input class="btn btn-outline-dark" type="button" id="btnconsultar2" value="presioname"><br><br>
         <div id="contenido" class="">
-        <h1>{{producto}}</h1>
+            <div class="row">
+        {{#each data}}
+
+            
+							<div class="col-md-4 product-block" id="{{this.PRDIDENTI}}">
+                                <section class="box style1">
+                                    {{this.PRDIDENTI}}
+                                    <div class="main-category-image">
+                                        <img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/.jpg" width="200" height="200 alt="">
+                                        <div class="caption">
+                                            <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
+                                            <div class="price-mob"><strong>Precio: </strong>{{this.PRDPVP}}</div>
+                                            
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+            {{/each}}
+        
         </div>
+
+    </div>
+    </div>
+
+
         
         

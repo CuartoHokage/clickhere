@@ -18,7 +18,11 @@ api.get('/index2', (req, res)=>{
 api.get('/productos', (req, res)=>{
 	res.render('productos');
 });
-api.get('/coincidencia', dbControllers.postProductosCoincidencia);
+api.get('/verconcidencia', (req, res)=>{
+	res.render('busqueda');
+});
+api.post('/coincidencia', dbControllers.postProductosCoincidencia);
+
 api.get('/contacto', (req, res)=>{
 	res.render('contacto');
 });

@@ -70,8 +70,9 @@ $(document).ready(function () {
                 //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
                 // de cada j
                 for (let j in msg[i]) {
-                    htmlpuro += '<div class="col-lg-3 col-md-4 col-6 product-block">'
-                    htmlpuro += '<section class="box style1">'
+                    htmlpuro += '<div class="col-md-4 product-block">\
+                                <section class="box style1">'
+                   
                     htmlpuro += '<div class="main-category-image">'
                     htmlpuro += '<img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/' + msg[i][j].PRDIDENTI + '.jpg" width="200" height="200 alt="">'
                     htmlpuro += '<div class="caption">'

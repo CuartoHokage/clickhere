@@ -57,26 +57,19 @@ function getProductosCoincidencia(req, res) {
 function postProductosCoincidencia(req, res) {
 	var buscar = req.body.buscar;
 
-	new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p\
+	new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO\
 	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0", (err, result) => {
 		//handle err
-		console.log(result.recordset[0])
+		console.log(result.recordset)
 
-		var producto  ={
-			titulo:'Articulos disponibles a la fecha',
-			articulos: [
-			  { codigo: 1,precio:12,descripcion: 'peras' },
-			  { codigo: 2,precio:132,descripcion: 'manzanas' },
-			  { codigo: 3,precio:23,descripcion: 'naranjas' },               
-			],
-			descuento:{lunes:'5%',martes:'10%'}
-		 };
+		var producto  =result.recordset
 		//localStorage.setItem("producto", JSON.stringify(producto));
 
 		//res.render('busqueda')
-		res.render('busqueda',producto);
+		res.render('busqueda', { data:producto })
+		// res.render('busqueda',producto);
 
 	});
 	
