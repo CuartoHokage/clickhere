@@ -1,0 +1,34 @@
+<body>
+    <br>
+    <br>
+    <div class="container">
+        <div id="contenido" class="">
+            <div class="row">
+        {{#each data}}
+
+            
+							<div class="col-md-4 product-block" id="{{this.PRDIDENTI}}">
+                                <section class="box style1">
+                                    
+                                    <div class="main-category-image">
+                                        <img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/sin_imagen.jpg" width="200" height="200">
+                                        <div class="caption">
+                                            <div><strong>Código: </strong> {{this.PRDIDENTI}}</div>
+                                            <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
+                                            <div class="price-mob"><strong>Precio: </strong>{{this.PRDPVP}}</div>
+                                            <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
+                                            
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+            {{/each}}
+        
+        </div>
+
+    </div>
+    </div>
+
+
+        
+        

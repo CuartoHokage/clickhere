@@ -64,6 +64,17 @@ api.post('/upload',(req,res) => {
 		res.status(200).render('index');
 	})
 })
+
+api.post('/upload_productos',(req,res) => {
+	let EDFile = req.files.picture
+	var id_imagen= req.body.id_imagen
+	// console.log(req.files.picture.values)
+	// console.log(id_imagen)
+    EDFile.mv('./public/imagenes/'+id_imagen+'.png',err => {
+        if(err) return res.status(500).send({ message : err })
+		res.status(200).render('index');
+	})
+})
 api.post('/postmail_cotizacion', mailControllers.postMail);
 
 api.get('/getproductos', dbControllers.getProductos);
