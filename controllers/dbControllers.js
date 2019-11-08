@@ -57,10 +57,9 @@ function getProductosCoincidencia(req, res) {
 function postProductosCoincidencia(req, res) {
 	var buscar = req.body.buscar;
 
-	new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	inner join REL_PRODAGRUPACION a on p.PRDIDENTI=a.IDPRODUCTO\
-	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0", (err, result) => {
+	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
 		//handle err
 		console.log(result.recordset)
 
@@ -74,9 +73,50 @@ function postProductosCoincidencia(req, res) {
 	});
 	
 }
+function postProductosCoincidenciaadmin(req, res) {
+	var buscar = req.body.buscar;
+
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
+		//handle err
+		console.log(result.recordset)
+
+		var producto  =result.recordset
+		//localStorage.setItem("producto", JSON.stringify(producto));
+
+		//res.render('busqueda')
+		res.render('busqueda_admin', { data:producto })
+		// res.render('busqueda',producto);
+
+	});
+	
+}
+
+function postPrductosCategoria(req, res) {
+	var buscar = req.body.buscar;
+
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
+		//handle err
+		console.log(result.recordset)
+
+		var producto  =result.recordset
+		//localStorage.setItem("producto", JSON.stringify(producto));
+
+		//res.render('busqueda')
+		res.render('busqueda_admin', { data:producto })
+		// res.render('busqueda',producto);
+
+	});
+	
+}
 
 module.exports = {
 	getProductos,
 	getProductosCoincidencia,
-	postProductosCoincidencia
+	postProductosCoincidencia,
+	postProductosCoincidenciaadmin,
+	postPrductosCategoria
 }

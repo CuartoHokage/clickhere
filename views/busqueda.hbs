@@ -4,37 +4,31 @@
     <div class="container">
         <div id="contenido" class="">
             <div class="row">
-                {{#each data}}
+        {{#each data}}
 
-
-                <div class="col-md-4 product-block" id="{{this.PRDIDENTI}}">
-                    <section class="box style1">
-
-                        <div class="main-category-image">
-                            <img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.PRDIDENTI}}.png"
-                                width="200" height="200">
-                            <div class="caption">
-                                <div><strong>Código: </strong> {{this.PRDIDENTI}}</div>
-                                <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
-                                <div class="price-mob"><strong>Precio: </strong>{{this.PRDPVP}}</div>
-                                <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
-                                <form action="/api/upload_productos" method="post" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label for="picture">Imagen del producto</label>
-                                        <input type="file" class="form-control-file" name="picture" id="picture" value="{{this.PRDIDENTI}}">
-                                        <input type="hidden" name="id_imagen" value="{{this.PRDIDENTI}}">
-                                        <p id="texto"> </p><br />
-                                        <img id="img" width="200" height="200" src="" />
+            
+							<div class="col-md-4 product-block" id="{{this.PRDIDENTI}}">
+                                <section class="box style1">
+                                    
+                                    <div class="main-category-image">
+                                        <img onerror="this.src='/imagenes/sin_imagen.jpg';"  class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.PRDIDENTI}}.png" width="200" height="200">
+                                        <div class="caption">
+                                            <div><strong>Código: </strong> {{this.PRDIDENTI}}</div>
+                                            <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
+                                            <div class="price-mob"><strong>Precio: </strong>{{this.PRDPVP}}</div>
+                                            <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
+                                            
+                                        </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" id="guardar">Guardar imagen</button>
-                                </form>
+                                </section>
                             </div>
-                        </div>
-                    </section>
-                </div>
-                {{/each}}
-
-            </div>
-
+            {{/each}}
+        
         </div>
+
     </div>
+    </div>
+
+
+        
+        

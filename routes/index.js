@@ -21,6 +21,7 @@ api.get('/productos', (req, res)=>{
 api.get('/verconcidencia', (req, res)=>{
 	res.render('busqueda');
 });
+api.post('/coincidenciaadmin', dbControllers.postProductosCoincidencia);
 api.post('/coincidencia', dbControllers.postProductosCoincidencia);
 
 api.get('/contacto', (req, res)=>{
