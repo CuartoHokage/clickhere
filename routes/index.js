@@ -74,7 +74,7 @@ api.post('/upload_productos',(req,res) => {
 	// console.log(id_imagen)
     EDFile.mv('./public/imagenes/'+id_imagen+'.png',err => {
         if(err) return res.status(500).send({ message : err })
-		res.status(200).redirect(req.get('/api/coincidenciaadmin'));
+		res.status(200).render('index');
 	})
 })
 api.post('/postmail_cotizacion', mailControllers.postMail);
