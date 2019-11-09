@@ -57,7 +57,7 @@ function getProductosCoincidencia(req, res) {
 function postProductosCoincidencia(req, res) {
 	var buscar = req.body.buscar;
 
-	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, ROUND(p.PRDPVP, 2, 0) as PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
 		//handle err
