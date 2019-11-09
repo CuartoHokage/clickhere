@@ -7,6 +7,7 @@ var md_upload= multiparty({uploadDir: './public/uploads/productos'});
 const mailControllers= require('../controllers/mailControllers');
 const dbControllers= require('../controllers/dbControllers');
 const edicionControllers= require('../controllers/edicionControllers');
+const userControllers= require('../controllers/userControllers');
 
 //Cruds para peliculas
 
@@ -21,7 +22,7 @@ api.get('/productos', (req, res)=>{
 api.get('/verconcidencia', (req, res)=>{
 	res.render('busqueda');
 });
-api.post('/coincidenciaadmin', dbControllers.postProductosCoincidencia);
+api.post('/coincidenciaadmin', dbControllers.postProductosCoincidenciaadmin);
 api.post('/coincidencia', dbControllers.postProductosCoincidencia);
 
 api.get('/contacto', (req, res)=>{
@@ -73,7 +74,7 @@ api.post('/upload_productos',(req,res) => {
 	// console.log(id_imagen)
     EDFile.mv('./public/imagenes/'+id_imagen+'.png',err => {
         if(err) return res.status(500).send({ message : err })
-		res.status(200).render('index');
+		res.status(200).redirect(req.get('/api/coincidenciaadmin'));
 	})
 })
 api.post('/postmail_cotizacion', mailControllers.postMail);
@@ -82,4 +83,12 @@ api.get('/getproductos', dbControllers.getProductos);
 
 //api.get('/imagen',('./controllers/publick/img3.jpg.'));
 
+//obtener usuarios
+api.get('/getusuarios', userControllers.getUsuarios);
+//Vista de inicio de sesion
+api.get('/signin', (req, res)=>{
+	res.render('signin');
+});
+//Enviar usuario por post
+api.post('/postsignin', userControllers.postUsuario);
 module.exports= api
