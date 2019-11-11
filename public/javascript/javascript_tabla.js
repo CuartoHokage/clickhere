@@ -112,17 +112,17 @@ $(document).ready(function () {
         });
 
     });
-    $(".btn-info").click(function () {
-        var esteBoton = $(this);
-        var id = esteBoton.parent().parent().find("#id_producto").text();
-        var name = esteBoton.parent().parent().find("#name").text();
-        swal({
-            title: "Gracias por contactarnos",
-            text: "Su petición fue enviada en breve nos contactaremos con usted.",
-            icon: "success",
-            buttons: true,
-        })
-    });
+    // $(".btn-info").click(function () {
+    //     var esteBoton = $(this);
+    //     var id = esteBoton.parent().parent().find("#id_producto").text();
+    //     var name = esteBoton.parent().parent().find("#name").text();
+    //     swal({
+    //         title: "Gracias por contactarnos",
+    //         text: "Su petición fue enviada en breve nos contactaremos con usted.",
+    //         icon: "success",
+    //         buttons: true,
+    //     })
+    // });
     /////// validacion de imagen
     var extensionesValidas = ".png, .gif, .jpeg, .jpg";
     var pesoPermitido = 1024;
@@ -142,26 +142,26 @@ $(document).ready(function () {
     });
 
     // validacion de formularios
-    $("#formulario").submit(function () {  
-        if($("#name").val().length < 1) {  
-            alert("El nombre es obligatorio");  
-            return false;  
-        }
-        if($("#name").val().length < 1) {  
-            alert("El nombre es obligatorio");  
-            return false;  
-        }
-        if($("#name").val().length < 1) {  
-            alert("El nombre es obligatorio");  
-            return false;  
-        }
-        if($("#name").val().length < 1) {  
-            alert("El nombre es obligatorio");  
-            return false;  
-        }
+    // $("#formulario").submit(function () {  
+    //     if($("#name").val().length < 1) {  
+    //         alert("El nombre es obligatorio");  
+    //         return false;  
+    //     }
+    //     if($("#name").val().length < 1) {  
+    //         alert("El nombre es obligatorio");  
+    //         return false;  
+    //     }
+    //     if($("#name").val().length < 1) {  
+    //         alert("El nombre es obligatorio");  
+    //         return false;  
+    //     }
+    //     if($("#name").val().length < 1) {  
+    //         alert("El nombre es obligatorio");  
+    //         return false;  
+    //     }
           
-        return false;  
-    });  
+    //     return false;  
+    // });  
 
     // Validacion de extensiones permitidas
 
@@ -213,4 +213,7 @@ $(document).ready(function () {
 
         }
     }
+    // Validar formularios
+    
+
 }); 

@@ -11,7 +11,7 @@
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="icon" type="image/png" href="/imagenes/icono.jpg" />
-  
+
   <title>ClickHere PC</title>
   {{!-- css bostrap --}}
   <link rel="stylesheet" type="text/css" href="/stylesheets/particulas.css">
@@ -44,16 +44,23 @@
   {{!-- barra navegación clara --}}
 
   <nav class="navbar  navbar-expand-lg navbar-light" style="background-color: #fff">
-  <a class="navbar-brand" href="/"><img src="/imagenes/logo.png" width="300" height="40" alt=""></a>
-  <ul class="navbar-nav mr-auto"></ul>
-  <form action="/api/coincidenciaadmin" method="post" class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" id="busqueda" name="buscar" type="search" placeholder="Buscar" aria-label="Search">
-    <button type="submit" id="btnconsultar3" class="btn btn-outline-warning">Buscar</button>
-  </form>
-</nav>
-  
+    <a class="navbar-brand" href="/"><img src="/imagenes/logo.png" width="300" height="40" alt=""></a>
+    <ul class="navbar-nav mr-auto"></ul>
+    <form action="/api/coincidenciaadmin" method="post" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" id="busqueda" name="buscar" type="search" placeholder="Buscar"
+        aria-label="Search">
+      <button type="submit" id="btnconsultar3" class="btn btn-outline-warning"><i class="fa fa-search" style="color: #f80;"></i></button>
+    </form>
+    <a class="nav-link" href="#"> <p style="color:#f80"><i class="fa fa-user" style="color: #f80;"></i> Iniciar Sesión</p>   
+        <span class="sr-only">(current)</span>
+      </a>
+    <div>
+      
+    </div>
+  </nav>
 
-  
+
+
   <nav class="navbar sticky-top  navbar-expand-lg navbar-light" style="background-color: #fba744">
     <a class="navbar-brand" href="/"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -80,7 +87,8 @@
 				</li>
         --}}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Categorías
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -98,16 +106,17 @@
             <a class="dropdown-item" href="#">Domótica</a>
           </div>
         </li>
-       
+
         <li class="nav-item">
           <a class="nav-link" href="/api/cotizacion">Cotizaciones</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/api/acerca_de">Acerca de</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/api/contacto">Contacto</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/acerca_de">Acerca de</a>
+        </li>
+
         {{!-- HABILITAR CUANDO ESTE FUNCIONAL
         <li class="nav-item">
 					<a class="nav-link" href="/api/edicion">Edicion</a>
@@ -123,7 +132,7 @@
       </ul>
     </div>
   </nav>
-  
+
   <br>
   {{!-- barra navegación clara fin --}}
   {{{ body }}}

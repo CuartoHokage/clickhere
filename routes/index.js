@@ -77,6 +77,7 @@ api.post('/upload_productos',(req,res) => {
 		res.status(200).render('index');
 	})
 })
+api.post('/postmail_contacto', mailControllers.postMail2);
 api.post('/postmail_cotizacion', mailControllers.postMail);
 
 api.get('/getproductos', dbControllers.getProductos);

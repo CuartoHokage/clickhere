@@ -6,19 +6,65 @@
         <h1 style="text-align: center;"></h1>
         <div class="col-md-6">
           <br>
-          <form action="">
+          <script>
+            function validar() {
+              //obteniendo el valor que se puso en el campo text del formulario
+              var name = document.getElementById("nombre").value;
+              var email = document.getElementById("email").value;
+              var comentario = document.getElementById("comentario").value;
+              var telefono = document.getElementById("telefono").value;
+              var fail = swal({
+                title: "Su petición no fue enviada",
+                text: "Por favor, asegurese de llenar todos los datos del formulario.",
+                icon: "warning",
+                buttons: true,
+              });
+              //la condición
+              if (name.length == 0 || /^\s+$/.test(name)) {
+                fail;
+                return false;
+              } else {
+                if (email.length == 0 || /^\s+$/.test(email)) {
+                  return false;
+                  fail;
+                } else {
+                  if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                    return false;
+                    fail;
+                  } else {
+                    if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                      return false;
+                      fail;
+                    } else {
+                      swal({
+                        title: "Gracias por contactarnos",
+                        text: "Su petición fue enviada en breve nos contactaremos con usted.",
+                        icon: "success",
+                        buttons: true,
+                      })
+                      return true;
+                    }
+                  }
+
+                }
+
+              }
+
+
+            }
+          </script>
+          <form action="/api/postmail_contacto" id="formulario" method="post" onsubmit="return validar()"
+            enctype="application/x-www-form-urlencoded">
             <h3 style="text-align: center;">Formulario de contacto:</h3>
             <br>
-            <input type="text" class="form-control" id="nombre" onkeypress="return validarLetra(event)"
-              placeholder="Nombres">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres">
             <br>
-            <input type="email" id="email" class="form-control" placeholder="Correo">
+            <input type="email" id="email" class="form-control" name="email" placeholder="Correo">
             <br>
-            <input type="text" id="comentario" class="form-control" placeholder="Mensaje">
+            <textarea type="text" id="comentario" class="form-control" name="comentario" placeholder="Mensaje"></textarea>
             <br>
-            <input type="text" id="telefono" class="form-control" onkeypress="return validarNumero(event)"
-              placeholder="Telefono"><br>
-            <input type="button" value="Enviar" class="btn btn-primary" id="enviar">
+            <input type="number" id="telefono" class="form-control" name="telefono" placeholder="Telefono"><br>
+            <input type="submit" value="Enviar" class="btn btn-primary" id="enviar">
           </form>
         </div>
         <div class="col-md-6">
@@ -26,7 +72,7 @@
           <strong>
             &nbsp; <h2>Contactenos</h2>
           </strong>
-          <div class="co class= "wrapper style2"">
+          <div class="co class= " wrapper style2"">
             <div class="info-detail">
               <ul>
                 <li><i class="fa fa-calendar"></i><span> Lunes - Viernes:</span> 8:30 AM a 6:30 PM</li>

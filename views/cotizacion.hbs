@@ -1,58 +1,120 @@
 <body>
-<article id="work" class="wrapper style2">
-<div class="container ">
-  <div class="row">   
-    <br>
-      <h1 style="text-align: center;"></h1>
-      <div class="col-md-1">
-           
-      </div>
-      <div class="col-md-5">
+  <article id="work" class="wrapper style2">
+    <div class="container ">
+      <div class="row">
         <br>
-         <form action="/api/postmail_cotizacion" id="formulario" method="post" enctype="application/x-www-form-urlencoded">
-        <h3 style="text-align: center;">Formulario de cotización:</h3>
+        <h1 style="text-align: center;"></h1>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-5">
           <br>
-          <input type="text" class="form-control" name="name" id="name" placeholder="Nombres y Apellidos">
-          <br>
-          <input type="email" id="email" name="email" class="form-control"placeholder="Correo de contacto">
-          <br>
-          <textarea class="form-control" id="comentario" name="comentario" rows="3" placeholder="Por favor, escriba la descripción el producto que desea cotizar."></textarea>
-          <br>
-          <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Telefono de contacto"><br>
-          <button type="submit" class="btn btn-primary btn-info" >Enviar a cotizar</button>
-        </form>    
-      </div>
-      <div class="col-md-5">
+          <script>
+            function validar() {
+              //obteniendo el valor que se puso en el campo text del formulario
+              var name = document.getElementById("name").value;
+              var email = document.getElementById("email").value;
+              var comentario = document.getElementById("comentario").value;
+              var telefono = document.getElementById("telefono").value;
+              var fail= swal({
+                        title: "Su petición no fue enviada",
+                        text: "Por favor asegurese de llenar todos los datos del formulario.",
+                        icon: "warning",
+                        buttons: true,
+                      });
+              //la condición
+              if (name.length == 0 || /^\s+$/.test(name)) {
+                fail;
+                return false;
+              } else {
+                if (email.length == 0 || /^\s+$/.test(email)) {
+                  return false;
+                  fail;
+                } else {
+                  if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                    return false;
+                    fail;
+                  } else {
+                    if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                      return false;
+                      fail;
+                    } else {
+                      swal({
+                        title: "Gracias por contactarnos",
+                        text: "Su petición fue enviada en breve nos contactaremos con usted.",
+                        icon: "success",
+                        buttons: true,
+                      })
+                      return true;
+                    }
+                  }
+
+                }
+
+              }
+
+
+            }
+          </script>
+          <form action="/api/postmail_cotizacion" id="formulario" method="post" onsubmit="return validar()"
+            enctype="application/x-www-form-urlencoded">
+            <h3 style="text-align: center;">Formulario de cotización:</h3>
+            <br>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nombres y Apellidos">
+            <br>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Correo de contacto">
+            <br>
+            <textarea class="form-control" id="comentario" name="comentario" rows="3"
+              placeholder="Por favor, escriba la descripción el producto que desea cotizar."></textarea>
+            <br>
+            <input type="number" id="telefono" name="telefono" class="form-control"
+              placeholder="Telefono de contacto"><br>
+            <button type="submit" class="btn btn-primary btn-info">Enviar a cotizar</button>
+          </form>
+        </div>
+        <div class="col-md-5">
           <br>
           <strong>
             <h3 style="text-align: center;">Pasos para enviar cotización</h3>
           </strong>
-          <div class="co class= "wrapper style2"">
+          <div class="co class= " wrapper style2"">
             <div class="info-detail">
               <ul>
-                <li><p>Para enviar su solicitud correctamente siga los siguientes pasos:</p></li>
+                <li>
+                  <p>Para enviar su solicitud correctamente siga los siguientes pasos:</p>
+                </li>
               </ul>
               <ul>
-                <li><p>1.- Llene con los nombres y apellidos del remitente.</p></li>
+                <li>
+                  <p>1.- Llene con los nombres y apellidos del remitente.</p>
+                </li>
               </ul>
               <ul>
-                <li><p>2.- Coloque el correo de remitente para enviar la cotización.</p></li>
+                <li>
+                  <p>2.- Coloque el correo de remitente para enviar la cotización.</p>
+                </li>
               </ul>
               <ul>
-                <li><p>3.- Especifique el nombre, modelo y serie del repuesto que desea que se le cotice.</p></li>
+                <li>
+                  <p>3.- Especifique el nombre, modelo y serie del repuesto que desea que se le cotice.</p>
+                </li>
               </ul>
               <ul>
-                <li><p>4.- Coloque el número de telefono al que desea que nos comuniquemos para informarle el estado de su cotización.</p></li>
+                <li>
+                  <p>4.- Coloque el número de telefono al que desea que nos comuniquemos para informarle el estado de su
+                    cotización.</p>
+                </li>
               </ul>
               <ul>
-                <li><p>5.- Verifique que los datos estén y pulse en el boton "Enviar a cotizar".</p></li>
+                <li>
+                  <p>5.- Verifique que los datos estén y pulse en el boton "Enviar a cotizar".</p>
+                </li>
               </ul>
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
-    </article>
-    
+  </article>
+
 </body>
-    	
