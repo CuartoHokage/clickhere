@@ -41,3 +41,15 @@ inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO
 INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI
 inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC
 where PUBSTOCK >0 and u.UBIIDENTI=12
+
+-- Consultar categoria y descripcion con union 
+select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, null as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO
+	where PRDNOMBRE like '%portatil%' and PUBSTOCK >0 and PUBIDUBIC=12 
+union
+select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE, s.PUBSTOCK, p.PRDPVP from MAE_PRODUCTO p
+inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI
+inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO
+INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI
+inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC
+where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%portatil%'

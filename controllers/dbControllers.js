@@ -57,40 +57,54 @@ function getProductosCoincidencia(req, res) {
 function postProductosCoincidencia(req, res) {
 	var buscar = req.body.buscar;
 
-	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
-	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, null as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12\
+union\
+select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, p.PRDPVP as PRDPVP from MAE_PRODUCTO p\
+inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+buscar+"%'", (err, result) => {
 		//handle err
 		console.log(result.recordset)
 
-		var producto  =result.recordset
+		var producto = result.recordset
 		//localStorage.setItem("producto", JSON.stringify(producto));
 
 		//res.render('busqueda')
-		res.render('busqueda', { data:producto })
+		res.render('busqueda', { data: producto })
 		// res.render('busqueda',producto);
 
 	});
-	
+
 }
 function postProductosCoincidenciaadmin(req, res) {
 	var buscar = req.body.buscar;
 
-	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
+	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12\
+	union\
+	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+buscar+"%'", (err, result) => {
 		//handle err
-		console.log(result.recordset)
+		console.log(result)
 
-		var producto  =result.recordset
+		var producto = result.recordset
 		//localStorage.setItem("producto", JSON.stringify(producto));
 
 		//res.render('busqueda')
-		res.render('busqueda_admin', { data:producto })
+		res.render('busqueda_admin', { data: producto })
 		// res.render('busqueda',producto);
 
 	});
-	
+
 }
 
 function postPrductosCategoria(req, res) {
@@ -98,19 +112,19 @@ function postPrductosCategoria(req, res) {
 
 	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, s.PUBSTOCK from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
+	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
 		//handle err
 		console.log(result.recordset)
 
-		var producto  =result.recordset
+		var producto = result.recordset
 		//localStorage.setItem("producto", JSON.stringify(producto));
 
 		//res.render('busqueda')
-		res.render('busqueda_admin', { data:producto })
+		res.render('busqueda_admin', { data: producto })
 		// res.render('busqueda',producto);
 
 	});
-	
+
 }
 
 module.exports = {
