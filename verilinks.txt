@@ -1,0 +1,2 @@
+https://codelatin.com/sistema-de-inicio-de-sesion-basico-con-node-js-express-y-mysql/
+https://ed.team/comunidad/implementar-roles-con-node-js
