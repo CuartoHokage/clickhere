@@ -76,11 +76,17 @@ hr.new4 {
         height: 200px;
     }
     }
-@media screen and (max-width: 900px) {
-.ocultar{
+@media only screen and (max-width: 900px) {
+.slider-grande{
 display:none;
 }
 }
+@media only screen and (min-width: 900px) {
+  .slider-pequeno{
+  display:none;
+  }
+  }
+
 /* Textos */
 .colorblanco{
     color: aliceblue;
