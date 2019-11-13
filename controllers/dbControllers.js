@@ -82,7 +82,11 @@ where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+ buscar + "%'", (err,
 }
 function postProductosCoincidenciaadmin(req, res) {
 	var buscar = req.body.buscar;
-
+	var consultaCodigo="";
+	if(isNaN(buscar)==false){
+		consultaCodigo= "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
+		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+buscar+""
+	}	
 	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12\
@@ -94,12 +98,15 @@ function postProductosCoincidenciaadmin(req, res) {
 	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
 	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+buscar+"%'\
 	union\
-select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
-where Marcas.NOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+	where Marcas.NOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12 "+consultaCodigo+"", (err, result) => {
 		//handle err
-		console.log(result)
+		console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
+		console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
+		console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
+		console.log(result.recordset)
 
 		var producto = result.recordset
 		//localStorage.setItem("producto", JSON.stringify(producto));
