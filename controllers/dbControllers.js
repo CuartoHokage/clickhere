@@ -56,52 +56,80 @@ function getProductosCoincidencia(req, res) {
 
 function postProductosCoincidencia(req, res) {
 	var buscar = req.body.buscar;
-
-	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, null as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12\
-union all\
-select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, p.PRDPVP as PRDPVP from MAE_PRODUCTO p\
-inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
-inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
-INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
-inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
-where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+ buscar + "%'", (err, result) => {
-		//handle err
-		console.log(result.recordset)
-
-		var producto = result.recordset
-		//localStorage.setItem("producto", JSON.stringify(producto));
-
-		//res.render('busqueda')
-		res.render('busqueda', { data: producto })
-		// res.render('busqueda',producto);
-
-	});
-
-}
-function postProductosCoincidenciaadmin(req, res) {
-	var buscar = req.body.buscar;
-	var consultaCodigo="";
-	if(isNaN(buscar)==false){
-		consultaCodigo= "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
-		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+buscar+""
-	}	
-	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	var consultaCodigo = "";
+	var buscar2;
+	if (isNaN(buscar) == false) {
+		consultaCodigo = "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
+		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + ""
+	}
+	if (isNaN(buscar) == true) {
+		buscar2 = 5557555;
+	} else {
+		buscar2 = buscar;
+	}
+	new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
+	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar2 + "", (err, result1) => {
+		console.log(result1.recordset.length)
+		if (result1.recordset.length == 0) {
+			new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	where PRDNOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12\
+	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12\
 	union all\
 	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
 	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
 	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
-	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+buscar+"%'\
+	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+ buscar + "%'\
 	union all\
 	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
-	where Marcas.NOMBRE like '%"+buscar+"%' and PUBSTOCK >0 and PUBIDUBIC=12 "+consultaCodigo+"", (err, result) => {
+	where Marcas.NOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12 " + consultaCodigo + "", (err, result) => {
+				//handle err
+				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
+				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
+				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
+				console.log(result.recordset)
+
+				var producto = result.recordset
+				//localStorage.setItem("producto", JSON.stringify(producto));
+
+				//res.render('busqueda')
+				res.render('busqueda', { data: producto })
+				// res.render('busqueda',producto);
+			});
+		} else {
+			var producto = result1.recordset
+			//localStorage.setItem("producto", JSON.stringify(producto));
+
+			//res.render('busqueda')
+			res.render('busqueda', { data: producto })
+		}
+	});
+}
+function postProductosCoincidenciaadmin(req, res) {
+	var buscar = req.body.buscar;
+	var consultaCodigo = "";
+	if (isNaN(buscar) == false) {
+		consultaCodigo = "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
+		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + ""
+	}
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12\
+	union all\
+	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+ buscar + "%'\
+	union all\
+	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+	where Marcas.NOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12 " + consultaCodigo + "", (err, result) => {
 		//handle err
 		console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 		console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
