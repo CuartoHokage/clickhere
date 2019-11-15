@@ -33,7 +33,7 @@ function postMail(req, res) {
 		subject: 'Cotización',
 		text: mensaje
 	};
-
+	
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
 			console.log(error);
@@ -80,21 +80,48 @@ function postMail2(req, res) {
 		subject: razon,
 		text: mensaje
 	};
-
-	transporter.sendMail(mailOptions, function (error, info) {
-		if (error) {
-			console.log(error);
+	if (name.length == 0 || /^\s+$/.test(name)) {
+		fail;
+		return false;
+	  } else {
+		if (email.length == 0 || /^\s+$/.test(email)) {
+		  return false;
+		  fail;
 		} else {
-			console.log('Email enviado: ' + info.response);
-			console.log(email + " " + pedido + " " + telefono + " " + name)
-			var hoy = new Date();
-			var hora;
-			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
-			console.log(hora);
-			res.status(200).render('index')
-		}
-	});
+		  if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+			return false;
+			fail;
+		  } else {
+			if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+			  return false;
+			  fail;
+			} else {
+			  swal({
+				title: "Gracias por contactarnos",
+				text: "Su petición fue enviada en breve nos contactaremos con usted.",
+				icon: "success",
+				buttons: true,
+			  })
+			  transporter.sendMail(mailOptions, function (error, info) {
+				if (error) {
+					console.log(error);
+				} else {
+					console.log('Email enviado: ' + info.response);
+					console.log(email + " " + pedido + " " + telefono + " " + name)
+					var hoy = new Date();
+					var hora;
+					hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+					console.log(hora);
+					res.status(200).render('index')
+				}
+			});
+			  return true;
+			}
+		  }
 
+		}
+
+	  }
 }
 
 module.exports = {

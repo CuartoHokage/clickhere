@@ -90,11 +90,13 @@ function postProductosCoincidencia(req, res) {
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-				console.log(result.recordset)
+				console.log( result.recordset)
 
 				var producto = result.recordset
 				//localStorage.setItem("producto", JSON.stringify(producto));
+				for (var i = 0, l = 15; i <= l; i++) {
 
+				}
 				//res.render('busqueda')
 				res.render('busqueda', { data: producto })
 				// res.render('busqueda',producto);

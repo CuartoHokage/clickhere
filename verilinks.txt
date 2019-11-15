@@ -4,3 +4,5 @@ https://ed.team/comunidad/implementar-roles-con-node-js
 https://sweetalert2.github.io/
 
 https://jsfiddle.net/26fut4aL/9/
+
+https://es.stackoverflow.com/questions/214422/validar-boton-de-sweetalert-en-js

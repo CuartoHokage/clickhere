@@ -69,6 +69,15 @@ api.post('/upload',(req,res) => {
 	})
 })
 
+api.post('/upload_banner',(req,res) => {
+	let EDFile = req.files.picture;
+	var id_imagen= req.body.seleccion;
+    EDFile.mv('./public/imagenes/banner'+id_imagen+'.jpg',err => {
+        if(err) return res.status(500).send({ message : err })
+		res.status(200).render('admin');
+	})
+})
+
 api.post('/upload_productos',(req,res) => {
 	let EDFile = req.files.picture
 	var id_imagen= req.body.id_imagen
@@ -76,7 +85,7 @@ api.post('/upload_productos',(req,res) => {
 	// console.log(id_imagen)
     EDFile.mv('./public/imagenes/'+id_imagen+'.png',err => {
         if(err) return res.status(500).send({ message : err })
-		res.status(200).render('index');
+		res.status(200).render('admin');
 	})
 })
 api.post('/postmail_contacto', mailControllers.postMail2);
@@ -91,6 +100,10 @@ api.get('/getusuarios', userControllers.getUsuarios);
 //Vista de inicio de sesion
 api.get('/signin', (req, res)=>{
 	res.render('signin');
+});
+//administrador
+api.get('/adminClickhere', (req, res)=>{
+	res.render('admin');
 });
 //Enviar usuario por post
 api.post('/postsignin', userControllers.postUsuario);

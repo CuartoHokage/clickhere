@@ -280,6 +280,53 @@
           </section>
         </div>
         <div class="col-lg-4 col-6-medium col-sm-12">
+          <script>
+            function validar() {
+              //obteniendo el valor que se puso en el campo text del formulario
+              var name = document.getElementById("name").value;
+              var email = document.getElementById("email").value;
+              var comentario = document.getElementById("comentario").value;
+              var telefono = document.getElementById("telefono").value;
+              var fail= swal({
+                        title: "Su petición no fue enviada",
+                        text: "Por favor asegurese de llenar todos los datos del formulario.",
+                        icon: "warning",
+                        buttons: true,
+                      });
+              //la condición
+              if (name.length == 0 || /^\s+$/.test(name)) {
+                fail;
+                return false;
+              } else {
+                if (email.length == 0 || /^\s+$/.test(email)) {
+                  return false;
+                  fail;
+                } else {
+                  if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                    return false;
+                    fail;
+                  } else {
+                    if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                      return false;
+                      fail;
+                    } else {
+                      swal({
+                        title: "Gracias por contactarnos",
+                        text: "Su petición fue enviada en breve nos contactaremos con usted.",
+                        icon: "success",
+                        buttons: true,
+                      })
+                      return true;
+                    }
+                  }
+
+                }
+
+              }
+
+
+            }
+          </script>
           <section class="box style1">
             <span class="icon featured fa-desktop"></span>
             <h3>Componentes y accesorios computación e informática</h3>
@@ -309,7 +356,6 @@
                   text: "Llene el formulario para hacer la petición de servicios.",
                   icon: "info",
                   content: htmlpuro,
-                  buttons: true,
                   closeOnClickOutside: false
                 })
               });
