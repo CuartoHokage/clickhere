@@ -90,11 +90,42 @@ function postProductosCoincidencia(req, res) {
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-				console.log( result.recordset)
+				// console.log(result.recordset)
 
 				var producto = result.recordset
 				//localStorage.setItem("producto", JSON.stringify(producto));
-			
+				for (var i = 0; i < producto.length; i++) {
+					if (producto[i].PUBSTOCK > 5) {
+						producto[i].PUBSTOCK = "Más de 5";
+					}
+				}
+				//////CONTINUAR AQUI 15/11/2019
+				var seccion= producto.length;
+				var seccionN
+				var divisible=false;
+				while (divisible = true) {
+					console.log('fdsf')
+					seccionN= seccion/15;
+					if (Number.isInteger(seccionN)) {
+						divisible = true;
+						console.log(seccionN)
+						var jsonSeccion;
+						// for (var i = 0; i < seccionN; i++) {
+						// 	if (producto[i] > producto.length) {
+						// 		jsonSeccion.push(producto[i]);
+						// 	}
+						// 	console.log("seccion: "+i)
+						// 	console.log(jsonSeccion)
+						// }
+					} else {
+						seccion=seccion+1;
+						divisible = false;
+					}
+				}
+				
+
+
+
 				//res.render('busqueda')
 				res.render('busqueda', { data: producto })
 				// res.render('busqueda',producto);
