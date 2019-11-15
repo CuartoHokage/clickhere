@@ -283,46 +283,6 @@
           <script>
             function validar() {
               //obteniendo el valor que se puso en el campo text del formulario
-              var name = document.getElementById("name").value;
-              var email = document.getElementById("email").value;
-              var comentario = document.getElementById("comentario").value;
-              var telefono = document.getElementById("telefono").value;
-              var fail= swal({
-                        title: "Su petición no fue enviada",
-                        text: "Por favor asegurese de llenar todos los datos del formulario.",
-                        icon: "warning",
-                        buttons: true,
-                      });
-              //la condición
-              if (name.length == 0 || /^\s+$/.test(name)) {
-                fail;
-                return false;
-              } else {
-                if (email.length == 0 || /^\s+$/.test(email)) {
-                  return false;
-                  fail;
-                } else {
-                  if (comentario.length == 0 || /^\s+$/.test(comentario)) {
-                    return false;
-                    fail;
-                  } else {
-                    if (telefono.length == 0 || /^\s+$/.test(telefono)) {
-                      return false;
-                      fail;
-                    } else {
-                      swal({
-                        title: "Gracias por contactarnos",
-                        text: "Su petición fue enviada en breve nos contactaremos con usted.",
-                        icon: "success",
-                        buttons: true,
-                      })
-                      return true;
-                    }
-                  }
-
-                }
-
-              }
 
 
             }
@@ -350,6 +310,7 @@
                   <input id="prodId" name="razon" type="hidden" value="Solicitud de cotización de servicio cotizaciones de productos.">\
                 <button type="submit" class="btn btn-primary btn-info">Enviar a cotizar</button>\
               </form>'
+                
 
                 swal({
                   title: "Solicitud de servicios",
@@ -358,6 +319,46 @@
                   content: htmlpuro,
                   closeOnClickOutside: false
                 })
+                var name = document.getElementsByName("name").value;
+                var email = document.getElementsByName("email").value;
+                var comentario = document.getElementsByName("comentario").value;
+                var telefono = document.getElementsByName("telefono").value;
+                var fail = swal({
+                  title: "Su petición no fue enviada",
+                  text: "Por favor asegurese de llenar todos los datos del formulario.",
+                  icon: "warning",
+                  buttons: true,
+                });
+                //la condición CONTINUYAR CASA
+                if (name.length == 0 || /^\s+$/.test(name)) {
+                  fail;
+                  return false;
+                } else {
+                  if (email.length == 0 || /^\s+$/.test(email)) {
+                    return false;
+                    fail;
+                  } else {
+                    if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                      return false;
+                      fail;
+                    } else {
+                      if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                        return false;
+                        fail;
+                      } else {
+                        swal({
+                          title: "Gracias por contactarnos",
+                          text: "Su petición fue enviada en breve nos contactaremos con usted.",
+                          icon: "success",
+                          buttons: true,
+                        })
+                        return true;
+                      }
+                    }
+
+                  }
+
+                }
               });
             </script>
           </section>
@@ -434,4 +435,3 @@
   </div>
 
 </div>
-
