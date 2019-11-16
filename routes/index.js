@@ -91,8 +91,12 @@ api.post('/upload_productos',(req,res) => {
 api.post('/postmail_contacto', mailControllers.postMail2);
 api.post('/postmail_cotizacion', mailControllers.postMail);
 
-api.get('/getproductos', dbControllers.getProductos);
+api.get('/portatiles', dbControllers.getPortaStock);
 
+api.get('/redes', dbControllers.getRoutersTplink);
+api.get('/cases', dbControllers.getCases);
+api.get('/seguridad-2', dbControllers.getSeguridad);
+api.get('/impresoras', dbControllers.getImpresoras);
 //api.get('/imagen',('./controllers/publick/img3.jpg.'));
 
 //obtener usuarios
