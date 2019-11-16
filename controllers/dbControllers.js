@@ -100,29 +100,49 @@ function postProductosCoincidencia(req, res) {
 					}
 				}
 				//////CONTINUAR AQUI 15/11/2019
-				// var seccion= producto.length;
-				// var seccionN
-				// var divisible=false;
-				// while (divisible = true) {
-				// 	console.log('fdsf')
-				// 	seccionN= seccion/15;
-				// 	if (Number.isInteger(seccionN)) {
-				// 		divisible = true;
-				// 		console.log(seccionN)
-				// 		var jsonSeccion;
-						// for (var i = 0; i < seccionN; i++) {
-						// 	if (producto[i] > producto.length) {
-						// 		jsonSeccion.push(producto[i]);
-						// 	}
-						// 	console.log("seccion: "+i)
-						// 	console.log(jsonSeccion)
-						// }
-				// 	} else {
-				// 		seccion=seccion+1;
-				// 		divisible = false;
-				// 	}
-				// }
-				
+				var seccion = producto.length;
+				var seccionN
+				var divisible = 0;
+				var productoSec = []
+				if (seccion<15) {
+					seccion=15;
+				}
+				do {
+					console.log('fdsf')
+					seccionN = seccion / 15;
+					if (Number.isInteger(seccionN)) {
+						divisible = 1;
+						console.log(seccionN)
+						var jsonSeccion = [];
+						var jsonseccionj=[];
+						for (var i = 0; i < seccionN; i++) {
+							jsonSeccion.push({})
+							if (producto.length<15) {
+								for(var j=0; j<producto.length; j++){
+									var jsoni= jsonSeccion;
+									jsoni.push(producto[j]);
+									console.log(j)
+									console.log(jsonSeccion)
+								}
+							} else {
+								for(var j=0; j<15; j++){
+									jsonSeccion.push(producto[j]);
+									console.log(j)
+									console.log(jsonSeccion)
+								}
+							}
+							
+							
+							console.log("seccion: " + i)
+							
+
+						}
+					} else {
+						seccion = seccion + 1;
+
+					}
+				} while (divisible==0);
+
 
 
 
