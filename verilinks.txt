@@ -9,3 +9,7 @@ https://es.stackoverflow.com/questions/214422/validar-boton-de-sweetalert-en-js
 
 
 https://www.youtube.com/watch?v=TisjtrKJXM0
+
+
+// problema de los 15 productos 
+https://stackoverflow.com/questions/2507844/how-to-use-jquery-to-paginate-json-data

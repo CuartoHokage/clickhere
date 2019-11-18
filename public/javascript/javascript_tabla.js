@@ -112,6 +112,7 @@ $(document).ready(function () {
         });
 
     });
+
     // $(".btn-info").click(function () {
     //     var esteBoton = $(this);
     //     var id = esteBoton.parent().parent().find("#id_producto").text();

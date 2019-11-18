@@ -1,12 +1,13 @@
 <body>
+    
     <br>
     <br>
     <div class="container">
         <div id="contenido" class="">
             <div class="row">
+                {{#if data}}
+
                 {{#each data}}
-
-
                 <div class="col-md-4 product-block" id="{{this.PRDIDENTI}}">
                     <section class="box style1">
 
@@ -25,8 +26,9 @@
                     </section>
                 </div>
                 {{/each}}
-
+            {{else}}
+                <p>No se encontro productos.</p>
+            {{/if}}
             </div>
-
         </div>
     </div>
