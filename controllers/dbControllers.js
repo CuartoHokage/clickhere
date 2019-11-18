@@ -56,7 +56,7 @@ function getPortaStock(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
-		res.render("portatiles", { data2: resultado })
+		res.render("portatiles", { data: resultado })
 	});
 }
 

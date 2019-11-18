@@ -133,7 +133,7 @@ display:none;
   
   /* Style the back side */
   .flip-box-back {
-    background-color: rgba(42, 148, 255, 0.877);
+    background-color: rgba(243, 148, 50, 0.85);
     color: white;
     transform: rotateY(180deg);
   }
