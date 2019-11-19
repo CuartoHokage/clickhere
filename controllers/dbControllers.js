@@ -56,6 +56,8 @@ function getPortaStock(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
+		// 
+		// 
 		res.render("portatiles", { data: resultado })
 	});
 }
@@ -332,7 +334,7 @@ function postProductosCoincidencia(req, res) {
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-				// console.log(result.recordset)
+				console.log(result.recordset)
 
 				var producto = result.recordset
 				//localStorage.setItem("producto", JSON.stringify(producto));
@@ -465,7 +467,7 @@ module.exports = {
 	getRoutersTplink,
 	getCases,
 	getSeguridad,
-	getImpresoras,	
+	getImpresoras,
 	getProductosCoincidencia,
 	postProductosCoincidencia,
 	postProductosCoincidenciaadmin,
