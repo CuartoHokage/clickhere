@@ -4,6 +4,7 @@
     <div class="container">
         <div id="contenido" class="">
             <div class="row">
+                
                 {{#each data}}
 
 
@@ -19,10 +20,23 @@
                                 <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
                                 <div class="price-mob"><strong>Precio: </strong>$ {{this.PRDPVP}}</div>
                                 <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
-
+                                <button class="openBtn"><span class="float-right"><a><i class="fa fa-search" aria-hidden="true"></i></a></span></button>
                             </div>
                         </div>
                     </section>
+                    <script>
+                    $('.openBtn').on('click', function () {
+                     
+                        swal({
+                            title: "Solicitud de servicios",
+                            text: "Llene el formulario para hacer la petición de servicios.",
+                            icon: "info",
+                            content: <img  class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/247.png" width="200" height="200">,
+                            buttons: true
+                        })
+                    });
+
+                </script>
                 </div>
                 {{/each}}
 
