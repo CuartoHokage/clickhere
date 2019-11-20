@@ -163,5 +163,5 @@ api.get('/add/:id', function (req, res, next) {
 	});
 	cart.add(product[0], productId);
 	req.session.cart = cart;
-	res.redirect('/');
+	res.redirect('/api/portatiles');
 });
