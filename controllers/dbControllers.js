@@ -57,8 +57,67 @@ function getPortaStock(req, res) {
 		console.log(hora);
 		var resultado = result.recordset;
 		// 
-		// 
+		//
+		 console.log(resultado)
 		res.render("portatiles", { data: resultado })
+	});
+}
+
+function getPortaStocks(req, res) {
+	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+	//new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like 'port.%' and PUBSTOCK >0 and PUBIDUBIC=12\
+	union all\
+	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like 'port.%'\
+	union all\
+	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+	where Marcas.NOMBRE like '%port%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+		//handle err
+		var producto = result.recordset
+		//localStorage.setItem("producto", JSON.stringify(producto));
+		for (var i = 0; i < producto.length; i++) {
+			if (producto[i].PUBSTOCK > 5) {
+				producto[i].PUBSTOCK = "Más de 5";
+			}
+		}
+		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
+		// 	for (producto; producto < result.recordset.length; producto++) {
+
+
+
+		// 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
+		// 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
+		// 	//tratamiento de la imagen
+
+		// 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
+		// 	//funciona en directorio erroneo
+		// 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
+		// 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
+		//         if (err) throw err;
+		//     console.log('It\'s saved!');
+		//         console.log(data);
+		// 	});
+		// }
+		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
+		var hoy = new Date();
+		var hora;
+		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+		console.log(hora);
+		var resultado = result.recordset;
+		// 
+		//
+		 console.log(resultado)
+		res.status(200).send({ data: resultado })
 	});
 }
 
@@ -226,6 +285,7 @@ function getSeguridad(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
+		
 		res.render("portatiles", { data: resultado })
 	});
 }
@@ -464,6 +524,7 @@ function postPrductosCategoria(req, res) {
 
 module.exports = {
 	getPortaStock,
+	getPortaStocks,
 	getRoutersTplink,
 	getCases,
 	getSeguridad,

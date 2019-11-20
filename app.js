@@ -11,14 +11,25 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(fileUpload())
 const api= require('./routes')
+var session = require('express-session');
 
 
+app.use(session({
+	secret: 'secret',
+	resave: false,
+	saveUninitialized: true
+  })) 
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', hbs({
 	defaultLayout: 'default',
 	extname: '.hbs'
 }))
+
+app.use(function(req, res, next) {
+    res.locals.session = req.session;
+    next();
+});
 
 app.set('view engine', '.hbs')
 
