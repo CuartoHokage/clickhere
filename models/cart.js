@@ -5,11 +5,12 @@ module.exports = function Cart(cart) {
 
     this.add = function(item, id) {
         var cartItem = this.items[id];
+        console.log(cartItem)
         if (!cartItem) {
-            cartItem = this.items[id] = {item: item, quantity: 0, price: 0};
+            cartItem = this.items[id] = {item: item, quantity: 0, PRDPVP: 0};
         }
         cartItem.quantity++;
-        cartItem.price = cartItem.item.price * cartItem.quantity;
+        cartItem.PRDPVP = cartItem.item.PRDPVP * cartItem.quantity;
         this.totalItems++;
         this.totalPrice += cartItem.item.price;
     };

@@ -149,13 +149,13 @@
                     {{# each session.cart.items }}
                     <div class="row">
                         <div class="col-xs-4">
-                            {{ this.item.title }}
+                            {{ this.item.PRDNOMBRE }}
                         </div>
                         <div class="col-xs-4 text-right">
                             <span class="badge">{{ this.quantity }}</span>
                         </div>
                         <div class="col-xs-4 text-right">
-                            {{ this.price }} CHF
+                            {{ this.PRDPVP }} CHF
                         </div>
                     </div>
                     {{/each}}

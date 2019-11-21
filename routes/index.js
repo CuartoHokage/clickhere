@@ -9,7 +9,7 @@ const dbControllers = require('../controllers/dbControllers');
 const edicionControllers = require('../controllers/edicionControllers');
 const userControllers = require('../controllers/userControllers');
 const Cart = require('../models/cart');
-
+const sql = require('mssql');
 //Cruds para peliculas
 
 //rutas de páginas
@@ -115,53 +115,76 @@ api.get('/adminClickhere', (req, res) => {
 api.post('/postsignin', userControllers.postUsuario);
 module.exports = api
 
-// var products;
-// $.ajax({
-// 	url: '/api/portatiless',
-// 	dataType: 'JSON',
-// 	type: 'GET'
-//   }).done(function() {
-// 	 console.log(response);
-//   });
-
-
 //funciones carrito
 api.get('/add/:id', function (req, res, next) {
 	console.log(Cartss)
-	var Cartss= [
+	var Cartss = [
 		{
-		  "id": 15085,
-		  "title": "Apples",
-		  "description": "Apples are <span class=\"label label-info\">25 CHF each</span>",
-		  "price": 25
+			"id": 15085,
+			"title": "Apples",
+			"description": "Apples are <span class=\"label label-info\">25 CHF each</span>",
+			"price": 25
 		},
 		{
-		  "id": 2,
-		  "title": "Oranges",
-		  "description": "Oranges are <span class=\"label label-info\">30 CHF each</span>",
-		  "price": 30
+			"id": 2,
+			"title": "Oranges",
+			"description": "Oranges are <span class=\"label label-info\">30 CHF each</span>",
+			"price": 30
 		},
 		{
-		  "id": 3,
-		  "title": "Garlic",
-		  "description": "Garlic are <span class=\"label label-info\">15 CHF each</span>",
-		  "price": 15
+			"id": 3,
+			"title": "Garlic",
+			"description": "Garlic are <span class=\"label label-info\">15 CHF each</span>",
+			"price": 15
 		},
 		{
-		  "id": 4,
-		  "title": "Papayas",
-		  "description": "Papayas are <span class=\"label label-info\">50 CHF each</span>, but are <span class=\"label label-warning\">available as 3 for the price of 2</span>",
-		  "price": 100
+			"id": 4,
+			"title": "Papayas",
+			"description": "Papayas are <span class=\"label label-info\">50 CHF each</span>, but are <span class=\"label label-warning\">available as 3 for the price of 2</span>",
+			"price": 100
 		}
-	  ]
-	  
-	var productId = req.params.id;
-	console.log(productId);
-	var cart = new Cart(req.session.cart ? req.session.cart : {});
-	var product = Cartss.filter(function (item) {
-		return item.id == productId;
+	]
+	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	  INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	  where PRDNOMBRE like 'port.%' and PUBSTOCK >0 and PUBIDUBIC=12\
+	  union all\
+	  select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	  inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+	  inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+	  INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+	  inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+	  where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like 'port.%'\
+	  union all\
+	  select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	  INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	  inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+	  where Marcas.NOMBRE like '%port%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+		//handle err
+		var producto = result.recordset
+		//localStorage.setItem("producto", JSON.stringify(producto));
+		for (var i = 0; i < producto.length; i++) {
+			if (producto[i].PUBSTOCK > 5) {
+				producto[i].PUBSTOCK = "Más de 5";
+			}
+		}
+		
+		var resultado = result.recordset;
+		console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+		console.log(resultado)
+		// 
+		//
+		var productId = req.params.id;
+		console.log(productId);
+		var cart = new Cart(req.session.cart ? req.session.cart : {});
+		var product = resultado.filter(function (item) {
+			
+			return item.PRDIDENTI == productId;
+		});
+		
+		cart.add(product[0], productId);
+		req.session.cart = cart;
+		res.redirect('/api/portatiles');
 	});
-	cart.add(product[0], productId);
-	req.session.cart = cart;
-	res.redirect('/api/portatiles');
+
+
 });

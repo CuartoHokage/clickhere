@@ -58,7 +58,7 @@ function getPortaStock(req, res) {
 		var resultado = result.recordset;
 		// 
 		//
-		 console.log(resultado)
+		// console.log(resultado)
 		res.render("portatiles", { data: resultado })
 	});
 }
@@ -116,7 +116,7 @@ function getPortaStocks(req, res) {
 		var resultado = result.recordset;
 		// 
 		//
-		 console.log(resultado)
+		console.log(resultado)
 		res.status(200).send({ data: resultado })
 	});
 }
@@ -285,7 +285,7 @@ function getSeguridad(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
-		
+
 		res.render("portatiles", { data: resultado })
 	});
 }
@@ -509,7 +509,7 @@ function postPrductosCategoria(req, res) {
 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12", (err, result) => {
 		//handle err
-		console.log(result.recordset)
+		// console.log(result.recordset)
 
 		var producto = result.recordset
 		//localStorage.setItem("producto", JSON.stringify(producto));
