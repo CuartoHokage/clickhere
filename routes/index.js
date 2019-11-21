@@ -170,7 +170,7 @@ api.get('/add/:id', function (req, res, next) {
 		
 		var resultado = result.recordset;
 		console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
-		console.log(resultado)
+		// console.log(resultado)
 		// 
 		//
 		var productId = req.params.id;
@@ -180,7 +180,7 @@ api.get('/add/:id', function (req, res, next) {
 			
 			return item.PRDIDENTI == productId;
 		});
-		
+		console.log(product[0])
 		cart.add(product[0], productId);
 		req.session.cart = cart;
 		res.redirect('/api/portatiles');
