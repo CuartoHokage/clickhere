@@ -13,8 +13,8 @@ module.exports = function Cart(cart) {
         cartItem.quantity++;
         cartItem.PRDPVP = cartItem.item.PRDPVP * cartItem.quantity;
         this.totalItems++;
-        this.totalPrice += cartItem.item.price;
-        console.log(cartItem)
+        this.totalPrice += cartItem.item.PRDPVP;
+        console.log(this.totalPrice)
     };
 
     this.remove = function(id) {

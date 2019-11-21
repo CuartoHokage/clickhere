@@ -58,6 +58,9 @@ api.get('/edicion', (req, res) => {
 	res.render('admin_imagenes');
 });
 
+api.get('/carrito', ()=>{
+	res.render('carrito');
+});
 /////
 
 //////
