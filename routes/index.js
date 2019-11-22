@@ -60,11 +60,15 @@ api.get('/edicion', (req, res) => {
 
 api.get('/carrito', (req, res) => {
 	if (!req.session.cart) {
-		return res.render('carrito',{
-			products: cart.getItems(),
-			totalPrice: cart.totalPrice
+		return res.render('carrito', {
+		  products: null
 		});
-	}
+	  }
+	  var cart = new Cart(req.session.cart);
+	  res.render('carrito', {
+		products: cart.getItems(),
+		totalPrice: cart.totalPrice
+	  });
 });
 /////
 
@@ -124,34 +128,17 @@ api.post('/postsignin', userControllers.postUsuario);
 module.exports = api
 
 //funciones carrito
+api.get('/remove/:id', function(req, res, next) {
+	var productId = req.params.id;
+	var cart = new Cart(req.session.cart ? req.session.cart : {});
+  console.log(productId)
+	cart.remove(productId);
+	req.session.cart = cart;
+	res.redirect('/cart');
+  });
+
 api.get('/add/:id', function (req, res, next) {
-	console.log(Cartss)
-	var Cartss = [
-		{
-			"id": 15085,
-			"title": "Apples",
-			"description": "Apples are <span class=\"label label-info\">25 CHF each</span>",
-			"price": 25
-		},
-		{
-			"id": 2,
-			"title": "Oranges",
-			"description": "Oranges are <span class=\"label label-info\">30 CHF each</span>",
-			"price": 30
-		},
-		{
-			"id": 3,
-			"title": "Garlic",
-			"description": "Garlic are <span class=\"label label-info\">15 CHF each</span>",
-			"price": 15
-		},
-		{
-			"id": 4,
-			"title": "Papayas",
-			"description": "Papayas are <span class=\"label label-info\">50 CHF each</span>, but are <span class=\"label label-warning\">available as 3 for the price of 2</span>",
-			"price": 100
-		}
-	]
+	
 	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	  INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
 	  where PRDNOMBRE like 'port.%' and PUBSTOCK >0 and PUBIDUBIC=12\
