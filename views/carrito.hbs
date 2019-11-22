@@ -15,19 +15,56 @@
                     ${{ this.PRDPVP }}
                 </div>
                 <div class="col-xs-2 text-right">
-                    <a href="/api/remove/{{this.item.id}}" class="btn btn-default"></i> Borrar</a>
+                    <a href="/api/remove/{{this.item.PRDIDENTI}}" class="btn btn-default"></i> Borrar</a>
                 </div>
             </li>
             {{/each}}
+            <br>
+            <p hidden id="importante">{{# each products as |item i| }} /////////Número item: {{i}} ******Codigo: {{this.item.PRDIDENTI}} ****Descripcion: {{this.item.PRDNOMBRE}}
+             ******Cantidad: {{this.quantity}} ****** Precio unidad: {{this.item.PRDPVP}} ******Precio total: {{this.PRDPVP}}/////////
+                {{/each}}</p>
+            <div class="container row">
+                <script>
+                    var parrafo = document.getElementById('importante');
+                    var contenido = parrafo.innerHTML;
+                    window.onload = function(){
+                    document.getElementsByName("orden").value = contenido;
+                    }
+                </script>
+                <div class="col-md-6">
+                    <h2>Por favor, llene los datos de contacto para realizar el pedido</h2>
+                    <form action="/api/postmail_ordeCompra" id="formulario" method="post" onsubmit="return validar()"
+                        enctype="application/x-www-form-urlencoded">
+                        <h3 style="text-align: center;">Formulario de contacto:</h3>
+                        {{!-- Producto oculto --}}
+                        <textarea name="orden" id="orden">{{# each products as |item i| }} /////////Número item: {{i}} ******Codigo: {{this.item.PRDIDENTI}} ****Descripcion: {{this.item.PRDNOMBRE}} ******Cantidad: {{this.quantity}} ****** Precio unidad: {{this.item.PRDPVP}} ******Precio total: {{this.PRDPVP}}/////////{{/each}} PRECIO TOTAL: XXXXX{{totalPrice}}XXXXX</textarea>
+                
+                        {{!-- <input type="hidden" class="form-control" id="orden" name="orden" placeholder="Nombres"
+                            value={{# each products as |item i| }} Numero item: {{i}} <br>{{this.item.PRDNOMBRE}}_
+                        Cantidad: {{this.quantity}} Precio unidad: {{this.item.PRDPVP}} Precio total: {{this.PRDPVP}}
+                        <br> {{/each}}> --}}
+
+                        <br>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombres">
+                        <br>
+                        <input type="email" id="email" class="form-control" name="email" placeholder="Correo">
+                        <br>
+                        <textarea type="text" id="comentario" class="form-control" name="comentario"
+                            placeholder="Mensaje"></textarea>
+                        <br>
+                        <input type="number" id="telefono" class="form-control" name="telefono"
+                            placeholder="Telefono"><br>
+                        <input type="submit" value="Confirmar" class="btn btn-primary" id="enviar">
+                    </form>
+                </div>
+            </div>
         </ul>
     </div>
     <div class="text-right">
-        <strong>Total: $ {{ totalPrice }} </strong>
+        <strong style="color: red;">Total: $ {{ totalPrice }} </strong>
     </div>
     <hr>
-    <div class="text-right">
-        <a href="#" type="button" class="btn btn-success">Confirmar</a>
-    </div>
+
     {{ else }}
     Tu carrito de pedidos esta vacío.
     {{/if}}

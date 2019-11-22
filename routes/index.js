@@ -103,6 +103,8 @@ api.post('/upload_productos', (req, res) => {
 })
 api.post('/postmail_contacto', mailControllers.postMail2);
 api.post('/postmail_cotizacion', mailControllers.postMail);
+api.post('/postmail_ordeCompra', mailControllers.postMailOrdenCompra);
+
 
 api.get('/portatiles', dbControllers.getPortaStock);
 api.get('/portatiless', dbControllers.getPortaStocks);
