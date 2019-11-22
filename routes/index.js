@@ -134,7 +134,7 @@ api.get('/remove/:id', function(req, res, next) {
   console.log(productId)
 	cart.remove(productId);
 	req.session.cart = cart;
-	res.redirect('/cart');
+	res.redirect('/api/carrito');
   });
 
 api.get('/add/:id', function (req, res, next) {
