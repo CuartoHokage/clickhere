@@ -5,6 +5,8 @@ const path = require('path');
 const Peliculas = require('../modelos/peliculas');
 const nodemailer = require('nodemailer')
 
+
+
 function postMail(req, res) {
 	console.log('Post /api/mails')
 	let peliculas = new Peliculas()
@@ -137,6 +139,7 @@ function postMailOrdenCompra(req, res) {
 			res.status(200).render('index')
 		}
 	});
+
 }
 
 module.exports = {
