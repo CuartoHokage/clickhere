@@ -116,7 +116,7 @@ function getPortaStocks(req, res) {
 		var resultado = result.recordset;
 		// 
 		//
-		console.log(resultado)
+		// console.log(resultado)
 		res.status(200).send({ data: resultado })
 	});
 }
