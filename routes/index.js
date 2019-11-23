@@ -185,3 +185,50 @@ api.get('/add/:id', function (req, res, next) {
 
 
 });
+
+// api.get('/add2/:id', function (req, res, next) {
+	
+// 	new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+// 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+// 	where (PRDNOMBRE like '%nexxt%' or PRDNOMBRE like '%tplink%' or PRDNOMBRE like '%router%' or PRDNOMBRE like '%switch%') and PUBSTOCK >0 and PUBIDUBIC=12\
+// 	union all\
+// 	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+// 	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+// 	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+// 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+// 	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+// 	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%tplink%'\
+// 	union all\
+// 	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+// 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+// 	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+// 	where Marcas.NOMBRE like '%tplink%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+// 		//handle err
+// 		var producto = result.recordset
+// 		//localStorage.setItem("producto", JSON.stringify(producto));
+// 		for (var i = 0; i < producto.length; i++) {
+// 			if (producto[i].PUBSTOCK > 5) {
+// 				producto[i].PUBSTOCK = "Más de 5";
+// 			}
+// 		}
+
+// 		var resultado = result.recordset;
+// 		console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+// 		// console.log(resultado)
+// 		// 
+// 		//
+// 		var productId = req.params.id;
+// 		console.log(productId);
+// 		var cart = new Cart(req.session.cart ? req.session.cart : {});
+// 		var product = resultado.filter(function (item) {
+
+// 			return item.PRDIDENTI == productId;
+// 		});
+// 		console.log(product[0])
+// 		cart.add(product[0], productId);
+// 		req.session.cart = cart;
+// 		res.redirect('/api/redes');
+// 	});
+
+
+// });

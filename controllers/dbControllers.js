@@ -29,12 +29,17 @@ function getPortaStock(req, res) {
 	where Marcas.NOMBRE like '%port%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
 		//handle err
 		var producto = result.recordset
+		
+		
+
 		//localStorage.setItem("producto", JSON.stringify(producto));
 		for (var i = 0; i < producto.length; i++) {
 			if (producto[i].PUBSTOCK > 5) {
 				producto[i].PUBSTOCK = "Más de 5";
 			}
+			// producto[i].push({categorias: 'portatiles'})
 		}
+		console.log(producto)
 		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
 		// 	for (producto; producto < result.recordset.length; producto++) {
 
@@ -152,25 +157,7 @@ function getRoutersTplink(req, res) {
 				producto[i].PUBSTOCK = "Más de 5";
 			}
 		}
-		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-		// 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-		// 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-		// 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-		// 	//tratamiento de la imagen
-
-		// 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-		// 	//funciona en directorio erroneo
-		// 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-		// 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-		//         if (err) throw err;
-		//     console.log('It\'s saved!');
-		//         console.log(data);
-		// 	});
-		// }
-		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
+		
 		var hoy = new Date();
 		var hora;
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -320,25 +307,7 @@ function getImpresoras(req, res) {
 				producto[i].PUBSTOCK = "Más de 5";
 			}
 		}
-		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-		// 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-		// 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-		// 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-		// 	//tratamiento de la imagen
-
-		// 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-		// 	//funciona en directorio erroneo
-		// 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-		// 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-		//         if (err) throw err;
-		//     console.log('It\'s saved!');
-		//         console.log(data);
-		// 	});
-		// }
-		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
+		
 		var hoy = new Date();
 		var hora;
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
