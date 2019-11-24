@@ -16,7 +16,7 @@
               var email = document.getElementById("email").value;
               var comentario = document.getElementById("comentario").value;
               var telefono = document.getElementById("telefono").value;
-              var fail= swal({
+              var fail= swal.fire({
                         title: "Su petición no fue enviada",
                         text: "Por favor asegurese de llenar todos los datos del formulario.",
                         icon: "warning",
@@ -39,7 +39,7 @@
                       return false;
                       fail;
                     } else {
-                      swal({
+                      swal.fire({
                         title: "Gracias por contactarnos",
                         text: "Su petición fue enviada en breve nos contactaremos con usted.",
                         icon: "success",

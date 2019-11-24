@@ -91,6 +91,14 @@ api.post('/upload_banner', (req, res) => {
 	})
 })
 
+api.post('/upload_promociones', (req, res) => {
+	let EDFile = req.files.picture;
+	
+	EDFile.mv('./public/imagenes/promocion3.jpg', err => {
+		if (err) return res.status(500).send({ message: err })
+		res.status(200).render('admin');
+	})
+})
 api.post('/upload_productos', (req, res) => {
 	let EDFile = req.files.picture
 	var id_imagen = req.body.id_imagen

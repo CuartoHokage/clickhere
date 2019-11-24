@@ -15,7 +15,7 @@
 
   <title>ClickHere PC</title>
   {{!-- css bostrap --}}
-  
+
   <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/particulas.css">
   {{!-- fin css bostrap --}}
@@ -41,7 +41,7 @@
 </head>
 
 <body class="">
-  
+
   {{!-- barra navegacion oscura --}}
   {{!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> --}}
   {{!-- barra navegación clara --}}
@@ -49,11 +49,18 @@
   <nav class="navbar  navbar-expand-lg navbar-light" style="background-color: #fff">
     <a class="navbar-brand" href="/"><img src="/imagenes/logo.png" width="300" height="65" alt=""></a>
     <ul class="navbar-nav mr-auto"></ul>
-    <a href="http://es.web-counter.net" title="contador de visitas"><img src="http://www.web-counter.net/count_20091204.php?c=0RHqbYybyNI" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a><br/><font size="1" face="Arial"><a href="http://us.web-counter.net" title="click counter">click counter</a><br/><a href="http://es.web-counter.net" title="contador de visitas">contador de visitas</a></font>
-    <form action="/api/coincidencia" method="post" class="form-inline my-2 my-lg-0">
+    
+    
+    <a href="http://es.web-counter.net" title="contador de visitas"><img
+        src="http://www.web-counter.net/count_20091204.php?c=0RHqbYybyNI" style="border:0;padding:0;margin:0;"
+        alt="contador de visitas"></a><br />
+    <font size="1" face="Arial"><a href="http://us.web-counter.net" title="click counter">click counter</a><br /><a
+        href="http://es.web-counter.net" title="contador de visitas">contador de visitas</a></font>
+    <form action="/api/coincidencia" method="post" class="form-inline my-2 my-lg-0" >
       <input class="form-control mr-sm-2" id="busqueda" name="buscar" type="search" placeholder="Buscar productos"
         aria-label="Search">
-      <button type="submit" id="btnconsultar3" class="btn btn-outline-warning"><i class="fa fa-search" style="color: #f80;"></i></button>
+      <button type="submit" id="btnconsultar3" class="btn btn-outline-warning"><i class="fa fa-search"
+          style="color: #f80;"></i></button>
     </form>
     {{!-- <a class="nav-link" href="#"> <p style="color:#f80"><i class="fa fa-user" style="color: #f80;"></i> Iniciar Sesión</p>   
         <span class="sr-only">(current)</span>
@@ -61,11 +68,11 @@
     <div>
     </div>
   </nav>
-<div class="icon-bar">
-  <a href="https://www.facebook.com/clickherepcecuador" class="facebook"><i class="fa fa-facebook"></i></a>
-  <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-  <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-</div>
+  <div class="icon-bar">
+    <a href="https://www.facebook.com/clickherepcecuador" class="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+  </div>
 
 
   <nav class="navbar sticky-top  navbar-expand-lg navbar-light" style="background-color: #fba744">
@@ -133,44 +140,45 @@
 					<a class="nav-link disabled" href="/juego">Juego</a>
 				</li> --}}
         <li class="nav-item">
-          <a class="nav-link" href="https://wa.me/593995924867" target="_blank"><i class="fa fa-whatsapp" style="color: rgb(25, 202, 63);"></i>
+          <a class="nav-link" href="https://wa.me/593995924867" target="_blank"><i class="fa fa-whatsapp"
+              style="color: rgb(25, 202, 63);"></i>
             +593-995924867</a>
         </li>
         {{!-- carrito --}}
         <div class="dropdown pull-right">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-                {{# if session.cart.totalItems }}
-                <span>({{session.cart.totalItems}})</span>
-                {{/if}}
-            </a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
             {{# if session.cart.totalItems }}
-            <div class="dropdown-menu">
-                <div class="cart">
-                    {{# each session.cart.items }}
-                    <div class="row">
-                        <div class="col-xs-4">
-                            {{ this.item.PRDNOMBRE }}
-                        </div>
-                        <div class="col-xs-4 text-right">
-                            {{ this.quantity }}
-                            
-                        </div>
-                        <br>
-                        <div class="col-xs-4 text-right">
-                            $ {{ this.PRDPVP }} 
-                        </div>
-                    </div>
-                    {{/each}}
-                    <div class="row">
-                        <div class="text-right">
-                            <div class="totalPrice">Total: $ {{ session.cart.totalPrice }}</div>
-                            <a href="/api/carrito" class="btn btn-success">Procceed</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <span>({{session.cart.totalItems}})</span>
             {{/if}}
+          </a>
+          {{# if session.cart.totalItems }}
+          <div class="dropdown-menu">
+            <div class="cart">
+              {{# each session.cart.items }}
+              <div class="row">
+                <div class="col-xs-4">
+                  {{ this.item.PRDNOMBRE }}
+                </div>
+                <div class="col-xs-4 text-right">
+                  {{ this.quantity }}
+
+                </div>
+                <br>
+                <div class="col-xs-4 text-right">
+                  $ {{ this.PRDPVP }}
+                </div>
+              </div>
+              {{/each}}
+              <div class="row">
+                <div class="text-right">
+                  <div class="totalPrice">Total: $ {{ session.cart.totalPrice }}</div>
+                  <a href="/api/carrito" class="btn btn-success">Procceed</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
         </div>
         {{!-- carrito --}}
       </ul>
@@ -289,7 +297,7 @@
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
             <i class="fa fa-home mr-3"></i> Ecuador, Manabí, Manta Calle 12 y Avenida 20 Esquina.<iframe
-              src="https://goo.gl/maps/MQdCb2xcVQFhpvFs8"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3989.2693324970755!2d-80.7300721!3d-0.9504897!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902be10b49195bbd%3A0x7b7c847942efd86b!2sClickHere.PC!5e0!3m2!1ses!2sec!4v1570635443192!5m2!1ses!2sec"
               frameborder="0" style="border:0" allowfullscreen></iframe></p>
           <p>
             <i class="fa fa-envelope mr-3"></i> clickhere@gmail.com</p>
