@@ -163,7 +163,7 @@ function getRoutersTplink(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
-		res.render("portatiles", { data: resultado })
+		res.render("redes", { data: resultado })
 	});
 }
 
@@ -219,7 +219,7 @@ function getCases(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
-		res.render("portatiles", { data: resultado })
+		res.render("case", { data: resultado })
 	});
 }
 
@@ -276,7 +276,7 @@ function getSeguridad(req, res) {
 		console.log(hora);
 		var resultado = result.recordset;
 
-		res.render("portatiles", { data: resultado })
+		res.render("seguridadvideo", { data: resultado })
 	});
 }
 function getImpresoras(req, res) {
@@ -313,7 +313,7 @@ function getImpresoras(req, res) {
 		hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 		console.log(hora);
 		var resultado = result.recordset;
-		res.render("portatiles", { data: resultado })
+		res.render("impresoras", { data: resultado })
 	});
 }
 function getProductosCoincidencia(req, res) {
@@ -423,10 +423,6 @@ function postProductosCoincidencia(req, res) {
 
 					// 	}
 					// } while (divisible==0);
-
-
-
-
 					//res.render('busqueda')
 					res.render('busqueda', { data: producto })
 					// res.render('busqueda',producto);

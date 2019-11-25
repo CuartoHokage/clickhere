@@ -1,0 +1,58 @@
+<br>
+<br>
+<div class="container">
+    <div id="contenido" class="">
+        <div class="row">
+
+            {{#each data}}
+
+
+            <div class="col-md-4 product-block" id="{{this.PRDIDENTI}}">
+                <section class="box style1">
+
+                    <div class="main-category-image">
+                        <img onerror="this.src='/imagenes/sin_imagen.jpg';"
+                            class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.PRDIDENTI}}.png"
+                            width="200" height="200">
+                        <div class="caption">
+                            <div><strong>Código: </strong> {{this.PRDIDENTI}}</div>
+                            <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
+                            <div class="price-mob"><strong>Precio: </strong>$ {{this.PRDPVP}}</div>
+                            <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
+                            <a href="/api/add5/{{ this.PRDIDENTI }}" id="{{this.categorias}}" class="btn btn-default pull-right" role="button"><i
+                                    class="fa fa-shopping-cart" aria-hidden="true"></i>Añadir al carrito</a>
+                            {{!-- <button class="openBtn"><span class="float-right"><a><i class="fa fa-search"
+                                                aria-hidden="true"></i></a></span></button> --}}
+                        </div>
+                    </div>
+                </section>
+                {{!-- <script>
+                    var jsonn = {{ data }}
+                    console.log(jsonn)
+                </script> --}}
+            </div>
+            {{/each}}
+        </div>
+        <script>
+            $.ajax({
+                type: "GET",
+                url: "/api/portatiless",
+                dataType: "json",
+                contentType: "text/plain"
+            }).done(function (msg) {
+                //este for entra al objeto peliculas del json "msg" "i" quedara en posicion u objeto 0
+                for (let i in msg) {
+                    //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
+                    // de cada j
+                    for (let j in msg[i]) {
+
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <div style="width:400px">
+        <span id="nextValue">next</span><br><span id="PreeValue">Pre</span>
+    </div>
+</div>

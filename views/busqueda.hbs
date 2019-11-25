@@ -1,5 +1,5 @@
 <body>
-    
+
     <br>
     <br>
     <div class="container">
@@ -20,15 +20,17 @@
                                 <h5> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
                                 <div class="price-mob"><strong>Precio: </strong>$ {{this.PRDPVP}}</div>
                                 <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
-
+                                <a href="/api/add6/{{ this.PRDIDENTI }}" id="{{this.categorias}}"
+                                    class="btn btn-default pull-right" role="button"><i class="fa fa-shopping-cart"
+                                        aria-hidden="true"></i>Añadir al carrito</a>
                             </div>
                         </div>
                     </section>
                 </div>
                 {{/each}}
-            {{else}}
+                {{else}}
                 <p>No se encontro productos.</p>
-            {{/if}}
+                {{/if}}
             </div>
         </div>
     </div>
