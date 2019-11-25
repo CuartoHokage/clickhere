@@ -8,6 +8,7 @@ var pdf = require('html-pdf');
 
 
 
+
 function getPortaStock(req, res) {
 	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
 	//new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
@@ -342,14 +343,17 @@ function postProductosCoincidencia(req, res) {
 	}
 	if ((isNaN(buscar) == true)) {
 		buscar2 = 5557555;
+		
 	} else {
 		buscar2 = buscar;
+		console.log(buscar2)
 	}
 	new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
 	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar2 + "", (err, result1) => {
 		// console.log(result1.recordset.length)
+		console.log(result1.recordset)
 		if (!err) {
-
+			
 
 			if (result1.recordset.length == 0) {
 				new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
@@ -380,59 +384,19 @@ function postProductosCoincidencia(req, res) {
 							producto[i].PUBSTOCK = "Más de 5";
 						}
 					}
-					//////CONTINUAR AQUI 15/11/2019
-					// var seccion = producto.length;
-					// var seccionN
-					// var divisible = 0;
-					// var productoSec = []
-					// if (seccion<15) {
-					// 	seccion=15;
-					// }
-					// do {
-					// 	console.log('fdsf')
-					// 	seccionN = seccion / 15;
-					// 	if (Number.isInteger(seccionN)) {
-					// 		divisible = 1;
-					// 		console.log(seccionN)
-					// 		var jsonSeccion = [];
-					// 		var jsonseccionj=[];
-					// 		for (var i = 0; i < seccionN; i++) {
-					// 			jsonSeccion.push({})
-					// 			if (producto.length<15) {
-					// 				for(var j=0; j<producto.length; j++){
-					// 					var jsoni= jsonSeccion;
-					// 					jsoni.push(producto[j]);
-					// 					console.log(j)
-					// 					console.log(jsonSeccion)
-					// 				}
-					// 			} else {
-					// 				for(var j=0; j<15; j++){
-					// 					jsonSeccion.push(producto[j]);
-					// 					console.log(j)
-					// 					console.log(jsonSeccion)
-					// 				}
-					// 			}
 
+					var dictstring = JSON.stringify(producto, null, 4)
 
-					// 			console.log("seccion: " + i)
-
-
-					// 		}
-					// 	} else {
-					// 		seccion = seccion + 1;
-
-					// 	}
-					// } while (divisible==0);
-					//res.render('busqueda')
+					fs.writeFileSync("buscar.json", dictstring);
 					res.render('busqueda', { data: producto })
 					// res.render('busqueda',producto);
 				});
 			} else {
 				var producto = result1.recordset
-				//localStorage.setItem("producto", JSON.stringify(producto));
+				var dictstring = JSON.stringify(producto,null, 4)
 
-				//res.render('busqueda')
-				res.render('busqueda', { data: producto })
+				fs.writeFile("buscar.json", dictstring, () => {});
+				res.render('busqueda', { data: producto }, localStorage.getItem("buscar"))
 			}
 		} else {
 			res.render('index', err)
@@ -495,7 +459,6 @@ function postPrductosCategoria(req, res) {
 		// res.render('busqueda',producto);
 
 	});
-
 }
 
 module.exports = {

@@ -10,6 +10,7 @@ const edicionControllers = require('../controllers/edicionControllers');
 const userControllers = require('../controllers/userControllers');
 const Cart = require('../models/cart');
 const sql = require('mssql');
+const fs = require('fs');
 //Cruds para peliculas
 
 //rutas de páginas
@@ -392,165 +393,17 @@ api.get('/add5/:id', function (req, res, next) {
 });
 
 
-// // 7
-// var buscar = req.body.buscar;
-// console.log(buscar)
-// var consultaCodigo = "";
-// var buscar2;
-// if (isNaN(buscar) == false) {
-// 	console.log(buscar)
-// 	consultaCodigo = "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
-// 		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + ""
-// }
-// if ((isNaN(buscar) == true)) {
-// 	buscar2 = 5557555;
-// } else {
-// 	buscar2 = buscar;
-// }
-// new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
-// 	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar2 + "", (err, result1) => {
-// 	// console.log(result1.recordset.length)
-// 	if (!err) {
+api.get('/add6/:id', function (req, res, next) {
+	var products = JSON.parse(fs.readFileSync('./buscar.json'));
+	var productId = req.params.id;
+	console.log(productId);
+	var cart = new Cart(req.session.cart ? req.session.cart : {});
+	var product = products.filter(function (item) {
 
-
-// 		if (result1.recordset.length == 0) {
-// 			new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-// 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-// 	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12\
-// 	union all\
-// 	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-// 	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
-// 	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
-// 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
-// 	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
-// 	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+ buscar + "%'\
-// 	union all\
-// 	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-// 	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-// 	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
-// 	where Marcas.NOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12 " + consultaCodigo + "", (err, result) => {
-// 				//handle err
-// 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-// 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-// 				console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-// 				console.log(result.recordset)
-
-// 				var producto = result.recordset
-// 				//localStorage.setItem("producto", JSON.stringify(producto));
-// 				for (var i = 0; i < producto.length; i++) {
-// 					if (producto[i].PUBSTOCK > 5) {
-// 						producto[i].PUBSTOCK = "Más de 5";
-// 					}
-// 				}
-// 				var productId = req.params.id;
-// 				console.log(productId);
-// 				var cart = new Cart(req.session.cart ? req.session.cart : {});
-// 				var product = resultado.filter(function (item) {
-
-// 					return item.PRDIDENTI == productId;
-// 				});
-// 				console.log(product[0])
-// 				cart.add(product[0], productId);
-// 				req.session.cart = cart;
-// 				res.redirect('/api/coincidencia');
-// 			});
-// 		} else {
-// 			var productId = req.params.id;
-// 			console.log(productId);
-// 			var cart = new Cart(req.session.cart ? req.session.cart : {});
-// 			var product = resultado.filter(function (item) {
-
-// 				return item.PRDIDENTI == productId;
-// 			});
-// 			console.log(product[0])
-// 			cart.add(product[0], productId);
-// 			req.session.cart = cart;
-// 			res.redirect('/api/coincidencia');
-// 		}
-// 	} else {
-// 		res.render('index', err)
-// 	}
-// });
-// 
-
-api.post('/add6/:id', function (req, res, next) {
-
-	var buscar = req.body.buscar;
-	console.log(buscar)
-	var consultaCodigo = "";
-	var buscar2;
-	if (isNaN(buscar) == false) {
-		console.log(buscar)
-		consultaCodigo = "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
-		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + ""
-	}
-	if ((isNaN(buscar) == true)) {
-		buscar2 = 5557555;
-	} else {
-		buscar2 = buscar;
-	}
-	new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
-	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar2 + "", (err, result1) => {
-		// console.log(result1.recordset.length)
-		if (!err) {
-
-
-			if (result1.recordset.length == 0) {
-				new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	where PRDNOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12\
-	union all\
-	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
-	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
-	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
-	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
-	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%"+ buscar + "%'\
-	union all\
-	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
-	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
-	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
-	where Marcas.NOMBRE like '%"+ buscar + "%' and PUBSTOCK >0 and PUBIDUBIC=12 " + consultaCodigo + "", (err, result) => {
-					//handle err
-					console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-					console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-					console.log("///////////////////////////////////////////NUEVA CONSULTA/////////////////////////////////////////////////")
-					console.log(result.recordset)
-
-					var producto = result.recordset
-					//localStorage.setItem("producto", JSON.stringify(producto));
-					for (var i = 0; i < producto.length; i++) {
-						if (producto[i].PUBSTOCK > 5) {
-							producto[i].PUBSTOCK = "Más de 5";
-						}
-					}
-					var productId = req.params.id;
-					console.log(productId);
-					var cart = new Cart(req.session.cart ? req.session.cart : {});
-					var product = resultado.filter(function (item) {
-
-						return item.PRDIDENTI == productId;
-					});
-					console.log(product[0])
-					cart.add(product[0], productId);
-					req.session.cart = cart;
-					res.redirect('/api/coincidencia');
-				});
-			} else {
-				var productId = req.params.id;
-				console.log(productId);
-				var cart = new Cart(req.session.cart ? req.session.cart : {});
-				var product = resultado.filter(function (item) {
-
-					return item.PRDIDENTI == productId;
-				});
-				console.log(product[0])
-				cart.add(product[0], productId);
-				req.session.cart = cart;
-				res.reload('/api/coincidencia');
-			}
-		} else {
-			res.render('index', err)
-		}
+		return item.PRDIDENTI == productId;
 	});
+	console.log(product[0])
+	cart.add(product[0], productId);
+	req.session.cart = cart;
+	res.redirect('/api/impresoras');
 });
