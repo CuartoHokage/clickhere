@@ -387,7 +387,8 @@ function postProductosCoincidencia(req, res) {
 
 					var dictstring = JSON.stringify(producto, null, 4)
 
-					fs.writeFileSync("buscar.json", dictstring);
+					fs.writeFileSync("./public/buscar.json", dictstring);
+					// fs.writeFile("./public/buscar.json", dictstring, () => {});
 					res.render('busqueda', { data: producto })
 					// res.render('busqueda',producto);
 				});
@@ -395,7 +396,7 @@ function postProductosCoincidencia(req, res) {
 				var producto = result1.recordset
 				var dictstring = JSON.stringify(producto,null, 4)
 
-				fs.writeFile("buscar.json", dictstring, () => {});
+				fs.writeFile("./public/buscar.json", dictstring, () => {});
 				res.render('busqueda', { data: producto }, localStorage.getItem("buscar"))
 			}
 		} else {

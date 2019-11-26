@@ -31,7 +31,7 @@ function postMail(req, res) {
 
 	var mailOptions = {
 		from: email,
-		to: 'jaime199505@hotmail.com',
+		to: 'jaime199505@hotmail.com, konothecsa@gmail.com',
 		subject: 'Cotización',
 		text: mensaje
 	};
@@ -78,9 +78,16 @@ function postMail2(req, res) {
 
 	var mailOptions = {
 		from: email,
-		to: 'jaime199505@hotmail.com',
+		to: 'jaime199505@hotmail.com, konothecsa@gmail.com',
 		subject: razon,
-		text: mensaje
+		text: mensaje,
+		cc:'konothecsa@gmail.com'
+		// html: '<!DOCTYPE html>'+
+        // '<html><head><title>Appointment</title>'+
+        // '</head><body><div>'+
+        // '<img src="http://evokebeautysalon1.herokuapp.com/main/img/logo.png" alt="" width="160">'+
+        // mensaje+
+        // '</div></body></html>'
 	};
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
@@ -122,7 +129,7 @@ function postMailOrdenCompra(req, res) {
 
 	var mailOptions = {
 		from: email,
-		to: 'jaime199505@hotmail.com',
+		to: 'jaime199505@hotmail.com, konothecsa@gmail.com',
 		subject: "orden de compra",
 		text: mensaje
 	};
@@ -136,9 +143,11 @@ function postMailOrdenCompra(req, res) {
 			var hora;
 			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 			console.log(hora);
+			req.session.destroy();
 			res.status(200).render('index')
 		}
 	});
+	
 
 }
 

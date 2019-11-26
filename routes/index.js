@@ -150,10 +150,8 @@ api.get('/remove/:id', function (req, res, next) {
 
 api.get('/removeALL', function (req, res, next) {
 
-	var cart = new Cart(req.session.cart ? req.session.cart : {});
-	console.log('HOla')
-	cart.removeALL();
-	req.session.cart = cart;
+	req.session.cart=null;
+	console.log('ddddddd')
 	res.redirect('/api/carrito');
 });
 
@@ -394,7 +392,7 @@ api.get('/add5/:id', function (req, res, next) {
 
 
 api.get('/add6/:id', function (req, res, next) {
-	var products = JSON.parse(fs.readFileSync('./buscar.json'));
+	var products = JSON.parse(fs.readFileSync('./public/buscar.json'));
 	var productId = req.params.id;
 	console.log(productId);
 	var cart = new Cart(req.session.cart ? req.session.cart : {});

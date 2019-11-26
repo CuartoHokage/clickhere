@@ -24,8 +24,9 @@ module.exports = function Cart(cart) {
         delete this.items[id];
         
     };
-    this.removeALL = function(id) {
-        delete this.items;
+    this.removeALL = function() {
+        this.items=[];
+        console.log(this.items)
         
     };
     

@@ -141,8 +141,19 @@
               style="color: rgb(25, 202, 63);"></i>
             Escribenos a Whatsapp</a>
         </li>
-        {{!-- carrito --}}
-        <div class="dropdown pull-right">
+        
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+  {{!-- carrito --}}
+  <div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">
+<div class="btn-group dropleft">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
             {{# if session.cart.totalItems }}
@@ -177,12 +188,10 @@
           </div>
           {{/if}}
         </div>
-        {{!-- carrito --}}
-      </ul>
     </div>
-  </nav>
-
-  <br>
+  </div>
+        
+        {{!-- carrito --}}
   {{!-- barra navegación clara fin --}}
   {{{ body }}}
   {{!-- footer inicio--}}
