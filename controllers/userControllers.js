@@ -26,7 +26,7 @@ function postUsuario(req, res){
 		//localStorage.setItem("producto", JSON.stringify(producto));
 
 		//res.render('busqueda')
-		res.render('index', { data:usuario })
+		res.render('admin', { data:usuario })
 		// res.render('busqueda',producto);
 
 	});

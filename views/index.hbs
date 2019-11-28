@@ -64,7 +64,6 @@
           <li data-target="#carousel-example-1z" data-slide-to="2"></li>
           <li data-target="#carousel-example-1z" data-slide-to="3"></li>
           <li data-target="#carousel-example-1z" data-slide-to="4"></li>
-          <li data-target="#carousel-example-1z" data-slide-to="5"></li>
         </ol>
         <!--/.Indicators-->
         <!--Slides-->
@@ -128,7 +127,7 @@
           <li data-target="#carousel-example-1z" data-slide-to="2"></li>
           <li data-target="#carousel-example-1z" data-slide-to="3"></li>
           <li data-target="#carousel-example-1z" data-slide-to="4"></li>
-          
+
         </ol>
         <!--/.Indicators-->
         <!--Slides-->
@@ -265,7 +264,42 @@
           <section class="box style1">
             <span class="icon featured fa-video-camera" aria-hidden="true"></span>
             <h3>Instalación de camaras de seguridad</h3>
-
+            <script>
+              function validar() {
+                //obteniendo el valor que se puso en el campo text del formulario
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var comentario = document.getElementById("comentario").value;
+                var telefono = document.getElementById("telefono").value;
+                var fail = swal.fire({
+                  title: "Su petición no fue enviada",
+                  text: "Por favor asegurese de llenar todos los datos del formulario.",
+                  icon: "warning",
+                  buttons: true,
+                });
+                //la condición
+                /// ARREGLAR MAIL
+                if (name.length == 0 || /^\s+$/.test(name)) {
+                  fail;
+                  return false;
+                } else {
+                  if (email.length == 0 || /^\s+$/.test(email)) {
+                    return false;
+                    fail;
+                  } else {
+                    if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                      return false;
+                      fail;
+                    } else {
+                      if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                        return false;
+                        fail;
+                      }
+                    }
+                  }
+                }
+              }
+            </script>
             <button class="btn btn-primary openBtn">Solicitar información</button><br>
             <a href="/api/seguridad" class="button large scrolly">Acerca del servicio</a>
             <script>
