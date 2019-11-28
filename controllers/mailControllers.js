@@ -46,7 +46,7 @@ function postMail(req, res) {
 			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 			console.log(hora);
 			console.log(email + " " + pedido + " " + telefono + " " + name)
-			res.status(200).render('cotizacion')
+			res.status(200).redirect('/')
 		}
 	});
 
@@ -99,7 +99,7 @@ function postMail2(req, res) {
 			var hora;
 			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 			console.log(hora);
-			res.status(200).render('index')
+			res.status(200).redirect('/')
 		}
 	});
 }
@@ -144,7 +144,7 @@ function postMailOrdenCompra(req, res) {
 			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
 			console.log(hora);
 			req.session.destroy();
-			res.status(200).render('index')
+			res.status(200).redirect('/')
 		}
 	});
 	

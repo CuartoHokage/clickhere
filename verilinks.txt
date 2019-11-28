@@ -24,3 +24,5 @@ https://dantecervantes.com/canasta-compras-javascript/
 //convertir pdf para enviar por formulario
 https://stackoverflow.com/questions/32941366/how-to-export-json-data-to-pdf-file-with-specify-format-with-nodejs
 https://stackoverflow.com/questions/32941366/how-to-export-json-data-to-pdf-file-with-specify-format-with-nodejs
+
+https://greensock.com/

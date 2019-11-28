@@ -43,6 +43,53 @@
                     });
                 </script>
                 <div class="col-md-6">
+                    <script>
+            function validar() {
+              //obteniendo el valor que se puso en el campo text del formulario
+              var name = document.getElementById("nombre").value;
+              var email = document.getElementById("email").value;
+              var comentario = document.getElementById("comentario").value;
+              var telefono = document.getElementById("telefono").value;
+              var fail = swal.fire({
+                title: "Su petición no fue enviada",
+                text: "Por favor, asegurese de llenar todos los datos del formulario.",
+                icon: "warning",
+                buttons: true,
+              });
+              //la condición
+              if (name.length == 0 || /^\s+$/.test(name)) {
+                fail;
+                return false;
+              } else {
+                if (email.length == 0 || /^\s+$/.test(email)) {
+                  return false;
+                  fail;
+                } else {
+                  if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                    return false;
+                    fail;
+                  } else {
+                    if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                      return false;
+                      fail;
+                    } else {
+                      swal.fire({
+                        title: "Gracias por contactarnos",
+                        text: "Su petición fue enviada en breve nos contactaremos con usted.",
+                        icon: "success",
+                        buttons: true,
+                      })
+                      return true;
+                    }
+                  }
+
+                }
+
+              }
+
+
+            }
+          </script>
                     <h2>Por favor, llene los datos de contacto para realizar el pedido</h2>
                     <form action="/api/postmail_ordeCompra" id="formulario" method="post" onsubmit="return validar()"
                         enctype="application/x-www-form-urlencoded">
@@ -65,6 +112,7 @@
                         <textarea  type="text" id="comentario" class="form-control" name="comentario"
                             placeholder="Mensaje"></textarea>
                         <br>
+                        <input id="prodId" name="razon" type="hidden" value="Pedido de productos.">
                         <input type="number" id="telefono" class="form-control" name="telefono"
                             placeholder="Telefono"><br>
                         <input href="/api/removeALL"  type="submit" value="Confirmar" class="btn btn-primary" id="enviar">

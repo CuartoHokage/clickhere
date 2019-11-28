@@ -333,25 +333,26 @@ function getProductosCoincidencia(req, res) {
 
 function postProductosCoincidencia(req, res) {
 	var buscar = req.body.buscar;
-	console.log(buscar)
+	
 	var consultaCodigo = "";
 	var buscar2;
 	if (isNaN(buscar) == false) {
-		console.log(buscar)
+		// console.log(buscar)
 		consultaCodigo = "union SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
 		inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + ""
 	}
 	if ((isNaN(buscar) == true)) {
 		buscar2 = 5557555;
-		
+		console.log(buscar)
 	} else {
 		buscar2 = buscar;
-		console.log(buscar2)
+		// console.log(buscar2)
 	}
 	new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
 	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar2 + "", (err, result1) => {
 		// console.log(result1.recordset.length)
-		console.log(result1.recordset)
+		// console.log(buscar2)
+		// console.log(result1.recordset)
 		if (!err) {
 			
 
@@ -393,6 +394,7 @@ function postProductosCoincidencia(req, res) {
 					// res.render('busqueda',producto);
 				});
 			} else {
+				console.log('gg')
 				var producto = result1.recordset
 				var dictstring = JSON.stringify(producto,null, 4)
 
