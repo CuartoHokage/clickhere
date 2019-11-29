@@ -81,13 +81,8 @@ function postMail2(req, res) {
 		to: 'jaime199505@hotmail.com, konothecsa@gmail.com',
 		subject: razon,
 		text: mensaje,
-		cc:'konothecsa@gmail.com'
-		// html: '<!DOCTYPE html>'+
-        // '<html><head><title>Appointment</title>'+
-        // '</head><body><div>'+
-        // '<img src="http://evokebeautysalon1.herokuapp.com/main/img/logo.png" alt="" width="160">'+
-        // mensaje+
-        // '</div></body></html>'
+		cc:'konothecsa@gmail.com',
+		html: '<h1>Welcome</h1><p>That was easy!</p>'
 	};
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
