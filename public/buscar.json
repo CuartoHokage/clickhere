@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "PRDIDENTI": 4085,
+        "PRDNOMBRE": "MEMORIA MICRO SD KINGSTON 64GB + ADAPTADOR SD CLASE 10      ",
+        "categoria": "MEMORIA MICRO SD KINGSTON 64GB + ADAPTADOR SD CLASE 10      ",
+        "PUBSTOCK": "Más de 5",
+        "PRDPVP": 13.53
+    },
+    {
+        "PRDIDENTI": 15517,
+        "PRDNOMBRE": "MEMORY FLASH KINGSTON 64GB USB 2.0 DATATRAVELER104 DT104/16G",
+        "categoria": "MEMORY FLASH KINGSTON 64GB USB 2.0 DATATRAVELER104 DT104/16G",
+        "PUBSTOCK": "Más de 5",
+        "PRDPVP": 15.4
+    }
+]

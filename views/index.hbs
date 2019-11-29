@@ -267,9 +267,7 @@ showConfirmButton: false,
           <section class="box style1">
             <span class="icon featured fa-video-camera" aria-hidden="true"></span>
             <h3>Instalación de camaras de seguridad</h3>
-            {{!-- <script> --}}
-              
-            {{!-- </script> --}}
+            
             <button class="btn btn-primary openBtn">Solicitar información</button><br>
             <a href="/api/seguridad" class="button large scrolly">Acerca del servicio</a>
             <script>
@@ -299,6 +297,13 @@ showConfirmButton: false,
                   html: htmlpuro,
                   buttons: true,
                 })
+              });
+
+            </script>
+            {{!-- Sweet de bloqueo --}}
+            <script>
+              function validar() {
+                //obteniendo el valor que se puso en el campo text del formulario
                 var name = document.getElementById("name").value;
                 var email = document.getElementById("email").value;
                 var comentario = document.getElementById("comentario").value;
@@ -313,6 +318,7 @@ showConfirmButton: false,
                 /// ARREGLAR MAIL
                 if (name.length == 0 || /^\s+$/.test(name)) {
                   fail;
+                  console.log("aqui");
                   return false;
                 } else {
                   if (email.length == 0 || /^\s+$/.test(email)) {
@@ -326,12 +332,13 @@ showConfirmButton: false,
                       if (telefono.length == 0 || /^\s+$/.test(telefono)) {
                         return false;
                         fail;
+                      }else{
+                        return true;
                       }
                     }
                   }
                 }
-              });
-
+              }
             </script>
           </section>
         </div>
