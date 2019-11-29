@@ -32,8 +32,7 @@
                     window.onload = function () {
                         document.getElementsByName("orden").value = contenido;
                     }
-                    var contenido = ''{{# each products as |item i| }}' /////////Número item: '{{i}}' ******Codigo: '{{this.item.PRDIDENTI}}' ****Descripcion: '{{this.item.PRDNOMBRE}}' ******Cantidad: '{{this.quantity}}' ****** Precio unidad: '{{this.item.PRDPVP}}' ******Precio total: '{{this.PRDPVP}}'/////////'{{/each}}' PRECIO TOTAL: XXXXX'{{totalPrice}}'XXXXX>\
-		';
+                    var contenido = ''{{# each products as |item i| }}' /////////Número item: '{{i}}' ******Codigo: '{{this.item.PRDIDENTI}}' ****Descripcion: '{{this.item.PRDNOMBRE}}' ******Cantidad: '{{this.quantity}}' ****** Precio unidad: '{{this.item.PRDPVP}}' ******Precio total: '{{this.PRDPVP}}'/////////'{{/each}}' PRECIO TOTAL: XXXXX'{{totalPrice}}'XXXXX>';
                     pdf.create(contenido).toFile('./salida.pdf', function (err, res) {
                         if (err) {
                             console.log(err);
@@ -96,7 +95,15 @@
                         <h3 style="text-align: center;">Formulario de contacto:</h3>
                         {{!-- Producto oculto --}}
                         <textarea name="orden" name="hide" style="display:none;"
-                            id="orden">{{# each products as |item i| }} /////////Número item: {{i}} ******Codigo: {{this.item.PRDIDENTI}} ****Descripcion: {{this.item.PRDNOMBRE}} ******Cantidad: {{this.quantity}} ****** Precio unidad: {{this.item.PRDPVP}} ******Precio total: {{this.PRDPVP}}/////////{{/each}} PRECIO TOTAL: XXXXX{{totalPrice}}XXXXX</textarea>
+                            id="orden">{{# each products as |item i| }} 
+                            ---------Número item: {{i}} _________Codigo: {{this.item.PRDIDENTI}}                   
+                            Descripcion: {{this.item.PRDNOMBRE}}                   
+                            Cantidad: {{this.quantity}}                  
+                            Precio unidad: {{this.item.PRDPVP}}                   
+                            Precio total: {{this.PRDPVP}}_________
+                            {{/each}}
+                             
+                            PRECIO TOTAL:                   {{totalPrice}}</textarea>
 
                         {{!-- <input type="hidden" class="form-control" id="orden" name="orden" placeholder="Nombres"
                             value={{# each products as |item i| }} Numero item: {{i}} <br>{{this.item.PRDNOMBRE}}_

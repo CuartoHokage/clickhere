@@ -2,6 +2,9 @@
   Swal.fire({
     title: 'Servicios y promociones!',
     text: 'Modal with a custom image.',
+    showCancelButton: false,
+
+showConfirmButton: false,
     //imageUrl: '/imagenes/SERVICIO-PORT.jpg',
     //imageWidth: 400,
     //imageHeight: 200,
@@ -18,17 +21,17 @@
         <div class="carousel-inner" role="listbox">\
           <!--First slide-->\
           <div class="carousel-item active">\
-            <a href="/"><img class="d-block w-100" src="/imagenes/SERVICIO-PORT.jpg" alt="First slide"></a>\
+            <a href="/"><img class="d-block w-100" src="/imagenes/bannerPromo1_1.jpg" alt="First slide"></a>\
           </div>\
           <!--/First slide-->\
           <!--Second slide-->\
           <div class="carousel-item">\
-            <a href="/"><img class="d-block w-100" src="/imagenes/SERVICIO-IMP.jpg" alt="Second slide"></a>\
+            <a href="/"><img class="d-block w-100" src="/imagenes/bannerPromo1_2.jpg" alt="Second slide"></a>\
           </div>\
           <!--/Second slide-->\
           <!--Third slide-->\
           <div class="carousel-item">\
-            <a href="/"><img class="d-block w-100" src="/imagenes/SERVICIO-CPU.jpg" alt="Third slide"></a>\
+            <a href="/"><img class="d-block w-100" src="/imagenes/bannerPromo1_3.jpg" alt="Third slide"></a>\
           </div>\
           {{!-- <div class="carousel-item">\
             <img class="d-block w-100" src="/imagenes/banner6.jpg" alt="six slide">\
@@ -264,9 +267,38 @@
           <section class="box style1">
             <span class="icon featured fa-video-camera" aria-hidden="true"></span>
             <h3>Instalación de camaras de seguridad</h3>
+            {{!-- <script> --}}
+              
+            {{!-- </script> --}}
+            <button class="btn btn-primary openBtn">Solicitar información</button><br>
+            <a href="/api/seguridad" class="button large scrolly">Acerca del servicio</a>
             <script>
-              function validar() {
-                //obteniendo el valor que se puso en el campo text del formulario
+              $('.openBtn').on('click', function () {
+                const htmlpuro = document.createElement('div');
+                htmlpuro.innerHTML = '<form action="/api/postmail_contacto" id="formulario" method="post" onsubmit="return validar()"\
+                enctype="application/x-www-form-urlencoded">\
+                <h3 style="text-align: center;">Formulario de cotización:</h3>\
+                <br>\
+                <input type="text" class="form-control" name="nombre" id="name" placeholder="Nombres y Apellidos" required>\
+                <br>\
+                <input type="email" id="email" name="email" class="form-control" placeholder="Correo de contacto" required>\
+                <br>\
+                <textarea class="form-control" id="comentario" name="comentario" rows="3"\
+                  placeholder="Por favor, escriba la descripción el producto que desea cotizar." required></textarea>\
+                <br>\
+                <input type="number" id="telefono" name="telefono" class="form-control"\
+                  placeholder="Telefono de contacto" required><br>\
+                  <input id="prodId" name="razon" type="hidden" value="Solicitud de cotización de servicio de seguridad.">\
+                <button type="submit" class="btn btn-primary btn-info">Enviar a cotizar</button>\
+              </form>'
+
+                swal.fire({
+                  title: "Solicitud de servicios",
+                  text: "Llene el formulario para hacer la petición de servicios.",
+                  icon: "info",
+                  html: htmlpuro,
+                  buttons: true,
+                })
                 var name = document.getElementById("name").value;
                 var email = document.getElementById("email").value;
                 var comentario = document.getElementById("comentario").value;
@@ -298,37 +330,6 @@
                     }
                   }
                 }
-              }
-            </script>
-            <button class="btn btn-primary openBtn">Solicitar información</button><br>
-            <a href="/api/seguridad" class="button large scrolly">Acerca del servicio</a>
-            <script>
-              $('.openBtn').on('click', function () {
-                const htmlpuro = document.createElement('div');
-                htmlpuro.innerHTML = '<form action="/api/postmail_contacto" id="formulario" method="post" onsubmit="return validar()"\
-                enctype="application/x-www-form-urlencoded">\
-                <h3 style="text-align: center;">Formulario de cotización:</h3>\
-                <br>\
-                <input type="text" class="form-control" name="nombre" id="name" placeholder="Nombres y Apellidos" required>\
-                <br>\
-                <input type="email" id="email" name="email" class="form-control" placeholder="Correo de contacto" required>\
-                <br>\
-                <textarea class="form-control" id="comentario" name="comentario" rows="3"\
-                  placeholder="Por favor, escriba la descripción el producto que desea cotizar." required></textarea>\
-                <br>\
-                <input type="number" id="telefono" name="telefono" class="form-control"\
-                  placeholder="Telefono de contacto" required><br>\
-                  <input id="prodId" name="razon" type="hidden" value="Solicitud de cotización de servicio de seguridad.">\
-                <button type="submit" class="btn btn-primary btn-info">Enviar a cotizar</button>\
-              </form>'
-
-                swal.fire({
-                  title: "Solicitud de servicios",
-                  text: "Llene el formulario para hacer la petición de servicios.",
-                  icon: "info",
-                  html: htmlpuro,
-                  buttons: true,
-                })
               });
 
             </script>

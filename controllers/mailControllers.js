@@ -81,8 +81,7 @@ function postMail2(req, res) {
 		to: 'jaime199505@hotmail.com, konothecsa@gmail.com',
 		subject: razon,
 		text: mensaje,
-		cc:'konothecsa@gmail.com',
-		html: '<h1>Welcome</h1><p>That was easy!</p>'
+		cc:'konothecsa@gmail.com'
 	};
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
@@ -120,7 +119,7 @@ function postMailOrdenCompra(req, res) {
 		}
 	});
 
-	var mensaje = "Orden: "+ orden + "Nombre: " + name + "\nMensaje: " + pedido + "\nNúmero de telefono: " + telefono + "\nEmail: " + email + "";
+	var mensaje ="\nDATOS DE CONTACTO:"+"\nNombre: " + name + "\nMensaje: " + pedido + "\nNúmero de telefono: " + telefono + "\nEmail: " + email + "\n\n"+ "\nOrden: "+ orden ;
 
 	var mailOptions = {
 		from: email,
