@@ -26,3 +26,6 @@ https://stackoverflow.com/questions/32941366/how-to-export-json-data-to-pdf-file
 https://stackoverflow.com/questions/32941366/how-to-export-json-data-to-pdf-file-with-specify-format-with-nodejs
 
 https://greensock.com/
+
+//DEJAR EJECUTADA APLICACION COMO SERVICIO (aprueba de errores)
+https://desarrolloweb.com/articulos/ejecutar-aplicacion-nodejs-pm2.html
