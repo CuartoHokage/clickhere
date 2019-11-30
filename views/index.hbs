@@ -4,7 +4,7 @@
     text: 'Modal with a custom image.',
     showCancelButton: false,
 
-showConfirmButton: false,
+    showConfirmButton: false,
     //imageUrl: '/imagenes/SERVICIO-PORT.jpg',
     //imageWidth: 400,
     //imageHeight: 200,
@@ -267,7 +267,69 @@ showConfirmButton: false,
           <section class="box style1">
             <span class="icon featured fa-video-camera" aria-hidden="true"></span>
             <h3>Instalación de camaras de seguridad</h3>
-            
+            {{!-- Sweet de bloqueo --}}
+            <script>
+              function validar() {
+                //obteniendo el valor que se puso en el campo text del formulario
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var comentario = document.getElementById("comentario").value;
+                var telefono = document.getElementById("telefono").value;
+                //var fail =
+                //la condición
+                /// ARREGLAR MAIL
+                //if((name.length == 0 || /^\s+$/.test(name))||(email.length == 0 || /^\s+$/.test(email))||(comentario.length == 0 || /^\s+$/.test(comentario))||(telefono.length == 0 || /^\s+$/.test(telefono))){
+                //  fail;
+                //}else{
+                //  return true;
+                //}
+
+                if (name.length == 0 || /^\s+$/.test(name)) {
+                  swal.fire({
+                    title: "Su petición no fue enviada",
+                    text: "Por favor asegurese de llenar todos los datos del formulario.",
+                    icon: "warning",
+                    buttons: true
+                  });
+                  return false;
+                }
+                else {
+                  if (email.length == 0 || /^\s+$/.test(email)) {
+                    swal.fire({
+                      title: "Su petición no fue enviada",
+                      text: "Por favor asegurese de llenar todos los datos del formulario.",
+                      icon: "warning",
+                      buttons: true
+                    });
+                    return false;
+                  } else {
+                    if (comentario.length == 0 || /^\s+$/.test(comentario)) {
+                      swal.fire({
+                        title: "Su petición no fue enviada",
+                        text: "Por favor asegurese de llenar todos los datos del formulario.",
+                        icon: "warning",
+                        buttons: true
+                      });
+                      return false;
+                    } else {
+                      if (telefono.length == 0 || /^\s+$/.test(telefono)) {
+                        swal.fire({
+                          title: "Su petición no fue enviada",
+                          text: "Por favor asegurese de llenar todos los datos del formulario.",
+                          icon: "warning",
+                          buttons: true
+                        });
+                        return false;
+                      } else {
+                        return true;
+                        fail = 0;
+                      }
+                    }
+                  }
+                }
+              }
+            </script>
+            {{!-- Sweet de bloqueo --}}
             <button class="btn btn-primary openBtn">Solicitar información</button><br>
             <a href="/api/seguridad" class="button large scrolly">Acerca del servicio</a>
             <script>
@@ -295,51 +357,13 @@ showConfirmButton: false,
                   text: "Llene el formulario para hacer la petición de servicios.",
                   icon: "info",
                   html: htmlpuro,
-                  buttons: true,
+                  background:'#fd7e14 url(/imagenes/logo.png)',
+                  buttons: true
                 })
               });
 
             </script>
-            {{!-- Sweet de bloqueo --}}
-            <script>
-              function validar() {
-                //obteniendo el valor que se puso en el campo text del formulario
-                var name = document.getElementById("name").value;
-                var email = document.getElementById("email").value;
-                var comentario = document.getElementById("comentario").value;
-                var telefono = document.getElementById("telefono").value;
-                var fail = swal.fire({
-                  title: "Su petición no fue enviada",
-                  text: "Por favor asegurese de llenar todos los datos del formulario.",
-                  icon: "warning",
-                  buttons: true,
-                });
-                //la condición
-                /// ARREGLAR MAIL
-                if (name.length == 0 || /^\s+$/.test(name)) {
-                  fail;
-                  console.log("aqui");
-                  return false;
-                } else {
-                  if (email.length == 0 || /^\s+$/.test(email)) {
-                    return false;
-                    fail;
-                  } else {
-                    if (comentario.length == 0 || /^\s+$/.test(comentario)) {
-                      return false;
-                      fail;
-                    } else {
-                      if (telefono.length == 0 || /^\s+$/.test(telefono)) {
-                        return false;
-                        fail;
-                      }else{
-                        return true;
-                      }
-                    }
-                  }
-                }
-              }
-            </script>
+
           </section>
         </div>
 

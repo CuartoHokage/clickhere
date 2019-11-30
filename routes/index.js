@@ -14,6 +14,7 @@ const fs = require('fs');
 //Cruds para peliculas
 
 //rutas de páginas
+
 api.get('/index2', (req, res) => {
 	res.render('index-rec');
 });
@@ -118,6 +119,17 @@ api.post('/upload_productos', (req, res) => {
 		res.status(200).render('admin');
 	})
 })
+api.post('/upload_servicios', (req, res) => {
+	let EDFile = req.files.picture
+	var id_imagen = req.body.id_imagen
+	// console.log(req.files.picture.values)
+	// console.log(id_imagen)
+	EDFile.mv('./public/imagenes/' + id_imagen + '.jpg', err => {
+		if (err) return res.status(500).send({ message: err })
+		res.status(200).render('admin');
+	})
+})
+
 api.post('/postmail_contacto', mailControllers.postMail2);
 api.post('/postmail_cotizacion', mailControllers.postMail);
 api.post('/postmail_ordeCompra', mailControllers.postMailOrdenCompra);
@@ -413,3 +425,4 @@ api.get('/add6/:id', function (req, res, next) {
 	req.session.cart = cart;
 	res.redirect('/api/impresoras');
 });
+

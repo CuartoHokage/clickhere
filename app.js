@@ -44,5 +44,10 @@ app.get('/juego', (req, res)=>{
 	res.render('juego')
 });
 
+
 app.use(formidable.parse({keepExtensions:true}));
+
+app.get('*', (req, res) => {
+	res.render('404');
+});
 module.exports=app
