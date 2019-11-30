@@ -1,3 +1,7 @@
+body {
+  background-image: url("../imagenes/fondotecnologico.jpg");
+  background-color: #cccccc;
+ }
 hr.new4 {
   border: 1px solid #fba744;
   border-radius: 2px;
