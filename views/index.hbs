@@ -330,10 +330,10 @@
               }
             </script>
             {{!-- Sweet de bloqueo --}}
-            <button class="btn btn-primary openBtn">Solicitar información</button><br>
+            <button class="btn btn-primary openBtn1_2">Solicitar información</button><br>
             <a href="/api/seguridad" class="button large scrolly">Acerca del servicio</a>
             <script>
-              $('.openBtn').on('click', function () {
+              $('.openBtn1_2').on('click', function () {
                 const htmlpuro = document.createElement('div');
                 htmlpuro.innerHTML = '<form action="/api/postmail_contacto" id="formulario" method="post" onsubmit="return validar()"\
                 enctype="application/x-www-form-urlencoded">\
@@ -353,11 +353,11 @@
               </form>'
 
                 swal.fire({
-                  title: "Solicitud de servicios",
+                  title: "Solicitud de servicio de seguridad y videovigilancia",
                   text: "Llene el formulario para hacer la petición de servicios.",
                   icon: "info",
                   html: htmlpuro,
-                  background:'#fd7e14 url(/imagenes/logo.png)',
+                  //background:'#fd7e14 url(/imagenes/logo.png)',
                   buttons: true
                 })
               });
@@ -372,10 +372,10 @@
             <span class="icon featured fa-cogs"></span>
             <h3>Mantenimiento especializado</h3>
 
-            <button class="btn btn-primary openBtn">Solicitar información</button><br>
+            <button class="btn btn-primary openBtn1_1">Solicitar información</button><br>
             <a href="/api/mantenimiento" class="button large scrolly">Acerca del servicio</a>
             <script>
-              $('.openBtn').on('click', function () {
+              $('.openBtn1_1').on('click', function () {
                 const htmlpuro = document.createElement('div');
                 htmlpuro.innerHTML = '<form action="/api/postmail_contacto" id="formulario" method="post" onsubmit="return validar()"\
                 enctype="application/x-www-form-urlencoded">\
@@ -395,7 +395,7 @@
               </form>'
 
                 swal.fire({
-                  title: "Solicitud de servicios",
+                  title: "Solicitud de servicio técnico especializado",
                   text: "Llene el formulario para hacer la petición de servicios.",
                   icon: "info",
                   html: htmlpuro,
@@ -409,10 +409,10 @@
           <section class="box style1">
             <span class="icon featured fa-desktop"></span>
             <h3>Consulte, componentes y accesorios computación e informática</h3>
-            <button class="btn btn-primary openBtn">Solicitar información</button><br>
+            <button class="btn btn-primary openBtn3">Solicitar información</button><br>
             <a href="/api/cotizacion" class="button large scrolly">Acerca del servicio</a>
             <script>
-              $('.openBtn').on('click', function () {
+              $('.openBtn3').on('click', function () {
                 const htmlpuro = document.createElement('div');
                 htmlpuro.innerHTML = '<form action="/api/postmail_contacto" id="formulario" method="post" onsubmit="return validar()"\
                 enctype="application/x-www-form-urlencoded">\
