@@ -50,8 +50,9 @@
     <a class="navbar-brand" href="/"><img src="/imagenes/logo.png" width="300" height="65" alt=""></a>
     <ul class="navbar-nav mr-auto"></ul>
     
-    
-    <a href="http://es.web-counter.net" title="contador de visitas"><img src="http://www.web-counter.net/count_20091204.php?c=1g9TD7eVU6w" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a>
+    {{!-- <a href="http://es.web-counter.net" title="contador de visitas"><img src="" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a><br/><font size="1" face="Arial"><a href="http://fr.web-counter.net" title="compteur de visite">compteur de visite</a><br/><a href="http://es.web-counter.net" title="contador de visitas">contador de visitas</a></font> --}}
+
+    <a href="http://es.web-counter.net" title="contador de visitas"><img src="http://www.web-counter.net/count_20091204.php?c=PMVSD8sIOi5" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a>
     <p>Contador</p>
     <form action="/api/coincidencia" method="post" class="form-inline my-2 my-lg-0" >
       <input class="form-control mr-sm-2" id="busqueda" name="buscar" type="search" placeholder="Buscar productos"
@@ -154,7 +155,7 @@
     </div>
     <div class="col-md-2">
 <div class="btn-group dropleft">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <a class="dropdown-toggle btn-outline-warning" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
             {{# if session.cart.totalItems }}
             <span>({{session.cart.totalItems}})</span>
