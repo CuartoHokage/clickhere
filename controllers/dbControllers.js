@@ -442,7 +442,6 @@ function postProductosCoincidenciaadmin(req, res) {
 		// res.render('busqueda',producto);
 
 	});
-
 }
 
 function postPrductosCategoria(req, res) {
