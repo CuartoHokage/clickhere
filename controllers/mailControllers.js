@@ -87,6 +87,7 @@ function postMail2(req, res) {
 		if (error) {
 			console.log(error);
 		} else {
+			console.log('=========================================PETICIÓN DE CORREO RAZÓN '+razon+'==================================================================')
 			console.log('Email enviado: ' + info.response);
 			console.log(email + " " + pedido + " " + telefono + " " + name)
 			var hoy = new Date();
@@ -131,12 +132,13 @@ function postMailOrdenCompra(req, res) {
 		if (error) {
 			console.log(error);
 		} else {
+			console.log('=========================================PETICIÓN DE PRODUCTOS GENERADA==================================================================')
 			console.log('Email enviado: ' + info.response);
 			console.log(orden+" "+email + " " + pedido + " " + telefono + " " + name)
 			var hoy = new Date();
 			var hora;
 			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
-			console.log(hora);
+			console.log('===================================Petición de productos generada a las:\n'+hora);
 			req.session.destroy();
 			res.status(200).redirect('/')
 		}
