@@ -129,7 +129,7 @@
         "PRDIDENTI": 759,
         "PRDNOMBRE": "TINTA EPSON T664120-AL L200-BLACK-NEGRO                     ",
         "categoria": "TINTA EPSON T664120-AL L200-BLACK-NEGRO                     ",
-        "PUBSTOCK": "Más de 5",
+        "PUBSTOCK": 5,
         "PRDPVP": 12.65
     },
     {
@@ -612,7 +612,7 @@
         "PRDIDENTI": 14845,
         "PRDNOMBRE": "IMP MULTIF. EPSON L3110 USB2.0 IMPRIME-COPIA.ESCANEA        ",
         "categoria": "IMP MULTIF. EPSON L3110 USB2.0 IMPRIME-COPIA.ESCANEA        ",
-        "PUBSTOCK": 1,
+        "PUBSTOCK": 3,
         "PRDPVP": 203.5
     },
     {
