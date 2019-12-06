@@ -24,6 +24,10 @@
  * Atribution: Animate CSS, Twitter Bootstrap, Materialize CSS, Normalize CSS, Waves JS, WOW JS, Toastr, Chart.js , Hammer.js
  *
  */
+ body {
+  font-family: Roboto,sans-serif;
+  border: 25px solid #00000014;
+}
 /*** Global ***/
 .mdb-color.lighten-5 {
   background-color: #d0d6e2 !important; }
