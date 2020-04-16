@@ -19,7 +19,7 @@ const config2 = {
     options: {
         encrypt: true // Use this if you're on Windows Azure
 	}
-	// prueba pc I5
+	
 }
 
 console.log("sdsd")
