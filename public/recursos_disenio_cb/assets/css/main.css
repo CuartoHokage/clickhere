@@ -459,6 +459,7 @@ input, select, textarea {
 			background-image: none;
 			background-color: #fff;
 		}
+		
 
 		.wrapper.style2 {
 			background-color: #fafafa;
@@ -476,6 +477,25 @@ input, select, textarea {
 			text-shadow: -1px -1px 0px #181818;
 		}
 
+		.wrapper.style1click {
+			background-image: none;
+			background-color: #ff993aab;
+		}
+		.wrapper.style2click  {
+			background-color: #fafafa;
+			text-shadow: 1px 1px 0px #ff993aab;
+		}
+
+		.wrapper.style3click  {
+			background-color: #f4f4f4;
+			text-shadow: 1px 1px 0px #ff993aab;
+		}
+
+		.wrapper.style4click  {
+			background-color: #303030;
+			color: #ff993aab;
+			text-shadow: -1px -1px 0px #181818;
+		}
 			.wrapper.style4 h1, .wrapper.style4 h2, .wrapper.style4 h3, .wrapper.style4 h4, .wrapper.style4 h5, .wrapper.style4 h6 {
 				color: #fff;
 			}

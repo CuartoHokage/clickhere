@@ -23,6 +23,12 @@
   <link rel="stylesheet" href="/recursos_disenio_cb/assets/css/font-awesome.min.css">
   <link rel="stylesheet" href="/recursos_disenio_cb/assets/css/main.css" />
   {{!-- js inicio--}}
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementsByClassName("protect-form").submit();
+    }
+  </script>
   <script language="JavaScript" type="text/javascript" src="/javascript/jquery.min.js"></script>
   <script type="text/javascript" src="/javascript/javascript_tabla.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -35,7 +41,7 @@
   <script src="/recursos_disenio_cb/assets/js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
   {{!-- Material desing --}}
-  <link rel="stylesheet" href="/materialdesing/css/mdb.min.css">
+  <link rel="stylesheet" href="/materialdesing/css/mdb.css">
   {{!-- Material desing --}}
   <!-- MAIN CSS -->
 </head>
@@ -49,11 +55,13 @@
   <nav class="navbar  navbar-expand-lg navbar-light" style="background-color: #fff">
     <a class="navbar-brand" href="/"><img src="/imagenes/logo.png" width="300" height="65" alt=""></a>
     <ul class="navbar-nav mr-auto"></ul>
-    
-    
-    <a href="http://es.web-counter.net" title="contador de visitas"><img src="http://www.web-counter.net/count_20091204.php?c=1g9TD7eVU6w" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a>
+
+    {{!-- <a href="http://es.web-counter.net" title="contador de visitas"><img src="" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a><br/><font size="1" face="Arial"><a href="http://fr.web-counter.net" title="compteur de visite">compteur de visite</a><br/><a href="http://es.web-counter.net" title="contador de visitas">contador de visitas</a></font> --}}
+
+    <a href="#" title="contador de visitas"><img src="http://www.web-counter.net/count_20091204.php?c=PMVSD8sIOi5"
+        style="border:0;padding:0;margin:0;" alt="contador de visitas"></a>
     <p>Contador</p>
-    <form action="/api/coincidencia" method="post" class="form-inline my-2 my-lg-0" >
+    <form action="/api/coincidencia" method="post" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" id="busqueda" name="buscar" type="search" placeholder="Buscar productos"
         aria-label="Search">
       <button type="submit" id="btnconsultar3" class="btn btn-outline-warning"><i class="fa fa-search"
@@ -68,7 +76,8 @@
   <div class="icon-bar">
     <a href="https://www.facebook.com/clickherepcecuador" class="facebook"><i class="fa fa-facebook"></i></a>
     <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+    <a href="https://www.linkedin.com/in/lenin-ponce-ponce-633034198/" class="linkedin"><i
+        class="fa fa-linkedin"></i></a>
   </div>
 
 
@@ -141,7 +150,7 @@
               style="color: rgb(25, 202, 63);"></i>
             Escribenos a Whatsapp</a>
         </li>
-        
+
       </ul>
     </div>
   </nav>
@@ -153,45 +162,46 @@
 
     </div>
     <div class="col-md-2">
-<div class="btn-group dropleft">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
-            {{# if session.cart.totalItems }}
-            <span>({{session.cart.totalItems}})</span>
-            {{/if}}
-          </a>
+      <div class="btn-group dropleft">
+        <a class="dropdown-toggle btn btn-warning" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
           {{# if session.cart.totalItems }}
-          <div class="dropdown-menu">
-            <div class="cart">
-              {{# each session.cart.items }}
-              <div class="row">
-                <div class="col-xs-4">
-                  {{ this.item.PRDNOMBRE }}
-                </div>
-                <div class="col-xs-4 text-right">
-                  {{ this.quantity }}
-
-                </div>
-                <br>
-                <div class="col-xs-4 text-right">
-                  $ {{ this.PRDPVP }}
-                </div>
+          <span>({{session.cart.totalItems}})</span>
+          {{/if}}
+        </a>
+        {{# if session.cart.totalItems }}
+        <div class="dropdown-menu">
+          <div class="cart">
+            {{# each session.cart.items }}
+            <div class="row">
+              <div class="col-xs-4">
+                {{ this.item.PRDNOMBRE }}
               </div>
-              {{/each}}
-              <div class="row">
-                <div class="text-right">
-                  <div class="totalPrice">Total: $ {{ session.cart.totalPrice }}</div>
-                  <a href="/api/carrito" class="btn btn-success">Confirmar</a>
-                </div>
+              <div class="col-xs-4 text-right">
+                {{ this.quantity }}
+
+              </div>
+              <br>
+              <div class="col-xs-4 text-right">
+                $ {{ this.PRDPVP }}
+              </div>
+            </div>
+            {{/each}}
+            <div class="row">
+              <div class="text-right">
+                <div class="totalPrice">Total: $ {{ session.cart.totalPrice }}</div>
+                <a href="/api/carrito" class="btn btn-success">Confirmar</a>
               </div>
             </div>
           </div>
-          {{/if}}
         </div>
+        {{/if}}
+      </div>
     </div>
   </div>
-        
-        {{!-- carrito --}}
+
+  {{!-- carrito --}}
   {{!-- barra navegación clara fin --}}
   {{{ body }}}
   {{!-- footer inicio--}}

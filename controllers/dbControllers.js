@@ -42,10 +42,7 @@ function getPortaStock(req, res) {
 		}
 		console.log(producto)
 		//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-		// 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
+		// 	for (producto; producto < result.recordset.length; producto++) 
 		// 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
 		// 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
 		// 	//tratamiento de la imagen
@@ -442,7 +439,6 @@ function postProductosCoincidenciaadmin(req, res) {
 		// res.render('busqueda',producto);
 
 	});
-
 }
 
 function postPrductosCategoria(req, res) {

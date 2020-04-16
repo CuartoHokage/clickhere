@@ -13,7 +13,7 @@
         <form action="/api/upload_banner" method="post" enctype="multipart/form-data">
             <h3 for="exampleFormControlInput1">Actualizar banners</h3>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">Elija el banner que desea cambiar</label>
+                <label for="exampleFormControlSelect2">Elija el banner que desea cambiar (imágenes de dimensiones 720x360 o equivalente)</label>
                 <select multiple class="form-control" name="seleccion" id="exampleFormControlSelect2">
                     <option name="id_imagen" value="1">1 Banner Portatiles</option>
                     <option name="id_imagen" value="2">2 Banner Redes</option>
@@ -35,6 +35,7 @@
     <div class="container">
         <form action="/api/upload_promociones" method="post" enctype="multipart/form-data">
             <h3 for="exampleFormControlInput1">Actualizar promociones</h3>
+            <label for="exampleFormControlSelect2">Elija imagen que desea cambiar (imágenes de dimensiones 1024x1024 o equivalente)</label>
             <div class="form-group">
                 
             </div>
@@ -50,13 +51,16 @@
     <hr>
     <div class="container">
         <form action="/api/upload_bannerPromo" method="post" enctype="multipart/form-data">
-            <h3 for="exampleFormControlInput1">Actualizar banners de promociones</h3>
+            <h3 for="exampleFormControlInput1">Actualizar banners de promociones (imágenes de dimensiones 800x600 o equivalente)</h3>
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Elija el banner que desea cambiar</label>
                 <select multiple class="form-control" name="seleccion" id="exampleFormControlSelect2">
                     <option name="id_imagen" value="1_1">1 Promociones</option>
                     <option name="id_imagen" value="1_2">2 Promociones</option>
                     <option name="id_imagen" value="1_3">3 Promociones</option>
+                    <option name="id_imagen" value="1_4">4 Promociones</option>
+                    <option name="id_imagen" value="1_5">5 Promociones</option>
+                    <option name="id_imagen" value="1_6">6 Promociones</option>
                 </select>
             </div>
             <div class="form-group">
@@ -71,9 +75,9 @@
     <hr>
     <div class="container">
         <form action="/api/upload_servicios" method="post" enctype="multipart/form-data">
-            <h3 for="exampleFormControlInput1">Actualizar banners de promociones</h3>
+            <h3 for="exampleFormControlInput1">Actualizar banners de promociones. </h3>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">Elija el banner que desea cambiar</label>
+                <label for="exampleFormControlSelect2">Elija la imagen que desea cambiar (imágenes de dimensiones 800x800 o equivalente)</label>
                 <select multiple class="form-control" name="seleccion" id="exampleFormControlSelect2">
                     <option name="id_imagen" value="SERVICIO-CPU">IMAGEN SERVICIO CPU</option>
                     <option name="id_imagen" value="SERVICIO-IMP">IMAGEN SERVICIO IMPRESORAS</option>
