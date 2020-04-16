@@ -47,3 +47,5 @@ sql.on('error', err => {
 app.listen(config.port, ()=>{
 	console.log(`Api Rest corriendo en el puerto ${config.port}`)
 })
+// FIN DE LA VERSION 1.0 de CHPCECUADOR.com ESTABILIDAD.
+// VERSION ESTABLE Y FUNCIONANDO
