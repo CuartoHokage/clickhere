@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const sql = require('mssql');
 var localStorage = require('localStorage')
-var pdf = require('html-pdf');
+
 
 
 

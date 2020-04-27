@@ -1,6 +1,5 @@
 'use strict'
 
-const mongoose= require('mongoose')
 const app = require('./app')
 const config= require('./config')
 const nodemailer = require('nodemailer')  

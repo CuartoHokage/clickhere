@@ -2,7 +2,7 @@
 var os= require('os');
 const fs= require('fs');
 const path= require('path');
-const Peliculas= require ('../modelos/peliculas');
+
 
 function postBanner(req, res){
 	console.log('Post /api/peliculas')
