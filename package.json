@@ -1,7 +1,7 @@
 {
   "name": "clickhere",
   "version": "1.0.0",
-  "description": "Aplicación de cine",
+  "description": "Aplicación web Clickhere",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
