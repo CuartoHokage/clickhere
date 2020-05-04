@@ -7,7 +7,80 @@ var localStorage = require('localStorage')
 
 
 
+// Codigo nuevo
+function getPortaStockIMAGENES_OBTENER(req, res) {
+	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+	//new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+	console.log('Generando imagenes...');
+		new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+			//handle err
+			var producto = 0;
+			// console.log(producto)
+			var hoy = new Date();
+			var hora;
+			hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+			console.log('hora inicio consulta ' + hora);
+			//localStorage.setItem("producto", JSON.stringify(producto));
+			// for (var i = 0; i < producto.length; i++) {
+			// 	if (producto[i].PUBSTOCK > 5) {
+			// 		producto[i].PUBSTOCK = "Más de 5";
+			// 	}
+			// 	// producto[i].push({categorias: 'portatiles'})
+			// }
+			// console.log(producto)
+			//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
+			var contador = 0;
+			var comparador = new Array();
+			var count = 1;
+			var instruccionNombreImagen;
+			for (producto; producto < result.recordset.length; producto++) {
+				comparador.push(result.recordset[producto]['PRDIDENTI']);
+				if (comparador[producto - 1] == result.recordset[producto]['PRDIDENTI']) {
+					instruccionNombreImagen = 'C:/Users/Jaime Paz/Documents/paginas web/clickhere/clickhere/public/imagenes/' + result.recordset[producto]['PRDIDENTI'] + '_' + count + '.png'
+					count++;
+				} else {
+					instruccionNombreImagen = 'C:/Users/Jaime Paz/Documents/paginas web/clickhere/clickhere/public/imagenes/' + result.recordset[producto]['PRDIDENTI'] + '.png';
+					count = 1;
+				}
+				//tratamiento de la imagen
 
+				//fs.writeFileSync(target, recordSets.recordset[0].Image);
+				//funciona en directorio erroneo
+				// fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
+				if (fs.existsSync(instruccionNombreImagen)) {
+
+					// if (fs.existsSync('C:/Users/Jaime Paz/Documents/paginas web/clickhere/clickhere/public/imagenes/' + result.recordset[producto]['PRDIDENTI'] + '_' + result.recordset[producto]['IDENTIFICADOR'] + '.png')) {
+					console.log("El archivo EXISTE!");
+				} else {
+
+					var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
+					var decodedImage = new Buffer.from(originalBase64ImageStr, 'base64')
+					fs.writeFile(instruccionNombreImagen, decodedImage, function (err, data) {
+						if (err) throw err;
+						console.log('It\'s saved!');
+
+						console.log(producto)
+						contador = contador++;
+						console.log(hora);
+					});
+					console.log('hora creada imagen ' + contador);
+				}
+				// if ((producto == result.recordset.length) || (producto > result.recordset.length)) {
+				// 	producto = 0
+				// 	console.log("repitiendo ciclo")
+				// }
+			}
+			//////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
+
+			console.log('Fin de la consulta ' + hora);
+			var resultado = result.recordset;
+			// 
+			//
+			// console.log(resultado)
+			// return res.redirect("/")
+		});
+	
+}
 
 function getPortaStock(req, res) {
 	//new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
@@ -460,6 +533,22 @@ function postPrductosCategoria(req, res) {
 	});
 }
 
+// OBTENER PRODUCTOS SIMPLES (borrar?)
+function getProductosSimples(req, res) {
+	var buscar = req.body.buscar;
+	
+	new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
+	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + "", (err, result) => {
+		//handle err
+		console.log(result.recordset)
+		var producto = result.recordset;
+		
+
+
+		res.render('producto_simple', { data: producto })
+	});
+	
+}
 module.exports = {
 	getPortaStock,
 	getPortaStocks,
@@ -470,5 +559,9 @@ module.exports = {
 	getProductosCoincidencia,
 	postProductosCoincidencia,
 	postProductosCoincidenciaadmin,
-	postPrductosCategoria
+	postPrductosCategoria,
+
+		// Codigos nuevos
+	getPortaStockIMAGENES_OBTENER,
+	getProductosSimples
 }

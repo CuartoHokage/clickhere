@@ -423,6 +423,67 @@ api.get('/add6/:id', function (req, res, next) {
 	console.log(product[0])
 	cart.add(product[0], productId);
 	req.session.cart = cart;
-	res.redirect('/api/impresoras');
+	res.redirect('/');
 });
+
+api.get('/generador', dbControllers.getPortaStockIMAGENES_OBTENER);
+
+// Obtener datos de producto simple
+// api.get('/producto-single', function(req, res){
+// 	// item_id= req.params.id;
+// 	res.render('producto_simple');
+// });
+api.get('/producto-single/:id', function (req, res) {
+	var buscar = req.params.id;
+
+	new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
+	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI="+ buscar + "", (err, result) => {
+		//handle err
+		var producto = result.recordset[0];
+		var bandera = 0
+		var count = 0;
+		var contador = [];
+		// producto.valores = count;
+
+		do {
+		var instruccionNombreImagen = 'C:/Users/Jaime Paz/Documents/paginas web/clickhere/clickhere/public/imagenes/' + producto.PRDIDENTI + '_' + count + '.png';
+			
+			if (count == 0) {
+				count = count+1;
+				contador.push(count)
+				
+			}
+			 else {
+				 count=count+1
+				if (fs.existsSync(instruccionNombreImagen)) {
+					contador.push(count)
+					producto.contador=contador;
+					
+				}else{
+					bandera = 1;
+					contador.pop();
+				}
+			}
+			
+		} while (bandera == 0)
+		console.log(producto)
+
+		var depositoM=30;
+		var meses=12;
+		var tasaA=0.055;
+		var resultadoY=0;
+		var years=5;
+		
+		for(var countYear; countYear<years; countYear++){
+			if(countYear=0){
+				resultadoY=(depositoM*meses);
+				resultadoY= resultadoY+ (resultadoY*tasaA);
+			}
+		}
+		console.log(resultadoY)
+		res.render('producto_simple', { data: producto })
+	});
+
+});
+
 

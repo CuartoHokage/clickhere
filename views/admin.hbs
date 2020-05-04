@@ -13,8 +13,7 @@
         <form action="/api/upload_banner" method="post" enctype="multipart/form-data">
             <h3 for="exampleFormControlInput1">Actualizar banners</h3>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">Elija el banner que desea cambiar (imágenes de dimensiones
-                    720x360 o equivalente)</label>
+                <label for="exampleFormControlSelect2">Elija el banner que desea cambiar (imágenes de dimensiones 720x360 o equivalente)</label>
                 <select multiple class="form-control" name="seleccion" id="exampleFormControlSelect2">
                     <option name="id_imagen" value="1">1 Banner Portatiles</option>
                     <option name="id_imagen" value="2">2 Banner Redes</option>
@@ -36,10 +35,9 @@
     <div class="container">
         <form action="/api/upload_promociones" method="post" enctype="multipart/form-data">
             <h3 for="exampleFormControlInput1">Actualizar promociones</h3>
-            <label for="exampleFormControlSelect2">Elija imagen que desea cambiar (imágenes de dimensiones 1024x1024 o
-                equivalente)</label>
+            <label for="exampleFormControlSelect2">Elija imagen que desea cambiar (imágenes de dimensiones 1024x1024 o equivalente)</label>
             <div class="form-group">
-
+                
             </div>
             <div class="form-group">
                 <label for="picture">Imagen de promocion</label>
@@ -53,8 +51,7 @@
     <hr>
     <div class="container">
         <form action="/api/upload_bannerPromo" method="post" enctype="multipart/form-data">
-            <h3 for="exampleFormControlInput1">Actualizar banners de promociones (imágenes de dimensiones 800x600 o
-                equivalente)</h3>
+            <h3 for="exampleFormControlInput1">Actualizar banners de promociones (imágenes de dimensiones 800x600 o equivalente)</h3>
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Elija el banner que desea cambiar</label>
                 <select multiple class="form-control" name="seleccion" id="exampleFormControlSelect2">
@@ -80,8 +77,7 @@
         <form action="/api/upload_servicios" method="post" enctype="multipart/form-data">
             <h3 for="exampleFormControlInput1">Actualizar banners de promociones. </h3>
             <div class="form-group">
-                <label for="exampleFormControlSelect2">Elija la imagen que desea cambiar (imágenes de dimensiones
-                    800x800 o equivalente)</label>
+                <label for="exampleFormControlSelect2">Elija la imagen que desea cambiar (imágenes de dimensiones 800x800 o equivalente)</label>
                 <select multiple class="form-control" name="seleccion" id="exampleFormControlSelect2">
                     <option name="id_imagen" value="SERVICIO-CPU">IMAGEN SERVICIO CPU</option>
                     <option name="id_imagen" value="SERVICIO-IMP">IMAGEN SERVICIO IMPRESORAS</option>
@@ -97,32 +93,4 @@
             <button type="submit" class="btn btn-primary" id="guardar">Guardar imagen</button>
         </form>
     </div>
-    <hr>
-    <div class="container">
-        <form action="http://192.168.1.113:3002/api/generador" method="get">
-            <input class="openBtn1_2" type="submit" value="Actualizar imágenes" name="Submit" id="redirigir"
-                onClick="window.location.reload();" />
-        </form>
-    </div>
-    <script>
-        $('.openBtn1_2').on('click', function () {
-            const htmlpuro = document.createElement('div');
-            htmlpuro.innerHTML = '<form action="/api/adminclickhere">\
-                                <input type="submit" value="OK" />\
-                                </form>'
-
-            swal.fire({
-                title: "Se envió a actualizar las imágenes de la base de datos",
-                text: "Actualización de imágenes dentro de un momento se actualizará conforme a la base de datos",
-                icon: "success",
-                //background:'#fd7e14 url(/imagenes/logo.png)',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.value) {
-                    location.reload();
-                }
-            })
-        });
-
-    </script>
 </div>

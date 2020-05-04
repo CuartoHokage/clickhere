@@ -4,7 +4,13 @@
         <ul class="list-group">
             {{# each products }}
             <li class="list-group-item clearfix">
+                <div class="col-xs-3">
+                  <img onerror="this.src='/imagenes/sin_imagen.jpg';"
+                                class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.item.PRDIDENTI}}.png"
+                                width="200" height="200">
+                </div>
                 <div class="col-xs-5">
+                  
                     <strong>{{ this.item.title }}</strong><br />
                     <em>{{{this.item.PRDNOMBRE}}}</em>
                 </div>
@@ -125,6 +131,13 @@
                         <input href="/api/removeALL"  type="submit" value="Confirmar" class="btn btn-primary" id="enviar">
                         
                     </form>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="G6D8UH8ZLUXNL">
+<input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+</form>
+
                 </div>
             </div>
         </ul>

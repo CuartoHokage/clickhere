@@ -11,9 +11,9 @@
                 <section class="box style1">
 
                     <div class="main-category-image">
-                        <img onerror="this.src='/imagenes/sin_imagen.jpg';"
-                            class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.PRDIDENTI}}.png"
-                            width="200" height="200">
+                       <a title="{{this.PRDNOMBRE}}" href="/api/producto-single/{{this.PRDIDENTI}}"><img onerror="this.src='/imagenes/sin_imagen.jpg';"
+                                class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.PRDIDENTI}}.png"
+                                width="200" height="200"></a>
                         <div class="caption">
                             <div><strong>Código: </strong> {{this.PRDIDENTI}}</div>
                             <h5 class="alienar"> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h5>
