@@ -3,6 +3,16 @@
     <br>
     <div class="container">
         <div id="contenido" class="">
+            <div class="container">
+        <h3>Buscar productos para subir imágenes</h3>
+        <form action="/api/coincidenciaadmin" method="post" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" id="busqueda" name="buscar" type="search" placeholder="Buscar"
+                aria-label="Search">
+            <button type="submit" id="btnconsultar3" class="btn btn-outline-warning"><i class="fa fa-search"
+                    style="color: #f80;"></i></button>
+        </form>
+    </div>
+    <hr>
             <div class="row">
                 {{#each data}}
 
