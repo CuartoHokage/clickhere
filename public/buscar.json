@@ -1,9 +1,23 @@
 [
     {
-        "PRDIDENTI": 15466,
-        "PRDNOMBRE": "PORT. DELL INSP 3583 CI7-8565U 8GB/1TB/15.6/TVIDE0 2GB/LINUX",
-        "categoria": "PORT. DELL INSP 3583 CI7-8565U 8GB/1TB/15.6/TVIDE0 2GB/LINUX",
+        "PRDIDENTI": 3441,
+        "PRDNOMBRE": "SSD 2.5 WD GREEN PC WDS240G2G0A- 240GB SATA3                ",
+        "categoria": "SSD 2.5 WD GREEN PC WDS240G2G0A- 240GB SATA3                ",
+        "PUBSTOCK": 4,
+        "PRDPVP": 57.2
+    },
+    {
+        "PRDIDENTI": 3937,
+        "PRDNOMBRE": "SSD 2.5 KINGSTON 240GB A400 SATA 3 PC/NOTEB 7MM SVUV400S37  ",
+        "categoria": "SSD 2.5 KINGSTON 240GB A400 SATA 3 PC/NOTEB 7MM SVUV400S37  ",
         "PUBSTOCK": 2,
-        "PRDPVP": 975.7
+        "PRDPVP": 57.2
+    },
+    {
+        "PRDIDENTI": 4113,
+        "PRDNOMBRE": "SSD 2.5 KINGSTON 120GB FOR PC O NOTEBOOK A400 7MM           ",
+        "categoria": "SSD 2.5 KINGSTON 120GB FOR PC O NOTEBOOK A400 7MM           ",
+        "PUBSTOCK": 4,
+        "PRDPVP": 34.43
     }
 ]
