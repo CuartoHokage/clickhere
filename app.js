@@ -23,7 +23,12 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', hbs({
 	defaultLayout: 'default',
-	extname: '.hbs'
+	extname: '.hbs',
+	helpers:{
+	decimal: function(number) {
+			return (number).toFixed(2);
+		  }
+	}
 }))
 
 app.use(function(req, res, next) {
