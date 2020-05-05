@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    $('#btnconsultar').click(function () {
+$(document).ready(function() {
+    $('#btnconsultar').click(function() {
         var htmlpuro = '<p>' + +'</p>'
         htmlpuro += '<table class="table table-bordered" id="tabla_productos"><thead>'
         htmlpuro += '<tr  class="table-info">'
@@ -7,20 +7,20 @@ $(document).ready(function () {
         htmlpuro += '<th>Precio</th>'
         htmlpuro += '<th>Imagen</th>'
         htmlpuro += '<th>Clasificación</th>'
-        // htmlpuro += '<th>Descripción</th>'
+            // htmlpuro += '<th>Descripción</th>'
         htmlpuro += '<th>Fecha de Estreno</th>'
         htmlpuro += '<th>Fin de cartelera </th>'
         htmlpuro += '<th>Duración</th>'
         htmlpuro += '<th>Tiempo en Cartelera</th>'
         htmlpuro += '<th>Acciones</th>'
         htmlpuro += '</tr></thead><tbody>'
-        //var varid=$("#txtcedula").val();
+            //var varid=$("#txtcedula").val();
         $.ajax({
             type: "GET",
             url: "/api/getproductos",
             dataType: "json",
             contentType: "text/plain"
-        }).done(function (msg) {
+        }).done(function(msg) {
             //este for entra al objeto peliculas del json "msg" "i" quedara en posicion u objeto 0
             for (let i in msg) {
                 //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
@@ -31,10 +31,10 @@ $(document).ready(function () {
                     htmlpuro += '<td id="id_producto">' + msg[i][j].PRDNOMBRE + '</td>'
                     htmlpuro += '<td id="name">' + msg[i][j].PRDPVP + '</td>'
                     htmlpuro += '<td>' + '<div class="flip-box"> <div class="flip-box-inner"> <div class="flip-box-front"><img alt="' + msg[i][j].IMAGEN + '" src="../imagenes/' + msg[i][j].PRDIDENTI + '.jpg" width="200" height="200" class="img-circle" title="' + msg[i][j].name + '">  </div> <div class="flip-box-back"> <h2>' + msg[i][j].name + '</h2> <p>' + msg[i][j].descripcion + '</p> </div> </div> </div>' + '</td>'
-                    // htmlpuro += '<td>' + msg[i][j].picture + '</td>'
+                        // htmlpuro += '<td>' + msg[i][j].picture + '</td>'
                     htmlpuro += '<td>' + msg[i][j].IMAGEN + '</td>'
                     console.log(msg[i][j].IMAGEN)
-                    // htmlpuro += '<td>' + msg[i][j].descripcion + '</td>'
+                        // htmlpuro += '<td>' + msg[i][j].descripcion + '</td>'
                     htmlpuro += '<td>' + msg[i][j].fechaEstreno + '</td>'
                     htmlpuro += '<td>' + msg[i][j].fechaFinal + '</td>'
                     htmlpuro += '<td>' + msg[i][j].duracion + '</td>'
@@ -50,13 +50,13 @@ $(document).ready(function () {
             // gggf
             htmlpuro += '</tbody></table>';
             $("#contenido").html(htmlpuro)
-            //$("#contenido").html(htmlpuro)
+                //$("#contenido").html(htmlpuro)
 
         });
     });
 
     /// lista de productos cuadricula
-    $('#btnconsultar2').click(function () {
+    $('#btnconsultar2').click(function() {
         var htmlpuro = '<div class="row">';
 
         $.ajax({
@@ -64,7 +64,7 @@ $(document).ready(function () {
             url: "/api/getproductos",
             dataType: "json",
             contentType: "text/plain"
-        }).done(function (msg) {
+        }).done(function(msg) {
             //este for entra al objeto peliculas del json "msg" "i" quedara en posicion u objeto 0
             for (let i in msg) {
                 //el objeto peliculas del json es un array ahi recorreremos el array con j y sus propiedades
@@ -72,7 +72,7 @@ $(document).ready(function () {
                 for (let j in msg[i]) {
                     htmlpuro += '<div class="col-md-4 product-block">\
                                 <section class="box style1">'
-                   
+
                     htmlpuro += '<div class="main-category-image">'
                     htmlpuro += '<img class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/' + msg[i][j].PRDIDENTI + '.jpg" width="200" height="200 alt="">'
                     htmlpuro += '<div class="caption">'
@@ -88,12 +88,12 @@ $(document).ready(function () {
             // gggf
             htmlpuro += '</div>';
             $("#contenido").html(htmlpuro)
-            //$("#contenido").html(htmlpuro)
+                //$("#contenido").html(htmlpuro)
 
         });
     });
 
-    $('#btnconsultar3').click(function () {
+    $('#btnconsultar3').click(function() {
         var htmlpuro = '<div class="row">';
 
         var esteBoton = $(this);
@@ -106,7 +106,7 @@ $(document).ready(function () {
             url: "/api/coincidencia/" + id,
             dataType: "text",
             contentType: "application/json"
-        }).done(function (msg) {
+        }).done(function(msg) {
             //alert(msg);
             esteBoton.parent().parent().remove();
         });
@@ -129,7 +129,7 @@ $(document).ready(function () {
     var pesoPermitido = 1024;
 
     // Cuando cambie #fichero
-    $("#picture").change(function () {
+    $("#picture").change(function() {
 
         $('#texto').text('');
         $('#img').attr('src', '');
@@ -160,7 +160,7 @@ $(document).ready(function () {
     //         alert("El nombre es obligatorio");  
     //         return false;  
     //     }
-          
+
     //     return false;  
     // });  
 
@@ -202,13 +202,13 @@ $(document).ready(function () {
         if (datos.files && datos.files[0]) {
 
             var reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 $('#img').attr('src', e.target.result);
 
             };
 
             reader.readAsDataURL(datos.files[0]);
-            document.addEventListener("DOMContentLoaded", function (event) {
+            document.addEventListener("DOMContentLoaded", function(event) {
                 document.getElementById("#guardar").disable = false;
             });
 
@@ -217,18 +217,18 @@ $(document).ready(function () {
     // Validar formularios
     $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
         if (!$(this).next().hasClass('show')) {
-          $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
         }
         var $subMenu = $(this).next('.dropdown-menu');
         $subMenu.toggleClass('show');
-      
-      
-        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-          $('.dropdown-submenu .show').removeClass('show');
-        });
-      
-      
-        return false;
-      });
 
-}); 
+
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+            $('.dropdown-submenu .show').removeClass('show');
+        });
+
+
+        return false;
+    });
+
+});
