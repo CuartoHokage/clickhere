@@ -93,4 +93,30 @@
             <button type="submit" class="btn btn-primary" id="guardar">Guardar imagen</button>
         </form>
     </div>
+    <hr>
+    <div class="container">
+        <form action="http://192.168.1.113:3002/api/generador" method="get">
+            <input class="openBtn1_2" type="submit" value="Actualizar imágenes" name="Submit" id="redirigir"
+                onClick="window.location.reload();" />
+        </form>
+    </div>
+    <script>
+        $('.openBtn1_2').on('click', function () {
+            const htmlpuro = document.createElement('div');
+            htmlpuro.innerHTML = '<form action="/api/adminclickhere">\
+                                <input type="submit" value="OK" />\
+                                </form>'
+            swal.fire({
+                title: "Se envió a actualizar las imágenes de la base de datos",
+                text: "Actualización de imágenes dentro de un momento se actualizará conforme a la base de datos",
+                icon: "success",
+                //background:'#fd7e14 url(/imagenes/logo.png)',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    location.reload();
+                }
+            })
+        });
+    </script>
 </div>
