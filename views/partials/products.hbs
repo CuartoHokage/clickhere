@@ -1,0 +1,45 @@
+<br>
+<br>
+<div class="container">
+    <div id="contenido" class="">
+        <div class="row">
+            {{#if data}}
+
+            {{#each data}}
+            <div class="col-md-4 product-block " id="{{this.PRDIDENTI}}">
+                <section class="box style1 mt-4">
+                    <div class="main-category-image">
+                        {{!-- Efecto https://mdbootstrap.com/docs/jquery/css/hover-effects/ --}}
+                        <div class="view overlay zoom">
+                            <a title="{{this.PRDNOMBRE}}" href="/api/producto-single/{{this.PRDIDENTI}}"><img
+                                    class="thumbnail img-portfolio img-hover mb-3"
+                                    onerror="this.src='/imagenes/sin_imagen.jpg';"
+                                    src="/imagenes/{{this.PRDIDENTI}}.png" width="200" height="200">
+                                <div class="mask rgba-white-strong">
+                                    <p class="white-text"><i class="fa fa-search" style="color: rgba(146, 146, 146, 0.52); font-size: 75px;" ></i></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="caption">
+                            <div><strong>Código: </strong> {{this.PRDIDENTI}}</div>
+                            <h6 class="alienar"> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h6>
+                            <div class="price-mob"><strong>Precio: </strong>$ {{decimal this.PRDPVP}}</div>
+                            <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
+                            <a href="/api/add6/{{ this.PRDIDENTI }}" id="{{this.categorias}}"
+                                class="btn btn-default pull-right" role="button"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i> Añadir al carrito</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <br>
+            {{/each}}
+            {{else}}
+            <strong><h3 class="font-weight-bold" style="color: rgba(93, 89, 89, 0.904);">No se encontraron productos.</h3></strong>
+            {{/if}}
+        </div>
+    </div>
+        <div style="width:400px">
+        <span id="nextValue">next</span><br><span id="PreeValue">Pre</span>
+    </div>
+</div>

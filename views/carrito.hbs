@@ -1,30 +1,24 @@
 <div><br></div>
 <div class="container">
-    {{# if products }}
+    {{#if products }}
     <div class="cart-body">
         <ul class="list-group">
-
           <div class="card-header font-weight-bold text-light" style="background-color: #fbaa3f;">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 Carrito
-            </div>
+          </div>
             {{# each products }}
             <li class="list-group-item clearfix">
               <div class="row">
                 <div class="col-12 col-sm-12 col-md-2 text-center">
                   <a title="{{this.PRDNOMBRE}}" href="/api/producto-single/{{this.item.PRDIDENTI}}">
-                  <img onerror="this.src='/imagenes/sin_imagen.jpg';"
-                                class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.item.PRDIDENTI}}.png"
-                                width="120" height="80">
+                  <img onerror="this.src='/imagenes/sin_imagen.jpg';" class="thumbnail img-portfolio img-hover mb-3" src="/imagenes/{{this.item.PRDIDENTI}}.png" width="120" height="80">
                   </a>
                 </div>
-                
                 <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-5">
-                  
                     {{!-- <h4><strong>{{ this.item.title }}</strong></h4><br /> --}}
                     <strong>Descripción:</strong><br>
                     {{{this.item.PRDNOMBRE}}}
-                    
                 </div>
                 <div class="col-12 text-sm-center col-sm-12 col-md-1">
                     <strong>Precio C/U:</strong><br>
@@ -39,11 +33,10 @@
                     <br><br>
                     {{ this.quantity }}
                 </div>
-                
                 <div class="col-xs-2 text-right">
                     <a href="/api/remove/{{this.item.PRDIDENTI}}" class="btn btn-danger"> <i class="fa fa-trash"></i></a>
                 </div>
-                </div>
+              </div>
             </li>
             {{/each}}
             <li class="list-group-item clearfix">
@@ -52,7 +45,9 @@
               </div>
             </li>
             <br>
-            <p hidden id="importante">{{# each products as |item i| }} /////////Número item: {{i}} ******Codigo:
+            <p hidden id="importante">
+              {{# each products as |item i| }} 
+              /////////Número item: {{i}} ******Codigo:
                 {{this.item.PRDIDENTI}} ****Descripcion: {{this.item.PRDNOMBRE}}
                 ******Cantidad: {{this.quantity}} ****** Precio unidad: {{this.item.PRDPVP}} ******Precio total:
                 {{this.PRDPVP}}/////////
@@ -173,6 +168,11 @@
     <hr>
 
     {{ else }}
-    Tu carrito de pedidos esta vacío.
+    <div class="col-md-2 col-6">
+      <img src="/imagenes/sin_imagen.jpg" alt="">
+    </div>
+    <h3 class="font-weight-bold" style="color: rgba(93, 89, 89, 0.712);">
+        Tu carrito de pedidos esta vacío.
+    </h3>
     {{/if}}
 </div>

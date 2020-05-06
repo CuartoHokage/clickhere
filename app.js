@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', hbs({
     defaultLayout: 'default',
     extname: '.hbs',
+    partialsDir: __dirname + '/views/partials/',
     helpers: {
         decimal: function(number) {
             return (number).toFixed(2);
