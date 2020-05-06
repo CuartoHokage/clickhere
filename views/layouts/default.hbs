@@ -191,7 +191,7 @@
             {{/each}}
             <div class="row">
               <div class="text-right">
-                <div class="totalPrice">Total: $ {{ session.cart.totalPrice }}</div>
+                <div class="totalPrice">Total: $ {{decimal session.cart.totalPrice }}</div>
                 <a href="/api/carrito" class="btn btn-success">Confirmar</a>
               </div>
             </div>
