@@ -8,12 +8,12 @@ const sql = require('mssql')
 //Configuracion de la conexión
 const config2 = {
     user: 'sa',
-    database: 'click_new',
-    password: '12qwaszx',
-    server: '192.168.1.113', // You can use 'localhost\\instance' to connect to named instance
-    // database: 'click',
-    // password: 'Clickhere2018',
-    // server: '192.168.2.102', // You can use 'localhost\\instance' to connect to named instance
+    // database: 'click_new',
+    // password: '12qwaszx',
+    // server: '192.168.1.113', // You can use 'localhost\\instance' to connect to named instance
+    database: 'click',
+    password: 'Clickhere2018',
+    server: '192.168.2.102', // You can use 'localhost\\instance' to connect to named instance
     
     options: {
         encrypt: true // Use this if you're on Windows Azure

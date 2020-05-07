@@ -9,7 +9,7 @@ const request = require('request');
 
 const options = {
     // Cambiar en el servidor
-    url: 'http://192.168.1.113:3002/api/generador',
+    url: 'http://192.168.2.105:3002/api/generador',
     method: 'GET'
 };
 // Codigo nuevo
