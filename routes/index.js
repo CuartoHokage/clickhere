@@ -466,3 +466,5 @@ api.get('/producto-single/:id', function(req, res) {
     });
 
 });
+
+api.get('/generador', dbControllers.getPortaStockIMAGENES_OBTENER)
