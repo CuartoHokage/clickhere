@@ -8,13 +8,10 @@ var localStorage = require('localStorage')
 const request = require('request');
 
 const options = {
+    // Cambiar en el servidor
     url: 'http://192.168.1.113:3002/api/generador',
     method: 'GET'
 };
-
-
-
-
 // Codigo nuevo
 function getPortaStockIMAGENES_OBTENER(req, res) {
     //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
