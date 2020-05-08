@@ -1,142 +1,30 @@
 [
     {
-        "PRDIDENTI": 1042,
-        "PRDNOMBRE": "DES PROC. INTEL CELERON D 2.4GHZ SOCKET 478 RMA             ",
-        "categoria": "DES PROC. INTEL CELERON D 2.4GHZ SOCKET 478 RMA             ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 24.64
+        "PRDIDENTI": 3441,
+        "PRDNOMBRE": "SSD 2.5 WD 240GB GREEN SATA 3D                              ",
+        "categoria": "SSD 2.5 WD 240GB GREEN SATA 3D                              ",
+        "PUBSTOCK": "Más de 5",
+        "PRDPVP": 59.95
     },
     {
-        "PRDIDENTI": 2169,
-        "PRDNOMBRE": "DES PROC. PENTIUM 4 SL7E3 SOCKET 478 2.40GHZ                ",
-        "categoria": "DES PROC. PENTIUM 4 SL7E3 SOCKET 478 2.40GHZ                ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 2221,
-        "PRDNOMBRE": "DES PROC. AMD ATHLON II SOCKET S1                           ",
-        "categoria": "DES PROC. AMD ATHLON II SOCKET S1                           ",
+        "PRDIDENTI": 4113,
+        "PRDNOMBRE": "SSD 2.5 KINGSTON 120GB FOR PC O NOTEBOOK A400 7MM           ",
+        "categoria": "SSD 2.5 KINGSTON 120GB FOR PC O NOTEBOOK A400 7MM           ",
         "PUBSTOCK": 2,
-        "PRDPVP": 22
+        "PRDPVP": 45.54
     },
     {
-        "PRDIDENTI": 2283,
-        "PRDNOMBRE": "DES PROC. INTEL CELERON M520 1.60/1M/533                    ",
-        "categoria": "DES PROC. INTEL CELERON M520 1.60/1M/533                    ",
+        "PRDIDENTI": 15320,
+        "PRDNOMBRE": "SSD 2.5 KINGSTON 960GB SATA A400 FOR PC O NOTEBOOK          ",
+        "categoria": "SSD 2.5 KINGSTON 960GB SATA A400 FOR PC O NOTEBOOK          ",
         "PUBSTOCK": 1,
-        "PRDPVP": 16.5
+        "PRDPVP": 171.49
     },
     {
-        "PRDIDENTI": 2313,
-        "PRDNOMBRE": "DES PROC. AMD TURION 64X2 HP PAV.                           ",
-        "categoria": "DES PROC. AMD TURION 64X2 HP PAV.                           ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 2350,
-        "PRDNOMBRE": "DES PROC. INTEL P6100 PORT. TOSHIB                          ",
-        "categoria": "DES PROC. INTEL P6100 PORT. TOSHIB                          ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 2382,
-        "PRDNOMBRE": "DES PROC. AMD ATHLON                                        ",
-        "categoria": "DES PROC. AMD ATHLON                                        ",
-        "PUBSTOCK": 2,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 2479,
-        "PRDNOMBRE": "DES PROC. PENTIUM DUAL-CORE E2200 SOCKET 775 2.2GHZ         ",
-        "categoria": "DES PROC. PENTIUM DUAL-CORE E2200 SOCKET 775 2.2GHZ         ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 2568,
-        "PRDNOMBRE": "DES PROC. AMD ATHLON II                                     ",
-        "categoria": "DES PROC. AMD ATHLON II                                     ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 16.5
-    },
-    {
-        "PRDIDENTI": 2569,
-        "PRDNOMBRE": "DES PROC. E86118                                            ",
-        "categoria": "DES PROC. E86118                                            ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 16.5
-    },
-    {
-        "PRDIDENTI": 3622,
-        "PRDNOMBRE": "DES PROC. PENTIUM B950 2.1GHZ PORTATIL SR07T                ",
-        "categoria": "DES PROC. PENTIUM B950 2.1GHZ PORTATIL SR07T                ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 14682,
-        "PRDNOMBRE": "DES PROC. AMD ATHLON II DUAL-CORE 2.8GHZ 2X1MB SOCKET AM3   ",
-        "categoria": "DES PROC. AMD ATHLON II DUAL-CORE 2.8GHZ 2X1MB SOCKET AM3   ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 14967,
-        "PRDNOMBRE": "DES PROC. PENTIUM DUAL-CORE E5700 SOCKET 775 3.0GHZ         ",
-        "categoria": "DES PROC. PENTIUM DUAL-CORE E5700 SOCKET 775 3.0GHZ         ",
-        "PUBSTOCK": 2,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 14969,
-        "PRDNOMBRE": "DES PROC. INTEL CELERON 06 420 1.6GHZ                       ",
-        "categoria": "DES PROC. INTEL CELERON 06 420 1.6GHZ                       ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 15066,
-        "PRDNOMBRE": "DES PROC. PENTIUM DUAL-CORE E5300 SOCKET 775 3.0GHZ         ",
-        "categoria": "DES PROC. PENTIUM DUAL-CORE E5300 SOCKET 775 3.0GHZ         ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 15130,
-        "PRDNOMBRE": "DES PROC. PENTIUM G645 SOCKET 1155 2.9GHZ                   ",
-        "categoria": "DES PROC. PENTIUM G645 SOCKET 1155 2.9GHZ                   ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 22
-    },
-    {
-        "PRDIDENTI": 15134,
-        "PRDNOMBRE": "DES PROC. AMD SEMPRON SOCKET AMD2                           ",
-        "categoria": "DES PROC. AMD SEMPRON SOCKET AMD2                           ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 16.5
-    },
-    {
-        "PRDIDENTI": 15328,
-        "PRDNOMBRE": "PROC. INTEL PENTIUM GOLD DUAL CORE 3.7GHZ (G5400) 4M LGA1151",
-        "categoria": "PROC. INTEL PENTIUM GOLD DUAL CORE 3.7GHZ (G5400) 4M LGA1151",
-        "PUBSTOCK": 2,
-        "PRDPVP": 104.5
-    },
-    {
-        "PRDIDENTI": 15361,
-        "PRDNOMBRE": "PROC. INTEL CORE I3-9100F 3.6GHZ-6MB-DDR4-9NA GEN SOC 1151  ",
-        "categoria": "PROC. INTEL CORE I3-9100F 3.6GHZ-6MB-DDR4-9NA GEN SOC 1151  ",
-        "PUBSTOCK": 1,
-        "PRDPVP": 142.67
-    },
-    {
-        "PRDIDENTI": 15374,
-        "PRDNOMBRE": "PROC. INTEL CORE I5-9400 2.9GHZ-6MB-DDR4-9NA GEN SOC 1151   ",
-        "categoria": "PROC. INTEL CORE I5-9400 2.9GHZ-6MB-DDR4-9NA GEN SOC 1151   ",
-        "PUBSTOCK": 3,
-        "PRDPVP": 306.79
+        "PRDIDENTI": 15559,
+        "PRDNOMBRE": "SSD 2.5 WD 480GB GREEN SATA 3D                              ",
+        "categoria": "SSD 2.5 WD 480GB GREEN SATA 3D                              ",
+        "PUBSTOCK": "Más de 5",
+        "PRDPVP": 98.89
     }
 ]
