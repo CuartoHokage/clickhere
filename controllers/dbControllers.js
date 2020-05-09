@@ -9,6 +9,7 @@ const request = require('request');
 
 const options = {
     // Cambiar en el servidor
+    // url: 'http://192.168.1.113:3002/api/generador',
     url: 'http://192.168.2.105:3002/api/generador',
     method: 'GET'
 };
@@ -54,6 +55,7 @@ function getPortaStock(req, res) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 1;
             // producto[i].push({categorias: 'portatiles'})
         }
         console.log(producto)
@@ -78,10 +80,11 @@ function getPortaStock(req, res) {
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
+
         // 
         //
         // console.log(resultado)
-        res.render("portatiles", { data: resultado })
+        res.render("productos/portatiles", { data: resultado })
     });
 }
 
@@ -136,6 +139,7 @@ function getPortaStocks(req, res) {
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
+
         // 
         //
         // console.log(resultado)
@@ -170,6 +174,7 @@ function getRoutersTplink(req, res) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 2;
         }
 
         var hoy = new Date();
@@ -177,7 +182,8 @@ function getRoutersTplink(req, res) {
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
-        res.render("redes", { data: resultado })
+
+        res.render("productos/redes", { data: resultado })
     });
 }
 
@@ -208,6 +214,7 @@ function getCases(req, res) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 3;
         }
         //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
         // 	for (producto; producto < result.recordset.length; producto++) {
@@ -233,7 +240,8 @@ function getCases(req, res) {
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
-        res.render("case", { data: resultado })
+
+        res.render("productos/case", { data: resultado })
     });
 }
 
@@ -264,6 +272,7 @@ function getSeguridad(req, res) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 4;
         }
         //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
         // 	for (producto; producto < result.recordset.length; producto++) {
@@ -290,7 +299,7 @@ function getSeguridad(req, res) {
         console.log(hora);
         var resultado = result.recordset;
 
-        res.render("seguridadvideo", { data: resultado })
+        res.render("productos/seguridadvideo", { data: resultado })
     });
 }
 
@@ -321,6 +330,7 @@ function getImpresoras(req, res) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 5;
         }
 
         var hoy = new Date();
@@ -328,7 +338,8 @@ function getImpresoras(req, res) {
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
-        res.render("impresoras", { data: resultado })
+
+        res.render("productos/impresoras", { data: resultado })
     });
 }
 
@@ -399,22 +410,27 @@ function postProductosCoincidencia(req, res) {
                         if (producto[i].PUBSTOCK > 5) {
                             producto[i].PUBSTOCK = "Más de 5";
                         }
+                        producto[i].id_add_carrito = 6;
                     }
 
                     var dictstring = JSON.stringify(producto, null, 4)
 
                     fs.writeFileSync("./public/buscar.json", dictstring);
                     // fs.writeFile("./public/buscar.json", dictstring, () => {});
-                    res.render('busqueda', { data: producto })
+                    res.render('productos/busqueda', { data: producto })
                         // res.render('busqueda',producto);
                 });
             } else {
                 console.log('gg')
                 var producto = result1.recordset
+                for (var i = 0; i < producto.length; i++) {
+
+                    producto[i].id_add_carrito = 6;
+                }
                 var dictstring = JSON.stringify(producto, null, 4)
 
                 fs.writeFile("./public/buscar.json", dictstring, () => {});
-                res.render('busqueda', { data: producto }, localStorage.getItem("buscar"))
+                res.render('productos/busqueda', { data: producto }, localStorage.getItem("buscar"))
             }
         } else {
             res.render('index', err)
@@ -454,7 +470,7 @@ function postProductosCoincidenciaadmin(req, res) {
             //localStorage.setItem("producto", JSON.stringify(producto));
 
         //res.render('busqueda')
-        res.render('busqueda_admin', { data: producto })
+        res.render('productos/busqueda_admin', { data: producto })
             // res.render('busqueda',producto);
 
     });

@@ -56,10 +56,6 @@ api.get('/productos', (req, res) => {
     res.render('productos');
 });
 
-api.get('/edicion', (req, res) => {
-    res.render('admin_imagenes');
-});
-
 api.get('/carrito', (req, res) => {
     if (!req.session.cart) {
         return res.render('carrito', {
@@ -175,7 +171,7 @@ api.get('/removeALL', function(req, res, next) {
     res.redirect('/api/carrito');
 });
 
-api.get('/add/:id', function(req, res, next) {
+api.get('/add1/:id', function(req, res, next) {
 
     new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
 	  INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
@@ -199,6 +195,7 @@ api.get('/add/:id', function(req, res, next) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 1;
         }
 
         var resultado = result.recordset;
@@ -247,6 +244,7 @@ api.get('/add2/:id', function(req, res, next) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 2;
         }
 
         var resultado = result.recordset;
@@ -294,6 +292,7 @@ api.get('/add3/:id', function(req, res, next) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 3;
         }
 
         var resultado = result.recordset;
@@ -341,6 +340,7 @@ api.get('/add4/:id', function(req, res, next) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 4;
         }
 
         var resultado = result.recordset;
@@ -387,6 +387,7 @@ api.get('/add5/:id', function(req, res, next) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
+            producto[i].id_add_carrito = 5;
         }
 
         var resultado = result.recordset;
@@ -417,7 +418,7 @@ api.get('/add6/:id', function(req, res, next) {
     console.log(productId);
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     var product = products.filter(function(item) {
-
+        item.id_add_carrito = 6;
         return item.PRDIDENTI == productId;
     });
     console.log(product[0])
@@ -429,8 +430,9 @@ api.get('/add6/:id', function(req, res, next) {
 // api.get('/generador', dbControllers.getPortaStockIMAGENES_OBTENER);
 
 
-api.get('/producto-single/:id', function(req, res) {
+api.get('/producto-single/:add/:id', function(req, res) {
     var buscar = req.params.id;
+    var add = req.params.add;
 
     new sql.Request().query("SELECT DISTINCt p.PRDIDENTI, p.PRDNOMBRE,p.PRDNOMBRE as categoria, r.PUBSTOCK,  ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP FROM MAE_PRODUCTO p\
 	inner join REL_PRODUBIC r on r.PRDCODIGO=p.PRDIDENTI where PUBIDUBIC=12 and PUBSTOCK>0 and p.PRDIDENTI=" + buscar + "", (err, result) => {
@@ -462,9 +464,14 @@ api.get('/producto-single/:id', function(req, res) {
 
         } while (bandera == 0)
         console.log(producto)
+        producto.id_add_carrito = add;
         res.render('producto_simple', { data: producto })
     });
 
 });
 
 api.get('/generador', dbControllers.getPortaStockIMAGENES_OBTENER)
+
+api.get('/prueba', (req, res) => {
+    res.render('productos/producto', {});
+});

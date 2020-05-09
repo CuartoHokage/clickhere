@@ -11,7 +11,7 @@
                     <div class="main-category-image">
                         {{!-- Efecto https://mdbootstrap.com/docs/jquery/css/hover-effects/ --}}
                         <div class="view overlay zoom">
-                            <a title="{{this.PRDNOMBRE}}" href="/api/producto-single/{{this.PRDIDENTI}}"><img
+                            <a title="{{this.PRDNOMBRE}}" href="/api/producto-single/{{this.id_add_carrito}}/{{this.PRDIDENTI}}"><img
                                     class="thumbnail img-portfolio img-hover mb-3"
                                     onerror="this.src='/imagenes/sin_imagen.jpg';"
                                     src="/imagenes/{{this.PRDIDENTI}}.png" width="200" height="200">
@@ -25,7 +25,7 @@
                             <h6 class="alienar"> <strong>Descripcion: </strong> {{this.PRDNOMBRE}}</h6>
                             <div class="price-mob"><strong>Precio: </strong>$ {{decimal this.PRDPVP}}</div>
                             <div class="price-mob"><strong>Stock: </strong>{{this.PUBSTOCK}}</div>
-                            <a href="/api/add6/{{ this.PRDIDENTI }}" id="{{this.categorias}}"
+                            <a href="/api/add{{this.id_add_carrito}}/{{ this.PRDIDENTI }}" id="{{this.categorias}}"
                                 class="btn btn-default pull-right" role="button"><i class="fa fa-shopping-cart"
                                     aria-hidden="true"></i> Añadir al carrito</a>
                         </div>
