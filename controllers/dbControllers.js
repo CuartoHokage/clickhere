@@ -25,6 +25,8 @@ function getPortaStockIMAGENES_OBTENER(req, res) {
     });
 
 }
+// Consultar por categorias
+// Generico
 
 function getPortaStock(req, res) {
     //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
@@ -268,6 +270,7 @@ function getImpresoras(req, res) {
     });
 }
 
+// Fin categorias
 function getProductosCoincidencia(req, res) {
     var buscar = req.body.buscar;
     new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p\
