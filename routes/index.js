@@ -14,14 +14,6 @@ const fs = require('fs');
 //Cruds para peliculas
 
 //rutas de páginas
-
-api.get('/index2', (req, res) => {
-    res.render('index-rec');
-});
-
-api.get('/productos', (req, res) => {
-    res.render('productos');
-});
 // BUSQUEDAS
 api.get('/verconcidencia', (req, res) => {
     res.render('busqueda');
@@ -51,9 +43,6 @@ api.get('/construccion', (req, res) => {
 });
 api.get('/cotizacion', (req, res) => {
     res.render('cotizacion');
-});
-api.get('/productos', (req, res) => {
-    res.render('productos');
 });
 
 api.get('/carrito', (req, res) => {
@@ -469,9 +458,9 @@ api.get('/producto-single/:add/:id', function(req, res) {
     });
 
 });
-
+// Servir imágen servidor externo
 api.get('/generador', dbControllers.getPortaStockIMAGENES_OBTENER)
 
-api.get('/prueba', (req, res) => {
-    res.render('productos/producto', {});
-});
+
+// Mostrar imagen de producto puro
+api.get('/get-image/:imageFile', dbControllers.getImageFile);

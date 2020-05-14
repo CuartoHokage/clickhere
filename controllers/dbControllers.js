@@ -9,8 +9,8 @@ const request = require('request');
 
 const options = {
     // Cambiar en el servidor
-    // url: 'http://192.168.1.113:3002/api/generador',
-    url: 'http://192.168.2.105:3002/api/generador',
+    url: 'http://192.168.1.113:3002/api/generador',
+    // url: 'http://192.168.2.105:3002/api/generador',
     method: 'GET'
 };
 // Codigo nuevo
@@ -48,8 +48,6 @@ function getPortaStock(req, res) {
         //handle err
         var producto = result.recordset
 
-
-
         //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
@@ -58,23 +56,7 @@ function getPortaStock(req, res) {
             producto[i].id_add_carrito = 1;
             // producto[i].push({categorias: 'portatiles'})
         }
-        console.log(producto)
-            //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-            // 	for (producto; producto < result.recordset.length; producto++) 
-            // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-            // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-            // 	//tratamiento de la imagen
 
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -87,7 +69,7 @@ function getPortaStock(req, res) {
         res.render("productos/portatiles", { data: resultado })
     });
 }
-
+// Jugando con app
 function getPortaStocks(req, res) {
     //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
     //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
@@ -115,35 +97,16 @@ function getPortaStocks(req, res) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
         }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-        // 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-        // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-        // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-        // 	//tratamiento de la imagen
-
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
-
-        // 
-        //
-        // console.log(resultado)
-        res.status(200).send({ data: resultado })
+        console.log(resultado)
+            // 
+            //
+            // console.log(resultado)
+        res.status(200).send(resultado)
     });
 }
 
@@ -216,25 +179,6 @@ function getCases(req, res) {
             }
             producto[i].id_add_carrito = 3;
         }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-        // 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-        // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-        // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-        // 	//tratamiento de la imagen
-
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -274,25 +218,6 @@ function getSeguridad(req, res) {
             }
             producto[i].id_add_carrito = 4;
         }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-        // 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-        // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-        // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-        // 	//tratamiento de la imagen
-
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -511,6 +436,18 @@ function getProductosSimples(req, res) {
     });
 
 }
+// Servir imágen servidor externo
+function getImageFile(req, res) {
+    var imageFile = req.params.imageFile;
+    var path_file = './public/imagenes/' + imageFile;
+    fs.exists(path_file, function(exists) {
+        if (exists) {
+            res.sendFile(path.resolve(path_file));
+        } else {
+            res.status(200).send({ message: 'No existe esa imagen' })
+        }
+    });
+}
 module.exports = {
     getPortaStock,
     getPortaStocks,
@@ -523,8 +460,11 @@ module.exports = {
     postProductosCoincidenciaadmin,
     postPrductosCategoria,
 
+
     // Codigos nuevos
     // getPortaStockIMAGENES_OBTENER,
     getProductosSimples,
-    getPortaStockIMAGENES_OBTENER
+    getPortaStockIMAGENES_OBTENER,
+    // Servir imágen servidor externo
+    getImageFile
 }

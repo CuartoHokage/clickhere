@@ -43,6 +43,10 @@
   {{!-- Material desing --}}
   <link rel="stylesheet" href="/materialdesing/css/mdb.css">
   {{!-- Material desing --}}
+  {{!-- Boton flotante wss --}}
+  <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+<!--Floating WhatsApp javascript-->
+<script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
   <!-- MAIN CSS -->
     
 </head>
@@ -82,7 +86,7 @@
   </div>
 
 
-  <nav class="navbar sticky-top  navbar-expand-lg navbar-light" style="background-color: #fba744">
+  <nav class="navbar sticky-top  navbar-expand-lg navbar-light"  style="background-color: #fba744">
     <a class="navbar-brand" href="/"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,23 +113,38 @@
         --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+            data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
             Productos
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/api/cases">Computación</a>
-            <a class="dropdown-item" href="/api/seguridad-2">Seguridad</a>
-            <a class="dropdown-item" href="/api/portatiles">Portatiles</a>
-            <a class="dropdown-item" href="#" hidden>Proteccion electrica</a>
-            <a class="dropdown-item" href="/api/impresoras">Impresoras</a>
-            <a class="dropdown-item" href="#" hidden>Bolsos y Mochilas</a>
-            <a class="dropdown-item" href="#" hidden>Mesas y muebles</a>
-            <a class="dropdown-item" href="#" hidden>Electrodomésticos</a>
-            <a class="dropdown-item" href="/api/redes">Redes</a>
-            <a class="dropdown-item" href="#" hidden>Electrónica</a>
-            <a class="dropdown-item" href="#" hidden>Materiales varios</a>
-            <a class="dropdown-item" href="#" hidden>Domótica</a>
-          </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/api/cases">Computación</a></li>
+            <li><a class="dropdown-item" href="/api/seguridad-2">Seguridad</a></li>
+            <li><a class="dropdown-item" href="/api/portatiles">Portatiles</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Proteccion electrica</a></li>
+            <li><a class="dropdown-item" href="/api/impresoras">Impresoras</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Bolsos y Mochilas</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Mesas y muebles</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Electrodomésticos</a></li>
+            <li><a class="dropdown-item" href="/api/redes">Redes</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Electrónica</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Materiales varios</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Domótica</a></li>
+            
+          </ul>
+        </li>
+
+        {{!-- CATEGORIAS OCULTAS --}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Computación</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Proteccion electrica</a></li>
+            
+            
+          </ul>
         </li>
 
         <li class="nav-item">
@@ -207,6 +226,10 @@
   {{{ body }}}
   {{!-- footer inicio--}}
   <!-- Footer -->
+  <div class="container">
+    <div id="WAButton"></div>
+  </div>
+  
   <footer class="page-footer font-small special-color">
 
     <div style="background-color: #e8902af2;">
