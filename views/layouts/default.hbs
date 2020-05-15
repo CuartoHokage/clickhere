@@ -44,11 +44,13 @@
   <link rel="stylesheet" href="/materialdesing/css/mdb.css">
   {{!-- Material desing --}}
   {{!-- Boton flotante wss --}}
-  <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
-<!--Floating WhatsApp javascript-->
-<script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
+  <link rel="stylesheet"
+    href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+  <!--Floating WhatsApp javascript-->
+  <script type="text/javascript"
+    src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
   <!-- MAIN CSS -->
-    
+
 </head>
 
 <body class="">
@@ -86,7 +88,7 @@
   </div>
 
 
-  <nav class="navbar sticky-top  navbar-expand-lg navbar-light"  style="background-color: #fba744">
+  <nav class="navbar sticky-top  navbar-expand-lg navbar-light" style="background-color: #fba744">
     <a class="navbar-brand" href="/"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,21 +131,89 @@
             <li><a class="dropdown-item" href="#" hidden>Electrónica</a></li>
             <li><a class="dropdown-item" href="#" hidden>Materiales varios</a></li>
             <li><a class="dropdown-item" href="#" hidden>Domótica</a></li>
-            
+
           </ul>
         </li>
 
         {{!-- CATEGORIAS OCULTAS --}}
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
             data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categorias
+            Componentes
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Computación</a></li>
+            <li><a class="dropdown-item" href="/api/memorias_ram">Memoria Ram</a></li>
+            <li><a class="dropdown-item" href="/api/almacenamiento">Almacenamiento</a></li>
+            <li><a class="dropdown-item" href="/api/procesadores">Procesadores</a></li>
+            <li><a class="dropdown-item" href="/api//mainboards">Mainboards</a></li>
+            <li><a class="dropdown-item" href="/api/tarjeta_grafica">Tarjetas de Video</a></li>
+            <li><a class="dropdown-item" href="/api/cases">Case</a></li>
+            <li><a class="dropdown-item" href="/#">Fuentes de poder</a></li>
             <li><a class="dropdown-item" href="#" hidden>Proteccion electrica</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown " >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+            Accesorios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/#">Parlantes</a></li>
+            <li><a class="dropdown-item" href="/#">Teclados</a></li>
+            <li><a class="dropdown-item" href="/#">Mouse</a></li>
+            <li><a class="dropdown-item" href="/#">Audífonos</a></li>
+            <li><a class="dropdown-item" href="/#">Cámara web</a></li>
+            <li><a class="dropdown-item" href="/#">Lectores de código</a></li>
+            <li><a class="dropdown-item" href="/#">Almacenamiento</a></li>
+            <li><a class="dropdown-item" href="#">Proteccion electrica</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown " hidden>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+            Seguridad
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/#">Materiales de instalación</a></li>
+            <li><a class="dropdown-item" href="/#">Cámaras de vigilacias</a></li>
+            <li><a class="dropdown-item" href="/#">DVR/NVR</a></li>
+            <li><a class="dropdown-item" href="/#">Alarmas</a></li>
+            <li><a class="dropdown-item" href="/#">Reloj biométrico</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown " hidden>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+            Equipos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/#">Monitores</a></li>
+            <li><a class="dropdown-item" href="/#">Impresoras</a>
+              <ul>
+                <li><a class="dropdown-item" href="/#" hidden>Impresoras</a>
+                <li><a class="dropdown-item" href="/#" hidden>Impresoras</a>
+                <li><a class="dropdown-item" href="/#" hidden>Impresoras</a>
+                <li><a class="dropdown-item" href="/#" hidden>Impresoras</a>
+              </ul>
+            </li>
+            <li><a class="dropdown-item" href="/#">DVR/NVR</a></li>
+            <li><a class="dropdown-item" href="/#">Alarmas</a></li>
+            <li><a class="dropdown-item" href="/#">Reloj biométrico</a></li>
             
-            
+          </ul>
+        </li>
+        <li class="nav-item dropdown " hidden>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+            Otros
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/#">Bolsos y maletas</a></li>
+            <li><a class="dropdown-item" href="/#">Baterías</a></li>
+            <li><a class="dropdown-item" href="/#">Cables</a></li>
+            <li><a class="dropdown-item" href="/#">Mesas</a></li>
+            <li><a class="dropdown-item" href="#" hidden>Proteccion electrica</a></li>
           </ul>
         </li>
 
@@ -229,7 +299,7 @@
   <div class="container">
     <div id="WAButton"></div>
   </div>
-  
+
   <footer class="page-footer font-small special-color">
 
     <div style="background-color: #e8902af2;">
