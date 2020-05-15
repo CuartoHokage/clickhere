@@ -14,14 +14,6 @@ const fs = require('fs');
 //Cruds para peliculas
 
 //rutas de páginas
-
-api.get('/index2', (req, res) => {
-    res.render('index-rec');
-});
-
-api.get('/productos', (req, res) => {
-    res.render('productos');
-});
 // BUSQUEDAS
 api.get('/verconcidencia', (req, res) => {
     res.render('busqueda');
@@ -51,9 +43,6 @@ api.get('/construccion', (req, res) => {
 });
 api.get('/cotizacion', (req, res) => {
     res.render('cotizacion');
-});
-api.get('/productos', (req, res) => {
-    res.render('productos');
 });
 
 api.get('/carrito', (req, res) => {
@@ -130,7 +119,7 @@ api.post('/postmail_contacto', mailControllers.postMail2);
 api.post('/postmail_cotizacion', mailControllers.postMail);
 api.post('/postmail_ordeCompra', mailControllers.postMailOrdenCompra);
 
-
+// categoriass
 api.get('/portatiles', dbControllers.getPortaStock);
 api.get('/portatiless', dbControllers.getPortaStocks);
 
@@ -138,6 +127,12 @@ api.get('/redes', dbControllers.getRoutersTplink);
 api.get('/cases', dbControllers.getCases);
 api.get('/seguridad-2', dbControllers.getSeguridad);
 api.get('/impresoras', dbControllers.getImpresoras);
+api.get('/memorias_ram', dbControllers.getRAM);
+api.get('/almacenamiento', dbControllers.getAlmacenamiento);
+api.get('/procesadores', dbControllers.getProcesador);
+api.get('/mainboards', dbControllers.getMainboard);
+api.get('/tarjeta_grafica', dbControllers.getGrafica);
+
 //api.get('/imagen',('./controllers/publick/img3.jpg.'));
 
 //obtener usuarios
@@ -381,6 +376,7 @@ api.get('/add5/:id', function(req, res, next) {
 	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
 	where Marcas.NOMBRE like '%impresora%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
         //handle err
+        // Para consultar productos desde el carrito ===>
         var producto = result.recordset
             //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
@@ -389,7 +385,7 @@ api.get('/add5/:id', function(req, res, next) {
             }
             producto[i].id_add_carrito = 5;
         }
-
+        // <===Para consultar productos desde el carrito
         var resultado = result.recordset;
         console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
             // console.log(resultado)
@@ -411,7 +407,236 @@ api.get('/add5/:id', function(req, res, next) {
 
 });
 
+api.get('/add7/:id', function(req, res, next) {
 
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%DIMM%GB%' and PUBSTOCK >0 and PUBIDUBIC=12\
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%MODULO DE MEMORIA%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%DIMM%GB%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+        //handle err
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 7;
+        }
+
+        var resultado = result.recordset;
+        console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+            // console.log(resultado)
+            // 
+            //
+        var productId = req.params.id;
+        console.log(productId);
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+        var product = resultado.filter(function(item) {
+
+            return item.PRDIDENTI == productId;
+        });
+        console.log(product[0])
+        cart.add(product[0], productId);
+        req.session.cart = cart;
+        res.redirect('/api/memorias_ram');
+    });
+
+
+});
+
+api.get('/add8/:id', function(req, res, next) {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where (PRDNOMBRE like '%ssd%sata%' or PRDNOMBRE like '%hdd%SATA%') and PUBSTOCK >0 and PUBIDUBIC=12\
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%DISCOS DUROS%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where (Marcas.NOMBRE like 'ssd%' or PRDNOMBRE like '%hdd%SATA%') and PUBSTOCK >0 and PUBIDUBIC=12  ", (err, result) => {
+        //handle err
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 8;
+        }
+
+        var resultado = result.recordset;
+        console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+            // console.log(resultado)
+            // 
+            //
+        var productId = req.params.id;
+        console.log(productId);
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+        var product = resultado.filter(function(item) {
+
+            return item.PRDIDENTI == productId;
+        });
+        console.log(product[0])
+        cart.add(product[0], productId);
+        req.session.cart = cart;
+        res.redirect('/api/almacenamiento');
+    });
+});
+api.get('/add9/:id', function(req, res, next) {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%proc.%' and PUBSTOCK >0 and PUBIDUBIC=12\
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%proc.%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%Intel%' and PUBSTOCK >0 and PUBIDUBIC=12   ", (err, result) => {
+        //handle err
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 9;
+        }
+
+        var resultado = result.recordset;
+        console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+            // console.log(resultado)
+            // 
+            //
+        var productId = req.params.id;
+        console.log(productId);
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+        var product = resultado.filter(function(item) {
+
+            return item.PRDIDENTI == productId;
+        });
+        console.log(product[0])
+        cart.add(product[0], productId);
+        req.session.cart = cart;
+        res.redirect('/api/procesadores');
+    });
+});
+
+api.get('/add10/:id', function(req, res, next) {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where (PRDNOMBRE like '% MBO%' or PRDNOMBRE like 'MBO%' ) and PUBSTOCK >0 and PUBIDUBIC=12 \
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%MAINBOARD%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%MBO%' and PUBSTOCK >0 and PUBIDUBIC=12  ", (err, result) => {
+        //handle err
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 9;
+        }
+
+        var resultado = result.recordset;
+        console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+            // console.log(resultado)
+            // 
+            //
+        var productId = req.params.id;
+        console.log(productId);
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+        var product = resultado.filter(function(item) {
+
+            return item.PRDIDENTI == productId;
+        });
+        console.log(product[0])
+        cart.add(product[0], productId);
+        req.session.cart = cart;
+        res.redirect('/api/mainboard');
+    });
+});
+
+api.get('/add11/:id', function(req, res, next) {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where (PRDNOMBRE like '% MBO%' or PRDNOMBRE like 'MBO%' ) and PUBSTOCK >0 and PUBIDUBIC=12 \
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%MAINBOARD%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%MBO%' and PUBSTOCK >0 and PUBIDUBIC=12  ", (err, result) => {
+        //handle err
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 11;
+        }
+
+        var resultado = result.recordset;
+        console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+            // console.log(resultado)
+            // 
+            //
+        var productId = req.params.id;
+        console.log(productId);
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+        var product = resultado.filter(function(item) {
+
+            return item.PRDIDENTI == productId;
+        });
+        console.log(product[0])
+        cart.add(product[0], productId);
+        req.session.cart = cart;
+        res.redirect('/api/tarjeta_grafica');
+    });
+});
 api.get('/add6/:id', function(req, res, next) {
     var products = JSON.parse(fs.readFileSync('./public/buscar.json'));
     var productId = req.params.id;
@@ -469,9 +694,9 @@ api.get('/producto-single/:add/:id', function(req, res) {
     });
 
 });
-
+// Servir imágen servidor externo
 api.get('/generador', dbControllers.getPortaStockIMAGENES_OBTENER)
 
-api.get('/prueba', (req, res) => {
-    res.render('productos/producto', {});
-});
+
+// Mostrar imagen de producto puro
+api.get('/get-image/:imageFile', dbControllers.getImageFile);

@@ -541,3 +541,10 @@ img {
 
 
 /* ZOOM imagen */
+
+
+/* Dropdows menus */
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}

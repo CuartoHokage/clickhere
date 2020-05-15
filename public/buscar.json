@@ -1,1 +1,30 @@
+<<<<<<< HEAD
 []
+=======
+[
+    {
+        "PRDIDENTI": 3441,
+        "PRDNOMBRE": "SSD 2.5 WD GREEN PC WDS240G2G0A- 240GB SATA3                ",
+        "categoria": "SSD 2.5 WD GREEN PC WDS240G2G0A- 240GB SATA3                ",
+        "PUBSTOCK": 4,
+        "PRDPVP": 57.2,
+        "id_add_carrito": 6
+    },
+    {
+        "PRDIDENTI": 3937,
+        "PRDNOMBRE": "SSD 2.5 KINGSTON 240GB A400 SATA 3 PC/NOTEB 7MM SVUV400S37  ",
+        "categoria": "SSD 2.5 KINGSTON 240GB A400 SATA 3 PC/NOTEB 7MM SVUV400S37  ",
+        "PUBSTOCK": 2,
+        "PRDPVP": 57.2,
+        "id_add_carrito": 6
+    },
+    {
+        "PRDIDENTI": 4113,
+        "PRDNOMBRE": "SSD 2.5 KINGSTON 120GB FOR PC O NOTEBOOK A400 7MM           ",
+        "categoria": "SSD 2.5 KINGSTON 120GB FOR PC O NOTEBOOK A400 7MM           ",
+        "PUBSTOCK": 4,
+        "PRDPVP": 34.43,
+        "id_add_carrito": 6
+    }
+]
+>>>>>>> 71c7309091e75b1ee553f3d4231499b8712afe07

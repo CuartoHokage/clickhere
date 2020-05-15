@@ -32,3 +32,24 @@ https://desarrolloweb.com/articulos/ejecutar-aplicacion-nodejs-pm2.html
 
 //chat de facebook en la página web
 https://www.youtube.com/watch?v=TisjtrKJXM0
+
+
+//Certificado SSL en Windows
+
+https://blogs.msdn.microsoft.com/friis/2016/08/25/setup-iis-with-url-rewrite-as-a-reverse-proxy-for-real-world-apps/
+https://stackoverflow.com/questions/42958052/ssl-with-node-iis
+https://stackoverflow.com/questions/42761992/configuring-https-for-express-and-nginx/42762965#42762965
+https://www.youtube.com/watch?v=pL0bobSHP5s&ab_channel=DannaDolugar
+
+https://www.youtube.com/watch?v=Dr1HYPXulek&ab_channel=JocheOjeda
+
+
+https://dev.to/petereysermans/hosting-a-node-js-application-on-windows-with-iis-as-reverse-proxy-397b
+
+IR A C:\nginx-1.17.10\conf\nginx.conf
+
+revisar openssl y proxy reverse windows, permisos de reglas,
+
+
+EJEMPLO
+http://mtec-ec.com/

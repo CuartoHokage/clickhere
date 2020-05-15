@@ -25,6 +25,50 @@ function getPortaStockIMAGENES_OBTENER(req, res) {
     });
 
 }
+// Consultar por categorias
+// Generico
+function generico(descripcion, categoria, marca) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like " + descripcion + " and PUBSTOCK >0 and PUBIDUBIC=12\
+	union all\
+	select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+	inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+	inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+	where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like " + categoria + "\
+	union all\
+	select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+	where Marcas.NOMBRE like " + marca + " and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+        //handle err
+        var producto = result.recordset
+
+        //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 1;
+            // producto[i].push({categorias: 'portatiles'})
+        }
+
+        var hoy = new Date();
+        var hora;
+        hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(hora);
+        var resultado = result.recordset;
+        return resultado;
+        // 
+        //
+        // console.log(resultado)
+    });
+}
 
 function getPortaStock(req, res) {
     //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
@@ -48,8 +92,6 @@ function getPortaStock(req, res) {
         //handle err
         var producto = result.recordset
 
-
-
         //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
@@ -58,36 +100,23 @@ function getPortaStock(req, res) {
             producto[i].id_add_carrito = 1;
             // producto[i].push({categorias: 'portatiles'})
         }
-        console.log(producto)
-            //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-            // 	for (producto; producto < result.recordset.length; producto++) 
-            // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-            // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-            // 	//tratamiento de la imagen
 
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
-
-        // 
-        //
-        // console.log(resultado)
         res.render("productos/portatiles", { data: resultado })
     });
 }
 
+function getPortaStockG(req, res) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+    console.log(generico("'port.%'", "'port.%'", "'%port%'"));
+    // res.render("productos/portatiles", { data: data })
+}
+// Jugando con app
 function getPortaStocks(req, res) {
     //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
     //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
@@ -115,35 +144,16 @@ function getPortaStocks(req, res) {
                 producto[i].PUBSTOCK = "Más de 5";
             }
         }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-        // 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-        // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-        // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-        // 	//tratamiento de la imagen
-
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
         console.log(hora);
         var resultado = result.recordset;
-
-        // 
-        //
-        // console.log(resultado)
-        res.status(200).send({ data: resultado })
+        console.log(resultado)
+            // 
+            //
+            // console.log(resultado)
+        res.status(200).send(resultado)
     });
 }
 
@@ -216,25 +226,6 @@ function getCases(req, res) {
             }
             producto[i].id_add_carrito = 3;
         }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-        // 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-        // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-        // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-        // 	//tratamiento de la imagen
-
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -274,25 +265,6 @@ function getSeguridad(req, res) {
             }
             producto[i].id_add_carrito = 4;
         }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES////////////////////////////////////
-        // 	for (producto; producto < result.recordset.length; producto++) {
-
-
-
-        // 	var originalBase64ImageStr = new Buffer(result.recordset[producto]['IMAGEN'])
-        // 	var decodedImage = new Buffer.from(originalBase64ImageStr , 'base64')
-        // 	//tratamiento de la imagen
-
-        // 	//fs.writeFileSync(target, recordSets.recordset[0].Image);
-        // 	//funciona en directorio erroneo
-        // 	//fs.writeFile('./public/imagenes/'+result.recordset[0]['PRDIDENTI']+'.jpg', decodedImage, function(err, data){
-        // 	fs.writeFile('./public/imagenes/'+result.recordset[producto]['PRDIDENTI']+'_'+result.recordset[producto]['IDENTIFICADOR']+'.jpg', decodedImage, function(err, data){
-        //         if (err) throw err;
-        //     console.log('It\'s saved!');
-        //         console.log(data);
-        // 	});
-        // }
-        //////////////////////////////OBTENER CONVERTIR Y CREAR IMAGENES FINNN////////////////////////////////////
         var hoy = new Date();
         var hora;
         hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
@@ -343,6 +315,212 @@ function getImpresoras(req, res) {
     });
 }
 
+function getRAM(req, res) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%DIMM%GB%' and PUBSTOCK >0 and PUBIDUBIC=12\
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%DIMM%GB%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%DIMM%GB%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
+        //handle err
+        console.log(result.recordset)
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 7;
+        }
+
+        var hoy = new Date();
+        var hora;
+        hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(hora);
+        var resultado = result.recordset;
+        console.log(resultado)
+
+        res.render("productos/memorias_ram", { data: resultado })
+    });
+}
+
+function getAlmacenamiento(req, res) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where (PRDNOMBRE like '%ssd%sata%' or PRDNOMBRE like '%hdd%SATA%') and PUBSTOCK >0 and PUBIDUBIC=12\
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%hdd%SATA%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where (Marcas.NOMBRE like 'ssd%' or PRDNOMBRE like '%hdd%SATA%') and PUBSTOCK >0 and PUBIDUBIC=12  ", (err, result) => {
+        //handle err
+        console.log(result.recordset)
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 8;
+        }
+
+        var hoy = new Date();
+        var hora;
+        hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(hora);
+        var resultado = result.recordset;
+        console.log(resultado)
+
+        res.render("productos/almacenamiento", { data: resultado })
+    });
+}
+
+function getProcesador(req, res) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like '%proc.%' and PUBSTOCK >0 and PUBIDUBIC=12\
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%proc.%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%Intel%' and PUBSTOCK >0 and PUBIDUBIC=12   ", (err, result) => {
+        //handle err
+        console.log(result.recordset)
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 9;
+        }
+
+        var hoy = new Date();
+        var hora;
+        hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(hora);
+        var resultado = result.recordset;
+        console.log(resultado)
+
+        res.render("productos/procesador", { data: resultado })
+    });
+}
+
+function getMainboard(req, res) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where (PRDNOMBRE like '% MBO%' or PRDNOMBRE like 'MBO%' ) and PUBSTOCK >0 and PUBIDUBIC=12 \
+    union all\
+    select p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%MBO%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%MBO%' and PUBSTOCK >0 and PUBIDUBIC=12  ", (err, result) => {
+        //handle err
+        console.log(result.recordset)
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 10;
+        }
+
+        var hoy = new Date();
+        var hora;
+        hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(hora);
+        var resultado = result.recordset;
+        console.log(resultado)
+
+        res.render("productos/mainboard", { data: resultado })
+    });
+}
+
+function getGrafica(req, res) {
+    //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
+    //new sql.Request().query("SELECT top 5 p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN, i.IDENTIFICADOR FROM MAE_PRODUCTO p, IMAGENPROD i WHERE p.PRDIDENTI= i.IDPRODUCTO AND i.IDPRODUCTO=p.PRDIDENTI", (err, result) => {
+
+    new sql.Request().query("select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, p.PRDNOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+	INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+	where PRDNOMBRE like 'T/VIDEO%' and PUBSTOCK >0 and PUBIDUBIC=12\
+    union  all\
+    select  p.PRDIDENTI, p.PRDNOMBRE, a.NOMBRE, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    inner join REL_PRODAGRUPACION ra on ra.IDPRODUCTO= p.PRDIDENTI\
+    inner join AGRUPACION a on ra.IDGRUPO= a.IDGRUPO\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO and s.PRDCODIGO=p.PRDIDENTI\
+    inner join MAE_UBICACION u on u.UBIIDENTI= s.PUBIDUBIC\
+    where PUBSTOCK >0 and u.UBIIDENTI=12 and a.NOMBRE like '%T/VIDEO%'\
+    union all\
+    select DISTINCt p.PRDIDENTI, p.PRDNOMBRE, Marcas.NOMBRE as categoria, s.PUBSTOCK, ROUND((((PRDPVP * (select IMPPORCEN from CFG_IMPUESTOS where IMPIDENTI=1))/100)+ PRDPVP),2, 0) as PRDPVP from MAE_PRODUCTO p\
+    INNER join REL_PRODUBIC s on p.PRDIDENTI= s.PRDCODIGO\
+    inner join MARCAS on MARCAS.IDENTIFICADOR= IDMARCA\
+    where Marcas.NOMBRE like '%TARJETA DE VIDEO%' and PUBSTOCK >0 and PUBIDUBIC=12   ", (err, result) => {
+        //handle err
+        console.log(result.recordset)
+        var producto = result.recordset
+            //localStorage.setItem("producto", JSON.stringify(producto));
+        for (var i = 0; i < producto.length; i++) {
+            if (producto[i].PUBSTOCK > 5) {
+                producto[i].PUBSTOCK = "Más de 5";
+            }
+            producto[i].id_add_carrito = 11;
+        }
+
+        var hoy = new Date();
+        var hora;
+        hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+        console.log(hora);
+        var resultado = result.recordset;
+        console.log(resultado)
+
+        res.render("productos/tarjeta_video", { data: resultado })
+    });
+}
+
+// Fin categorias
 function getProductosCoincidencia(req, res) {
     var buscar = req.body.buscar;
     new sql.Request().query("select p.PRDIDENTI, p.PRDNOMBRE, s.PUBSTOCK from MAE_PRODUCTO p\
@@ -511,6 +689,18 @@ function getProductosSimples(req, res) {
     });
 
 }
+// Servir imágen servidor externo
+function getImageFile(req, res) {
+    var imageFile = req.params.imageFile;
+    var path_file = './public/imagenes/' + imageFile;
+    fs.exists(path_file, function(exists) {
+        if (exists) {
+            res.sendFile(path.resolve(path_file));
+        } else {
+            res.status(200).send({ message: 'No existe esa imagen' })
+        }
+    });
+}
 module.exports = {
     getPortaStock,
     getPortaStocks,
@@ -518,13 +708,21 @@ module.exports = {
     getCases,
     getSeguridad,
     getImpresoras,
+    getRAM,
+    getProcesador,
+    getMainboard,
+    getGrafica,
     getProductosCoincidencia,
+    getAlmacenamiento,
     postProductosCoincidencia,
     postProductosCoincidenciaadmin,
     postPrductosCategoria,
 
+
     // Codigos nuevos
     // getPortaStockIMAGENES_OBTENER,
     getProductosSimples,
-    getPortaStockIMAGENES_OBTENER
+    getPortaStockIMAGENES_OBTENER,
+    // Servir imágen servidor externo
+    getImageFile
 }
