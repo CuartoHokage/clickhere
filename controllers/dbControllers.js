@@ -9,10 +9,33 @@ const request = require('request');
 
 const options = {
     // Cambiar en el servidor
-    // url: 'http://192.168.1.113:3002/api/generador',
-    url: 'http://192.168.2.105:3002/api/generador',
+    url: 'http://192.168.1.113:3002/api/generador',
+    // url: 'http://192.168.2.105:3002/api/generador',
     method: 'GET'
 };
+//Ramificacion de categorias
+
+function arbol(req, res, nexts) {
+    new sql.Request().query("select * from AGRUPACION", (err, result) => {
+        //handle err
+        var resultado = result.recordset;
+        var categorias = []
+        var json = {}
+
+        for (var array = 0; array < resultado.length; array++) {
+            var idGrupo = 0
+            for (idGrupo = 0; idGrupo < resultado.length; idGrupo++) {
+                if (idGrupo == resultado[array].IDPADRE) {
+                    categorias.push({ id: resultado[array].IDGRUPO, id: resultado[array].PADRE, hijos: [] })
+                    categorias[idGrupo].hijos.push([idGrupo], 0, resultado[array])
+                }
+            }
+        }
+        console.log(categorias)
+        res.status(200).send(categorias)
+    });
+};
+
 // Codigo nuevo
 function getPortaStockIMAGENES_OBTENER(req, res) {
     //new sql.Request().query("SELECT p.PRDIDENTI, p.PRDNOMBRE, p.PRDPVP, i.IMAGEN FROM IMAGENPROD i, MAE_PRODUCTO p	WHERE p.PRDIDENTI= i.IDENTIFICADOR ", (err, result) => {
@@ -724,5 +747,6 @@ module.exports = {
     getProductosSimples,
     getPortaStockIMAGENES_OBTENER,
     // Servir imágen servidor externo
-    getImageFile
+    getImageFile,
+    arbol
 }

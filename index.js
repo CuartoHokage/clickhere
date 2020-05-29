@@ -18,12 +18,12 @@ const sql = require('mssql')
 const config2 = {
     // Cambiar en el servidor
     user: 'sa',
-    // database: 'click_new',
-    // password: '12qwaszx',
-    // server: '192.168.1.113', // You can use 'localhost\\instance' to connect to named instance
-    database: 'click',
-    password: 'Clickhere2018',
-    server: '192.168.2.102', // You can use 'localhost\\instance' to connect to named instance
+    database: 'click_new',
+    password: '12qwaszx',
+    server: '192.168.1.113', // You can use 'localhost\\instance' to connect to named instance
+    // database: 'click',
+    // password: 'Clickhere2018',
+    // server: '192.168.2.102', // You can use 'localhost\\instance' to connect to named instance
 
     pool: {
         max: 1000,

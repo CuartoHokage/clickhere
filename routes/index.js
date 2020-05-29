@@ -1,5 +1,5 @@
 'use strict'
-
+var jwt = require('../services/jwt')
 const express = require('express');
 const api = express.Router();
 var multiparty = require('connect-multiparty');
@@ -11,7 +11,12 @@ const userControllers = require('../controllers/userControllers');
 const Cart = require('../models/cart');
 const sql = require('mssql');
 const fs = require('fs');
-//Cruds para peliculas
+const md = require('../middlewares/auth')
+
+
+
+//crud arbol
+api.get('/arbol', dbControllers.arbol)
 
 //rutas de páginas
 // BUSQUEDAS
@@ -134,7 +139,9 @@ api.get('/mainboards', dbControllers.getMainboard);
 api.get('/tarjeta_grafica', dbControllers.getGrafica);
 
 //api.get('/imagen',('./controllers/publick/img3.jpg.'));
-
+api.get('/dash', (req, res) => {
+    res.render('dashboard/dashboard')
+});
 //obtener usuarios
 api.get('/getusuarios', userControllers.getUsuarios);
 //Vista de inicio de sesion
@@ -143,10 +150,17 @@ api.get('/signin', (req, res) => {
 });
 //administrador
 api.get('/adminClickhere', (req, res) => {
-    res.render('admin');
+
+    res.render('admin', );
 });
 //Enviar usuario por post
-api.post('/postsignin', userControllers.postUsuario);
+api.post('/postsignin', (req, res) => {
+    var user = {
+        user: 'jaime',
+        pass: '1'
+    }
+    res.status(200).send({ token: jwt.createToken(user.user, user.pass) })
+});
 module.exports = api
 
 //funciones carrito
