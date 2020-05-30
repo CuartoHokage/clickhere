@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const sql = require('mssql');
 var localStorage = require('localStorage')
-
+var LTT= require('list-to-tree')
 const request = require('request');
 
 const options = {
@@ -21,18 +21,14 @@ function arbol(req, res, nexts) {
         var resultado = result.recordset;
         var categorias = []
         var json = {}
+        // convirtiendo array consulta en arbol https://typeofnan.dev/an-easy-way-to-build-a-tree-with-object-references/
+        var ltt = new LTT(resultado, {
+            key_id: 'IDGRUPO',
+            key_parent: 'IDPADRE'
+          });
+          var tree = ltt.GetTree();
 
-        for (var array = 0; array < resultado.length; array++) {
-            var idGrupo = 0
-            for (idGrupo = 0; idGrupo < resultado.length; idGrupo++) {
-                if (idGrupo == resultado[array].IDPADRE) {
-                    categorias.push({ id: resultado[array].IDGRUPO, id: resultado[array].PADRE, hijos: [] })
-                    categorias[idGrupo].hijos.push([idGrupo], 0, resultado[array])
-                }
-            }
-        }
-        console.log(categorias)
-        res.status(200).send(categorias)
+        res.status(200).send(tree)
     });
 };
 
@@ -161,7 +157,7 @@ function getPortaStocks(req, res) {
 	where Marcas.NOMBRE like '%port%' and PUBSTOCK >0 and PUBIDUBIC=12 ", (err, result) => {
         //handle err
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -173,9 +169,9 @@ function getPortaStocks(req, res) {
         console.log(hora);
         var resultado = result.recordset;
         console.log(resultado)
-            // 
-            //
-            // console.log(resultado)
+        // 
+        //
+        // console.log(resultado)
         res.status(200).send(resultado)
     });
 }
@@ -202,7 +198,7 @@ function getRoutersTplink(req, res) {
         //handle err
 
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -242,7 +238,7 @@ function getCases(req, res) {
         //handle err
 
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -281,7 +277,7 @@ function getSeguridad(req, res) {
         //handle err
 
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -320,7 +316,7 @@ function getImpresoras(req, res) {
         //handle err
 
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -360,7 +356,7 @@ function getRAM(req, res) {
         //handle err
         console.log(result.recordset)
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -401,7 +397,7 @@ function getAlmacenamiento(req, res) {
         //handle err
         console.log(result.recordset)
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -442,7 +438,7 @@ function getProcesador(req, res) {
         //handle err
         console.log(result.recordset)
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -483,7 +479,7 @@ function getMainboard(req, res) {
         //handle err
         console.log(result.recordset)
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -524,7 +520,7 @@ function getGrafica(req, res) {
         //handle err
         console.log(result.recordset)
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
         for (var i = 0; i < producto.length; i++) {
             if (producto[i].PUBSTOCK > 5) {
                 producto[i].PUBSTOCK = "Más de 5";
@@ -606,7 +602,7 @@ function postProductosCoincidencia(req, res) {
                     console.log(result.recordset)
 
                     var producto = result.recordset
-                        //localStorage.setItem("producto", JSON.stringify(producto));
+                    //localStorage.setItem("producto", JSON.stringify(producto));
                     for (var i = 0; i < producto.length; i++) {
                         if (producto[i].PUBSTOCK > 5) {
                             producto[i].PUBSTOCK = "Más de 5";
@@ -619,7 +615,7 @@ function postProductosCoincidencia(req, res) {
                     fs.writeFileSync("./public/buscar.json", dictstring);
                     // fs.writeFile("./public/buscar.json", dictstring, () => {});
                     res.render('productos/busqueda', { data: producto })
-                        // res.render('busqueda',producto);
+                    // res.render('busqueda',producto);
                 });
             } else {
                 console.log('gg')
@@ -630,7 +626,7 @@ function postProductosCoincidencia(req, res) {
                 }
                 var dictstring = JSON.stringify(producto, null, 4)
 
-                fs.writeFile("./public/buscar.json", dictstring, () => {});
+                fs.writeFile("./public/buscar.json", dictstring, () => { });
                 res.render('productos/busqueda', { data: producto }, localStorage.getItem("buscar"))
             }
         } else {
@@ -668,11 +664,11 @@ function postProductosCoincidenciaadmin(req, res) {
         console.log(result.recordset)
 
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
 
         //res.render('busqueda')
         res.render('productos/busqueda_admin', { data: producto })
-            // res.render('busqueda',producto);
+        // res.render('busqueda',producto);
 
     });
 }
@@ -687,11 +683,11 @@ function postPrductosCategoria(req, res) {
         // console.log(result.recordset)
 
         var producto = result.recordset
-            //localStorage.setItem("producto", JSON.stringify(producto));
+        //localStorage.setItem("producto", JSON.stringify(producto));
 
         //res.render('busqueda')
         res.render('busqueda_admin', { data: producto })
-            // res.render('busqueda',producto);
+        // res.render('busqueda',producto);
 
     });
 }
@@ -716,7 +712,7 @@ function getProductosSimples(req, res) {
 function getImageFile(req, res) {
     var imageFile = req.params.imageFile;
     var path_file = './public/imagenes/' + imageFile;
-    fs.exists(path_file, function(exists) {
+    fs.exists(path_file, function (exists) {
         if (exists) {
             res.sendFile(path.resolve(path_file));
         } else {
